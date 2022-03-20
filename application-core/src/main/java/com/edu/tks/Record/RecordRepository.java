@@ -1,9 +1,7 @@
-package shop.Record;
+package com.edu.tks.Record;
 
-import shop.Exceptions.NotFoundException;
-import shop.Exceptions.RentalException;
-import shop.User.User;
-import shop.User.UserType;
+import com.edu.tks.Exceptions.NotFoundException;
+import com.edu.tks.Exceptions.RentalException;
 
 import java.util.ArrayList;
 import java.util.Arrays;

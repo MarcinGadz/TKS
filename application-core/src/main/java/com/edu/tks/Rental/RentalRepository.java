@@ -1,9 +1,7 @@
-package shop.Rental;
+package com.edu.tks.Rental;
 
-import shop.Exceptions.InputException;
-import shop.Exceptions.NotFoundException;
-import shop.Exceptions.RentalException;
-import shop.Record.Record;
+import com.edu.tks.Exceptions.InputException;
+import com.edu.tks.Exceptions.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;

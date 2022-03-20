@@ -1,14 +1,10 @@
-package shop.Rental;
+package com.edu.tks.Rental;
 
 import org.springframework.stereotype.Service;
-import shop.Exceptions.InputException;
-import shop.Exceptions.NotFoundException;
-import shop.Exceptions.RentalException;
-import shop.Record.Record;
-import shop.Record.RecordRepository;
+import com.edu.tks.Exceptions.InputException;
+import com.edu.tks.Exceptions.NotFoundException;
+import com.edu.tks.Exceptions.RentalException;
 
-import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

@@ -1,7 +1,8 @@
-package shop.User;
+package com.edu.tks.User;
 
+import com.edu.tks.Exceptions.*;
 import org.springframework.stereotype.Service;
-import shop.Exceptions.*;
+import com.Exceptions.*;
 
 import java.util.List;
 

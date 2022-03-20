@@ -1,16 +1,13 @@
-package shop.User;
+package com.edu.tks.User;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import shop.Exceptions.BasicException;
-import shop.Exceptions.InputException;
-import shop.Exceptions.NotFoundException;
-import shop.Record.Record;
-import shop.Rental.Rental;
+import com.edu.tks.Exceptions.BasicException;
+import com.edu.tks.Exceptions.InputException;
+import com.edu.tks.Exceptions.NotFoundException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

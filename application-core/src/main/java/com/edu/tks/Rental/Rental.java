@@ -1,11 +1,11 @@
-package shop.Rental;
+package com.edu.tks.Rental;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import shop.Exceptions.InputException;
-import shop.Exceptions.PermissionException;
-import shop.Exceptions.RentalException;
-import shop.User.*;
-import shop.Record.Record;
+import com.edu.tks.Exceptions.InputException;
+import com.edu.tks.Exceptions.PermissionException;
+import com.edu.tks.Exceptions.RentalException;
+import com.edu.tks.Record.Record;
+import com.edu.tks.User.User;
+import com.edu.tks.User.UserType;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

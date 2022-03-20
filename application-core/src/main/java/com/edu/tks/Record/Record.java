@@ -1,8 +1,8 @@
-package shop.Record;
+package com.edu.tks.Record;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import shop.Exceptions.InputException;
-import shop.Rental.Rental;
+import com.edu.tks.Exceptions.InputException;
+import com.edu.tks.Rental.Rental;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 

@@ -1,11 +1,11 @@
-package shop.User;
+package com.edu.tks.User;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import shop.Exceptions.InputException;
-import shop.Exceptions.PermissionException;
-import shop.Exceptions.RentalException;
-import shop.Record.Record;
-import shop.Rental.Rental;
+import com.edu.tks.Exceptions.InputException;
+import com.edu.tks.Exceptions.PermissionException;
+import com.edu.tks.Exceptions.RentalException;
+import com.edu.tks.Record.Record;
+import com.edu.tks.Rental.Rental;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 

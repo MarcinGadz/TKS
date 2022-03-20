@@ -1,6 +1,7 @@
-package shop.User;
+package com.edu.tks.User;
 
-import shop.Exceptions.*;
+import com.Exceptions.*;
+import com.edu.tks.Exceptions.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;

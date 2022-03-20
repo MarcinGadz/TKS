@@ -1,4 +1,4 @@
-package shop.User;
+package com.edu.tks.User;
 
 public enum UserType {
     CLIENT,

@@ -1,4 +1,4 @@
-package shop.Exceptions;
+package com.edu.tks.Exceptions;
 
 public class InputException extends BasicException {
     public InputException(String message) {

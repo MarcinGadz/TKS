@@ -1,17 +1,17 @@
-package shop.Rental;
+package com.edu.tks.Rental;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import shop.Exceptions.InputException;
-import shop.Exceptions.NotFoundException;
-import shop.Exceptions.PermissionException;
-import shop.Exceptions.RentalException;
-import shop.Record.Record;
-import shop.Record.RecordManager;
-import shop.User.User;
-import shop.User.UserManager;
+import com.edu.tks.Exceptions.InputException;
+import com.edu.tks.Exceptions.NotFoundException;
+import com.edu.tks.Exceptions.PermissionException;
+import com.edu.tks.Exceptions.RentalException;
+import com.edu.tks.Record.Record;
+import com.edu.tks.Record.RecordManager;
+import com.edu.tks.User.User;
+import com.edu.tks.User.UserManager;
 
 import java.util.List;
 

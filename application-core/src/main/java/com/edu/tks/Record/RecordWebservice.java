@@ -1,14 +1,14 @@
-package shop.Record;
+package com.edu.tks.Record;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import shop.Exceptions.InputException;
-import shop.Exceptions.NotFoundException;
-import shop.Exceptions.RentalException;
-import shop.Rental.Rental;
+import com.edu.tks.Exceptions.InputException;
+import com.edu.tks.Exceptions.NotFoundException;
+import com.edu.tks.Exceptions.RentalException;
+import com.edu.tks.Rental.Rental;
 
 import java.text.ParseException;
 import java.util.List;

@@ -13,8 +13,8 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="application-core" options="-parameters" />
       <module name="application-ports" options="-parameters" />
-      <module name="record-shop" options="-parameters" />
       <module name="repositories-adapters" options="-parameters" />
     </option>
   </component>
