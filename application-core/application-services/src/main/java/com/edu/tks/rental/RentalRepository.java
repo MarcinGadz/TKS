@@ -2,6 +2,7 @@ package com.edu.tks.rental;
 
 import com.edu.tks.exception.InputException;
 import com.edu.tks.exception.NotFoundException;
+import com.edu.tks.rental.Rental;
 
 import java.util.ArrayList;
 import java.util.List;

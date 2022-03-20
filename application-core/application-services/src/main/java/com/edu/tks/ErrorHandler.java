@@ -1,4 +1,4 @@
-//package shop;
+package com.edu.tks;//package shop;
 //
 //import org.springframework.http.HttpStatus;
 //import org.springframework.web.bind.annotation.ControllerAdvice;

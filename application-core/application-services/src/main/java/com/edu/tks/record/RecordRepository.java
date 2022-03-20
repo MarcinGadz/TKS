@@ -2,6 +2,7 @@ package com.edu.tks.record;
 
 import com.edu.tks.exception.NotFoundException;
 import com.edu.tks.exception.RentalException;
+import com.edu.tks.record.Record;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,5 +1,7 @@
 package com.edu.tks.user;
 import com.edu.tks.exception.*;
+import com.edu.tks.user.User;
+import com.edu.tks.user.UserType;
 
 import java.util.ArrayList;
 import java.util.Arrays;

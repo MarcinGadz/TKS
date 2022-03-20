@@ -1,9 +1,5 @@
 package com.edu.tks.rental;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 import com.edu.tks.exception.InputException;
 import com.edu.tks.exception.NotFoundException;
 import com.edu.tks.exception.PermissionException;
@@ -12,6 +8,10 @@ import com.edu.tks.record.Record;
 import com.edu.tks.record.RecordService;
 import com.edu.tks.user.User;
 import com.edu.tks.user.UserService;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
