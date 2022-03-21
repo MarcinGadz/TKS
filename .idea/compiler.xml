@@ -15,10 +15,10 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="application-core" options="-parameters" />
+      <module name="application-core" options="" />
       <module name="application-ports" options="-parameters" />
-      <module name="application-services" options="-parameters" />
-      <module name="domain-model" options="-parameters" />
+      <module name="application-services" options="-parameters --add-modules java.base" />
+      <module name="domain-model" options="-parameters --add-modules java.base" />
       <module name="repositories-adapters" options="-parameters" />
     </option>
   </component>
