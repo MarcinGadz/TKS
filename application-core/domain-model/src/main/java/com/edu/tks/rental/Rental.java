@@ -23,6 +23,7 @@ public class Rental {
     private final LocalDateTime rentDate;
     private LocalDateTime expectedReturnDate;
     private LocalDateTime actualReturnDate;
+    private boolean active;
 
     public Rental(User client, User renter, Record record) throws PermissionException, InputException {
         this.rentalID = UUID.randomUUID();
@@ -40,6 +41,7 @@ public class Rental {
 
         this.rentDate = LocalDateTime.now();
         this.record.rent(this);
+        this.active = true;
 
         this.expectedReturnDate = this.rentDate.plusDays(7);
     }
@@ -89,6 +91,14 @@ public class Rental {
     public void returnRecord() throws InputException {
         this.actualReturnDate = LocalDateTime.now();
         this.record.release();
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void archive() {
+        this.active = false;
     }
 
     public void extendReturnDays(int days) throws RentalException {
