@@ -12,10 +12,6 @@ import java.util.*;
 
 public class Record {
     private UUID recordID;
-    @JsonIgnore
-    private Rental currentRent;
-    @JsonIgnore
-    private final List<Rental> archiveRents = new ArrayList<>();
     private boolean isRented;
 
     private String title;
@@ -36,14 +32,6 @@ public class Record {
 
     public UUID getRecordID() {
         return recordID;
-    }
-
-    public List<Rental> getArchiveRents() {
-        return archiveRents;
-    }
-
-    public Rental getCurrentRent() {
-        return currentRent;
     }
 
     public void setRecordID(String id) {
@@ -71,16 +59,13 @@ public class Record {
             throw new InputException("shop.Record already rented");
         }
         this.isRented = true;
-        this.currentRent = rental;
     }
 
     public void release() throws InputException {
         if (!this.isRented) {
             throw new InputException("This record is not rented");
         }
-        this.archiveRents.add(this.currentRent);
         this.isRented = false;
-        this.currentRent = null;
     }
 
     public void setTitle(String title) {
