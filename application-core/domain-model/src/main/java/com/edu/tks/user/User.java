@@ -20,10 +20,6 @@ public class User implements Cloneable {
     private Boolean active = true;
 
     @JsonIgnore
-    private final List<Rental> rentals = new ArrayList<>();
-    @JsonIgnore
-    private final List<Rental> archiveRentals = new ArrayList<>();
-    @JsonIgnore
     private final List<Record> cart = new ArrayList<>();
 
     public User(String login, UserType type) {
@@ -103,65 +99,6 @@ public class User implements Cloneable {
         cart.clear();
     }
 
-
-    // RENTALS METHODS
-
-    public List<Rental> getRentals() {
-        return this.rentals;
-    }
-
-    public List<Rental> getArchiveRentals() {
-        return archiveRentals;
-    }
-
-    public List<Rental> rentCart(User renter) throws PermissionException, InputException, RentalException {
-        List<Rental> newRentals = new ArrayList<>();
-
-        if (!this.active) {
-            throw new RentalException("User is not active");
-        }
-
-        if (renter.getType() != UserType.RENTER) {
-            throw new PermissionException("Indicated renter has no permissions to do this operation");
-        }
-
-        for (Record record : this.cart) {
-            Rental newRent = new Rental(this, renter, record);
-            rentals.add(newRent);
-            newRentals.add(newRent);
-        }
-
-        this.clearCart();
-        return newRentals;
-    }
-
-    public void clearRentals(User renter) throws PermissionException, RentalException {
-        if (!this.active) {
-            throw new RentalException("shop.User is not active");
-        }
-
-        if (renter.getType() != UserType.RENTER) {
-            throw new PermissionException("Indicated renter has no permissions to do this operation");
-        }
-
-        this.archiveRentals.addAll(this.rentals);
-        rentals.clear();
-    }
-
-    public void extendRentReturnDays(User renter, int days) throws RentalException, PermissionException {
-        if (!this.active) {
-            throw new RentalException("shop.User is not active");
-        }
-
-        if (renter.getType() != UserType.RENTER) {
-            throw new PermissionException("Indicated renter has no permissions to do this operation");
-        }
-
-        for (Rental rental : this.rentals) {
-            rental.extendReturnDays(days);
-        }
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -177,7 +114,7 @@ public class User implements Cloneable {
 
     @Override
     public User clone() throws CloneNotSupportedException {
-        User u = (User)super.clone();
+        User u = (User) super.clone();
 
         return u;
     }
