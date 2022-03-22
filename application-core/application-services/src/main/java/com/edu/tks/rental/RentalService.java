@@ -3,13 +3,16 @@ package com.edu.tks.rental;
 import com.edu.tks.exception.InputException;
 import com.edu.tks.exception.NotFoundException;
 import com.edu.tks.exception.RentalException;
+import com.edu.tks.infrastructure.repository.rental.AddRental;
+import com.edu.tks.infrastructure.repository.rental.ArchiveRentals;
+import com.edu.tks.infrastructure.repository.rental.GetRentals;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class RentalService {
-    RentalRepository repository = new RentalRepository();
+public class RentalService<Repository extends AddRental & ArchiveRentals & GetRentals> {
+    Repository repository;
 
     public Rental getRentalByID(String rentalID) throws NotFoundException {
         return repository.getRentalByID(rentalID);

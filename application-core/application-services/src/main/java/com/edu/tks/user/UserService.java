@@ -1,13 +1,17 @@
 package com.edu.tks.user;
 
 import com.edu.tks.exception.*;
+import com.edu.tks.infrastructure.repository.user.AddUser;
+import com.edu.tks.infrastructure.repository.user.ExtendRentals;
+import com.edu.tks.infrastructure.repository.user.GetUsers;
+import com.edu.tks.infrastructure.repository.user.RemoveUser;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class UserService {
-    UserRepository repository = new UserRepository();
+public class UserService<Repository extends AddUser & ExtendRentals & GetUsers & RemoveUser> {
+    Repository repository;
 
     public synchronized void setUserLogin(String userid, String newLogin) throws InputException, NotFoundException {
         User user = repository.getUserByID(userid);
