@@ -23,11 +23,11 @@ public class UserRepository {
         this.users = new ArrayList<>(Arrays.asList(arr));
     }
 
-    public List<UserEntity> getAllUserEntitys() {
+    public List<UserEntity> getAllUsers() {
         return users;
     }
 
-    public UserEntity getUserEntityByID(String userid) throws NotFoundException {
+    public UserEntity getUserByID(String userid) throws NotFoundException {
         UserEntity user = users.stream()
                 .filter( u -> u.getUserID().toString().equals(userid))
                 .findFirst()
@@ -38,36 +38,36 @@ public class UserRepository {
         return user;
     }
 
-    public UserEntity getUserEntityByLogin(String login) {
+    public UserEntity getUserByLogin(String login) {
         return users.stream()
                 .filter( user -> user.getLogin().equals(login))
                 .findFirst()
                 .orElse(null);
     }
 
-    public List<UserEntity> getUserEntitysByLogin(String login) {
+    public List<UserEntity> getUsersByLogin(String login) {
         return users.stream()
                 .filter( user -> user.getLogin().contains(login))
                 .collect(Collectors.toList());
     }
 
-    public void appendUserEntity(UserEntity user) throws InputException {
-        if (this.getUserEntityByLogin(user.getLogin()) != null) {
+    public void appendUser(UserEntity user) throws InputException {
+        if (this.getUserByLogin(user.getLogin()) != null) {
             throw new InputException("This login already exists");
         }
 
         users.add(user);
     }
 
-    public void removeUserEntity(String userid) throws BasicException {
-        UserEntity user = this.getUserEntityByID(userid);
+    public void removeUser(String userid) throws BasicException {
+        UserEntity user = this.getUserByID(userid);
 
         users.remove(user);
     }
 
     public void extendRentReturnDays(String renterId, String userId, int days) throws PermissionException, RentalException, NotFoundException {
-       UserEntity renter = this.getUserEntityByID(renterId);
-       UserEntity user = this.getUserEntityByID(userId);
+       UserEntity renter = this.getUserByID(renterId);
+       UserEntity user = this.getUserByID(userId);
        user.extendRentReturnDays(renter, days);
     }
 }
