@@ -78,60 +78,6 @@ public class RentWebservice {
         return user.getCart();
     }
 
-    @GetMapping(path = "/{userID}/rentals")
-    public List<Rental> getRents(@PathVariable("userID") String userID) throws NotFoundException {
-        User user = userService.getUserByID(userID);
-        return user.getRentals();
-    }
-
-    @GetMapping(path = "/{userID}/rentals/archive")
-    public List<Rental> getRentsArchive(@PathVariable("userID") String userID) throws NotFoundException {
-        User user = userService.getUserByID(userID);
-        return user.getArchiveRentals();
-    }
-
-    @PostMapping(path = "/{userID}/rentals")
-    public List<Rental> submitRentsFromCart(@PathVariable("userID") String userID, @RequestBody String body) throws NotFoundException, PermissionException, RentalException, InputException {
-        JsonObject jsonBody = JsonParser.parseString(body).getAsJsonObject();
-
-        User user = userService.getUserByID(userID);
-
-        User renter = userService.getUserByID(jsonBody.get("renterID").getAsString());
-        List<Rental> newRentals = user.rentCart(renter);
-        rentalService.appendRentals(newRentals);
-
-        return user.getRentals();
-    }
-
-    @PostMapping(path = "/{userID}/rentals/clear")
-    public List<Rental> clearUserRentals(@PathVariable("userID") String userID,
-                                         @RequestBody String body) throws NotFoundException,
-            PermissionException,
-            RentalException, InputException {
-        JsonObject jsonBody = JsonParser.parseString(body).getAsJsonObject();
-
-        User user = userService.getUserByID(userID);
-        User renter = userService.getUserByID(jsonBody.get("renterID").getAsString());
-
-        rentalService.archiveRentals(user.getRentals());
-        user.clearRentals(renter);
-        return user.getRentals();
-    }
-
-    @PostMapping(path = "/{userID}/rentals/extend")
-    public List<Rental> extendRentReturnDays(@PathVariable("userID") String userID,
-                                             @RequestBody String body) throws NotFoundException,
-                                                                              PermissionException,
-                                                                              RentalException
-    {
-        JsonObject jsonBody = JsonParser.parseString(body).getAsJsonObject();
-        User user = userService.getUserByID(userID);
-        String renter = jsonBody.get("renterID").getAsString();
-        int days = Integer.parseInt(jsonBody.get("days").toString());
-
-        userService.extendRentReturnDays(renter, userID, days);
-        return user.getRentals();
-    }
 
 }
 

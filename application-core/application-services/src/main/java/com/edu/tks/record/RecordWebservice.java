@@ -35,18 +35,6 @@ public class RecordWebservice {
         return recordManager.getRecordByID(recordID);
     }
 
-    @GetMapping("/{recordID}/currentRent")
-    public Rental getCurrentRent(@PathVariable(required = true) String recordID) throws NotFoundException {
-        Record record = recordManager.getRecordByID(recordID);
-        return record.getCurrentRent();
-    }
-
-    @GetMapping("/{recordID}/archiveRents")
-    public List<Rental> getArchiveRents(@PathVariable(required = true) String recordID) throws NotFoundException {
-        Record record = recordManager.getRecordByID(recordID);
-        return record.getArchiveRents();
-    }
-
     @PostMapping
     @ResponseStatus(value= HttpStatus.CREATED)
     public Record addRecord(@RequestBody String body) throws InputException {
