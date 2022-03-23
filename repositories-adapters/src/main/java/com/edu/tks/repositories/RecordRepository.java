@@ -1,30 +1,30 @@
-package com.edu.tks.record;
+package com.edu.tks.repositories;
 
+import com.edu.tks.entity.RecordEntity;
 import com.edu.tks.exception.NotFoundException;
 import com.edu.tks.exception.RentalException;
-import com.edu.tks.record.Record;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class RecordRepository {
-    private List<Record> records;
+    private List<RecordEntity> records;
 
     public RecordRepository() {
-        Record[] arr = {
-          new Record("Moral Power", "Nothing but Lorde", "2020-03-04"),
-          new Record("Solar Panic", "Thieves", "2021-10-13")
+        RecordEntity[] arr = {
+          new RecordEntity("Moral Power", "Nothing but Lorde", "2020-03-04"),
+          new RecordEntity("Solar Panic", "Thieves", "2021-10-13")
         };
         this.records  =  new ArrayList<>(Arrays.asList(arr));
     }
 
-    public List<Record> getAllRecords() {
+    public List<RecordEntity> getAllRecords() {
         return records;
     }
 
-    public Record getRecordByID(String recordID) throws NotFoundException {
-        Record record = records.stream()
+    public RecordEntity getRecordByID(String recordID) throws NotFoundException {
+        RecordEntity record = records.stream()
                 .filter( r -> recordID.equals(r.getRecordID().toString()))
                 .findFirst()
                 .orElse(null);
@@ -35,12 +35,12 @@ public class RecordRepository {
     }
 
 
-    public void appendRecord(Record record) {
+    public void appendRecord(RecordEntity record) {
         records.add(record);
     }
 
     public void removeRecord(String recordID) throws RentalException, NotFoundException {
-        Record record = this.getRecordByID(recordID);
+        RecordEntity record = this.getRecordByID(recordID);
 
         if (record.isRented()) {
             throw new RentalException("Can't remove - this record is rented.");
