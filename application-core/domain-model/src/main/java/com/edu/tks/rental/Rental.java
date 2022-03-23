@@ -26,7 +26,11 @@ public class Rental {
     private boolean active;
 
     public Rental(User client, User renter, Record record) throws PermissionException, InputException {
-        this.rentalID = UUID.randomUUID();
+        this(UUID.randomUUID(), client, renter, record);
+    }
+
+    public Rental(UUID rentalID, User client, User renter, Record record) throws PermissionException, InputException {
+        this.rentalID = rentalID;
         if (renter.getType() != UserType.RENTER) {
             throw new PermissionException("Indicated renter has no permissions to do this operation");
         }

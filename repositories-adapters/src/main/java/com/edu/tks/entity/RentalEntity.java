@@ -22,7 +22,11 @@ public class RentalEntity {
     private LocalDateTime actualReturnDate;
 
     public RentalEntity(UserEntity client, UserEntity renter, RecordEntity recordEntity) throws PermissionException, InputException {
-        this.rentalID = UUID.randomUUID();
+        this(UUID.randomUUID(), client, renter, recordEntity);
+    }
+
+    public RentalEntity(UUID rentalID, UserEntity client, UserEntity renter, RecordEntity recordEntity) throws PermissionException, InputException {
+        this.rentalID = rentalID;
         if (renter.getType() != UserTypeEntity.RENTER) {
             throw new PermissionException("Indicated renter has no permissions to do this operation");
         }

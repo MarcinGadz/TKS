@@ -17,6 +17,7 @@ public class UserConverter {
 
     public static User convertUserEntityToUser(UserEntity userEntity) {
         return new User(
+                userEntity.getUserID(),
                 userEntity.getLogin(),
                 convertUserTypeEntityToUserType(userEntity.getType())
         );
@@ -32,6 +33,7 @@ public class UserConverter {
 
     public static UserEntity convertUserToUserEntity(User user) {
         return new UserEntity(
+                user.getUserID(),
                 user.getLogin(),
                 convertUserTypeToUserTypeEntity(user.getType())
         );

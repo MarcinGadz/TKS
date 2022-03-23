@@ -21,7 +21,11 @@ public class UserEntity implements Cloneable {
     private final List<RecordEntity> cart = new ArrayList<>();
 
     public UserEntity(String login, UserTypeEntity type) {
-        this.userID = UUID.randomUUID();
+        this(UUID.randomUUID(), login, type);
+    }
+
+    public UserEntity(UUID userID, String login, UserTypeEntity type) {
+        this.userID = userID;
         this.login = login;
         this.type = type;
     }

@@ -21,8 +21,12 @@ public class RecordEntity {
     private LocalDate releaseDate;
 
     public RecordEntity(String title, String artist, String releaseDate) {
-        this.isRented = false;
-        this.recordID = UUID.randomUUID();
+        this(UUID.randomUUID(), title, artist, releaseDate, false);
+    }
+
+    public RecordEntity(UUID recordID, String title, String artist, String releaseDate, boolean isRented) {
+        this.isRented = isRented;
+        this.recordID = recordID;
         this.title = title;
         this.artist = artist;
         this.releaseDate = LocalDate.parse(releaseDate);

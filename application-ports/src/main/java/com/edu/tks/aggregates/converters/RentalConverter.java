@@ -10,6 +10,7 @@ public class RentalConverter {
     public static Rental convertRentalEntityToRental(RentalEntity rentalEntity) {
         try {
             return new Rental(
+                    rentalEntity.getRentalID(),
                     UserConverter.convertUserEntityToUser(rentalEntity.getClient()),
                     UserConverter.convertUserEntityToUser(rentalEntity.getRenter()),
                     RecordConverter.convertRecordEntityToRecord(rentalEntity.getRecord())
@@ -23,6 +24,7 @@ public class RentalConverter {
     public static RentalEntity convertRentalToRentalEntity(Rental rental) {
         try {
             return new RentalEntity(
+                    rental.getRentalID(),
                     UserConverter.convertUserToUserEntity(rental.getClient()),
                     UserConverter.convertUserToUserEntity(rental.getRenter()),
                     RecordConverter.convertRecordToRecordEntity(rental.getRecord())

@@ -23,7 +23,11 @@ public class User implements Cloneable {
     private final List<Record> cart = new ArrayList<>();
 
     public User(String login, UserType type) {
-        this.userID = UUID.randomUUID();
+        this(UUID.randomUUID(), login, type);
+    }
+
+    public User(UUID userID, String login, UserType type) {
+        this.userID = userID;
         this.login = login;
         this.type = type;
     }
