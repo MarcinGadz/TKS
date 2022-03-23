@@ -1,6 +1,5 @@
 package com.edu.tks.record;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.edu.tks.exception.InputException;
 import com.edu.tks.rental.Rental;
 import org.apache.commons.lang3.builder.EqualsBuilder;
