@@ -2,6 +2,7 @@ package com.edu.tks.user;
 
 import com.edu.tks.aggregates.adapters.UserRepositoryAdapter;
 import com.edu.tks.exception.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,7 +10,12 @@ import java.util.List;
 @Service
 public class UserService {
 
-    UserRepositoryAdapter repository;
+    private final UserRepositoryAdapter repository;
+
+    @Autowired
+    public UserService(UserRepositoryAdapter repository) {
+        this.repository = repository;
+    }
 
     public synchronized void setUserLogin(String userid, String newLogin) throws InputException, NotFoundException {
         User user = repository.getUserByID(userid);

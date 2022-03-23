@@ -30,6 +30,9 @@ public class Record {
         this.releaseDate = LocalDate.parse(releaseDate);
     }
 
+    public Record() {
+    }
+
     public boolean isRented() {
         return isRented;
     }

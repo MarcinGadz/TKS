@@ -11,8 +11,12 @@ import java.util.List;
 
 @Service
 public class RentalService {
+    private final RentalRepositoryAdapter repository;
+
     @Autowired
-    RentalRepositoryAdapter repository;
+    public RentalService(RentalRepositoryAdapter repository) {
+        this.repository = repository;
+    }
 
     public Rental getRentalByID(String rentalID) throws NotFoundException {
         return repository.getRentalByID(rentalID);
@@ -26,11 +30,11 @@ public class RentalService {
         return repository.getAllArchiveRentals();
     }
 
-    public synchronized void appendRental(Rental rental){
+    public synchronized void appendRental(Rental rental) {
         repository.appendRental(rental);
     }
 
-    public synchronized void appendRentals(List<Rental> rents){
+    public synchronized void appendRentals(List<Rental> rents) {
         repository.appendRentals(rents);
     }
 

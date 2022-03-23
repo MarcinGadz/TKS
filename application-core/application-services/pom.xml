@@ -11,6 +11,7 @@
 
     <artifactId>application-services</artifactId>
     <dependencies>
+
         <dependency>
             <groupId>com.edu.tks</groupId>
             <artifactId>application-ports</artifactId>
@@ -18,5 +19,13 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

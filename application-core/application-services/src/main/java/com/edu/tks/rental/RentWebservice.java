@@ -8,8 +8,6 @@ import com.edu.tks.record.Record;
 import com.edu.tks.record.RecordService;
 import com.edu.tks.user.User;
 import com.edu.tks.user.UserService;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,12 +46,10 @@ public class RentWebservice {
     }
 
     @PostMapping(path= "/{userID}/cart")
-    public List<Record> addRentToCart(@PathVariable("userID") String userID, @RequestBody String body) throws NotFoundException,
+    public List<Record> addRentToCart(@PathVariable("userID") String userID, @RequestBody Record body) throws NotFoundException,
                                                                                                     RentalException
     {
-        JsonObject jsonBody = JsonParser.parseString(body).getAsJsonObject();
-        String recordID = jsonBody.get("recordID").getAsString();
-
+        String recordID = body.getRecordID().toString();
         User user = userService.getUserByID(userID);
         user.addToCart(recordManager.getRecordByID(recordID));
         return user.getCart();

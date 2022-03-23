@@ -3,8 +3,6 @@ package com.edu.tks.user;
 import com.edu.tks.exception.BasicException;
 import com.edu.tks.exception.InputException;
 import com.edu.tks.exception.NotFoundException;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +15,9 @@ public class UserWebservice {
     private final UserService userService;
 
     @Autowired
-    public UserWebservice (UserService userService) { this.userService = userService; }
+    public UserWebservice(UserService userService) {
+        this.userService = userService;
+    }
 
 
     @GetMapping
@@ -31,23 +31,20 @@ public class UserWebservice {
 
 
     @GetMapping(path = "/{userID}")
-    public User getUserById(@PathVariable("userID") String userID ) throws NotFoundException {
+    public User getUserById(@PathVariable("userID") String userID) throws NotFoundException {
         return userService.getUserByID(userID);
     }
 
     @PostMapping
-    public User addUser(@RequestBody String body) throws InputException {
+    public User addUser(@RequestBody User body) throws InputException {
         try {
-            JsonObject jsonBody = JsonParser.parseString(body).getAsJsonObject();
-            String login = jsonBody.get("login").getAsString();
+            String login = body.getLogin();
 
             if (!login.matches("^[a-zA-Z0-9_-]{8,16}$")) {
                 throw new InputException("Login must be between 8 and 16 characters");
             }
 
-            UserType type = UserType.valueOf(
-                    jsonBody.get("type").getAsString()
-            );
+            UserType type = body.getType();
 
             User user = new User(login, type);
             userService.appendUser(user);
@@ -70,12 +67,11 @@ public class UserWebservice {
 
 
     @PostMapping(path = "/{userID}/changeLogin")
-    public User changeUserLogin(@PathVariable String userID, @RequestBody String body) throws InputException,
-                                                                                              NotFoundException {
-        JsonObject jsonBody = JsonParser.parseString(body).getAsJsonObject();
+    public User changeUserLogin(@PathVariable String userID, @RequestBody User body) throws InputException,
+            NotFoundException {
 
-        String login = jsonBody.get("login").getAsString();
-        if (! login.matches("^[a-zA-Z0-9_-]{8,16}$")) {
+        String login = body.getLogin();
+        if (!login.matches("^[a-zA-Z0-9_-]{8,16}$")) {
             throw new InputException("Login must be between 8 and 16 characters");
         }
 

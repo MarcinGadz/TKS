@@ -11,16 +11,16 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Rental {
-    private final UUID rentalID;
-    private final String clientID;
-    private final String renterID;
-    private final String recordID;
+    private UUID rentalID;
+    private String clientID;
+    private String renterID;
+    private String recordID;
 
-    private transient final User client;
-    private transient final User renter;
-    private transient final Record record;
+    private transient User client;
+    private transient User renter;
+    private transient Record record;
 
-    private final LocalDateTime rentDate;
+    private LocalDateTime rentDate;
     private LocalDateTime expectedReturnDate;
     private LocalDateTime actualReturnDate;
     private boolean active;
@@ -48,6 +48,9 @@ public class Rental {
         this.active = true;
 
         this.expectedReturnDate = this.rentDate.plusDays(7);
+    }
+
+    public Rental() {
     }
 
     public UUID getRentalID() {

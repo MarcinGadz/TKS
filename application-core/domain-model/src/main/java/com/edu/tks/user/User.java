@@ -14,10 +14,13 @@ import java.util.List;
 import java.util.UUID;
 
 public class User implements Cloneable {
-    private final UUID userID;
+    private UUID userID;
     private String login;
-    private final UserType type;
+    private UserType type;
     private Boolean active = true;
+
+    public User() {
+    }
 
     @JsonIgnore
     private final List<Record> cart = new ArrayList<>();

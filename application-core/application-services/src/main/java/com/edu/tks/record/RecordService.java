@@ -12,8 +12,12 @@ import java.util.List;
 
 @Service
 public class RecordService {
+    private final RecordRepositoryAdapter repository;
+
     @Autowired
-    private RecordRepositoryAdapter repository;
+    public RecordService(RecordRepositoryAdapter repository) {
+        this.repository = repository;
+    }
 
     public Record getRecordByID(String recordid) throws NotFoundException {
         return repository.getRecordByID(recordid);

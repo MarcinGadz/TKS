@@ -3,9 +3,6 @@ package com.edu.tks.record;
 import com.edu.tks.exception.InputException;
 import com.edu.tks.exception.NotFoundException;
 import com.edu.tks.exception.RentalException;
-import com.edu.tks.rental.Rental;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -36,21 +33,20 @@ public class RecordWebservice {
     }
 
     @PostMapping
-    @ResponseStatus(value= HttpStatus.CREATED)
-    public Record addRecord(@RequestBody String body) throws InputException {
-        JsonObject jsonBody = JsonParser.parseString(body).getAsJsonObject();
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public Record addRecord(@RequestBody Record body) throws InputException {
 
-        String title = jsonBody.get("title").getAsString();
+        String title = body.getTitle();
         if (!title.matches("^[a-zA-Z0-9_ -]{3,50}$")) {
             throw new InputException("Title must be between 3 and 50 characters");
         }
 
-        String artist = jsonBody.get("artist").getAsString();
+        String artist = body.getArtist();
         if (!artist.matches("^[a-zA-Z0-9_ -]{3,50}$")) {
             throw new InputException("Artist name must be between 3 and 50 characters");
         }
 
-        String releaseDate = jsonBody.get("releaseDate").getAsString();
+        String releaseDate = body.getReleaseDate().toString();
 
         Record record = new Record(title, artist, releaseDate);
 
@@ -66,29 +62,28 @@ public class RecordWebservice {
     }
 
     @PostMapping("/{recordID}/edit")
-    public Record modifyRecord(@PathVariable(required = true) String recordID, @RequestBody String body)
+    public Record modifyRecord(@PathVariable(required = true) String recordID, @RequestBody Record body)
             throws InputException, NotFoundException {
 
         try {
-            JsonObject jsonBody = JsonParser.parseString(body).getAsJsonObject();
             if (!recordID.matches("\\b[0-9a-f]{8}\\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\\b[0-9a-f]{12}\\b")) {
                 throw new InputException("Wrong uuid format");
             }
 
             Record record = recordManager.getRecordByID(recordID);
 
-            String title = jsonBody.get("title").getAsString();
+            String title = body.getTitle();
             if (title.length() != 0 && !title.matches("^[a-zA-Z0-9_ -]{3,50}$")) {
                 throw new InputException("Title must be between 3 and 50 characters");
             }
 
 
-            String artist = jsonBody.get("artist").getAsString();
+            String artist = body.getArtist();
             if (artist.length() != 0 && !artist.matches("^[a-zA-Z0-9_ -]{3,50}$")) {
                 throw new InputException("Artist name must be between 3 and 50 characters");
             }
 
-            String releaseDate = jsonBody.get("releaseDate").getAsString();
+            String releaseDate = body.getReleaseDate().toString();
 
             recordManager.modifyRecord(record, title, artist, releaseDate);
             return record;
