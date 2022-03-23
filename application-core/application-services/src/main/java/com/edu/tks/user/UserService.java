@@ -11,8 +11,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserService {
-    UserRepositoryAdapter repository = new UserRepositoryAdapter();
+public class UserService<R extends GetUsers & AddUser & RemoveUser & ExtendRentals> {
+
+    R repository = (R) new UserRepositoryAdapter();
 
     public synchronized void setUserLogin(String userid, String newLogin) throws InputException, NotFoundException {
         User user = repository.getUserByID(userid);
