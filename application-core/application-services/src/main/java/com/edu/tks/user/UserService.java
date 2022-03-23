@@ -1,5 +1,6 @@
 package com.edu.tks.user;
 
+import com.edu.tks.aggregates.adapters.UserRepositoryAdapter;
 import com.edu.tks.exception.*;
 import com.edu.tks.infrastructure.repository.user.AddUser;
 import com.edu.tks.infrastructure.repository.user.ExtendRentals;
@@ -10,8 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserService<Repository extends AddUser & ExtendRentals & GetUsers & RemoveUser> {
-    Repository repository;
+public class UserService {
+    UserRepositoryAdapter repository = new UserRepositoryAdapter();
 
     public synchronized void setUserLogin(String userid, String newLogin) throws InputException, NotFoundException {
         User user = repository.getUserByID(userid);

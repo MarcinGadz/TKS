@@ -1,10 +1,8 @@
 package com.edu.tks.record;
 
+import com.edu.tks.aggregates.adapters.RecordRepositoryAdapter;
 import com.edu.tks.exception.NotFoundException;
 import com.edu.tks.exception.RentalException;
-import com.edu.tks.infrastructure.repository.record.AddRecord;
-import com.edu.tks.infrastructure.repository.record.GetRecords;
-import com.edu.tks.infrastructure.repository.record.RemoveRecord;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -12,8 +10,8 @@ import java.util.List;
 
 
 @Service
-public class RecordService<Repository extends AddRecord & GetRecords & RemoveRecord> {
-    private Repository repository;
+public class RecordService {
+    private RecordRepositoryAdapter repository = new RecordRepositoryAdapter();
 
     public Record getRecordByID(String recordid) throws NotFoundException {
         return repository.getRecordByID(recordid);
