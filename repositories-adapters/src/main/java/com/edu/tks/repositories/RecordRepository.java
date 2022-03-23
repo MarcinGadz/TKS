@@ -3,11 +3,13 @@ package com.edu.tks.repositories;
 import com.edu.tks.entity.RecordEntity;
 import com.edu.tks.exception.NotFoundException;
 import com.edu.tks.exception.RentalException;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Repository
 public class RecordRepository {
     private List<RecordEntity> records;
 

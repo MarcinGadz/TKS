@@ -10,13 +10,17 @@ import com.edu.tks.infrastructure.repository.user.RemoveUser;
 import com.edu.tks.repositories.UserRepository;
 import com.edu.tks.user.User;
 import com.edu.tks.aggregates.converters.UserConverter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class UserRepositoryAdapter implements AddUser, GetUsers, ExtendRentals, RemoveUser {
 
-    UserRepository repo = new UserRepository();
+    @Autowired
+    UserRepository repo;
 
     @Override
     public void appendUser(User user) throws InputException {

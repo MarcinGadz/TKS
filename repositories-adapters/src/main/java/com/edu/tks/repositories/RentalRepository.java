@@ -3,10 +3,12 @@ package com.edu.tks.repositories;
 import com.edu.tks.entity.RentalEntity;
 import com.edu.tks.exception.InputException;
 import com.edu.tks.exception.NotFoundException;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class RentalRepository {
     private List<RentalEntity> rentals = new ArrayList<>();
     private List<RentalEntity> archiveRentalEntitys = new ArrayList<>();

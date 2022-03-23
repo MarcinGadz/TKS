@@ -4,17 +4,15 @@ import com.edu.tks.aggregates.adapters.RentalRepositoryAdapter;
 import com.edu.tks.exception.InputException;
 import com.edu.tks.exception.NotFoundException;
 import com.edu.tks.exception.RentalException;
-import com.edu.tks.infrastructure.repository.record.GetRecords;
-import com.edu.tks.infrastructure.repository.rental.AddRental;
-import com.edu.tks.infrastructure.repository.rental.ArchiveRentals;
-import com.edu.tks.infrastructure.repository.rental.GetRentals;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class RentalService<R extends GetRentals & AddRental & ArchiveRentals> {
-    R repository = (R) new RentalRepositoryAdapter();
+public class RentalService {
+    @Autowired
+    RentalRepositoryAdapter repository;
 
     public Rental getRentalByID(String rentalID) throws NotFoundException {
         return repository.getRentalByID(rentalID);

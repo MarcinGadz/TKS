@@ -2,12 +2,14 @@ package com.edu.tks.repositories;
 import com.edu.tks.entity.UserEntity;
 import com.edu.tks.entity.UserTypeEntity;
 import com.edu.tks.exception.*;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Repository
 public class UserRepository {
     private final List<UserEntity> users;
 

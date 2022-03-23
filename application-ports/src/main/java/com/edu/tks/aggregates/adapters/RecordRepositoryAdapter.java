@@ -8,13 +8,17 @@ import com.edu.tks.infrastructure.repository.record.GetRecords;
 import com.edu.tks.infrastructure.repository.record.RemoveRecord;
 import com.edu.tks.record.Record;
 import com.edu.tks.repositories.RecordRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class RecordRepositoryAdapter implements AddRecord, GetRecords, RemoveRecord {
 
-    private RecordRepository repo = new RecordRepository();
+    @Autowired
+    private RecordRepository repo;
 
     @Override
     public void appendRecord(Record record) {

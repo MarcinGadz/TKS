@@ -9,13 +9,17 @@ import com.edu.tks.infrastructure.repository.rental.ArchiveRentals;
 import com.edu.tks.infrastructure.repository.rental.GetRentals;
 import com.edu.tks.rental.Rental;
 import com.edu.tks.repositories.RentalRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class RentalRepositoryAdapter implements GetRentals, AddRental, ArchiveRentals {
 
-    private final RentalRepository repo = new RentalRepository();
+    @Autowired
+    private RentalRepository repo;
 
     @Override
     public void appendRental(Rental rental) {
