@@ -1,6 +1,5 @@
 package com.edu.tks.record;
 
-import com.edu.tks.aggregates.adapters.RecordRepositoryAdapter;
 import com.edu.tks.exception.NotFoundException;
 import com.edu.tks.exception.RentalException;
 import com.edu.tks.infrastructure.repository.record.AddRecord;
@@ -42,8 +41,8 @@ public class RecordService {
         removeRecordUseCase.removeRecord(recordid);
     }
 
-    public synchronized void modifyRecord(Record record, String title, String artist, String releaseDate) throws ParseException, NotFoundException {
-        record = getRecordUseCase.getRecordByID(record.getRecordID().toString());
+    public synchronized Record modifyRecord(String recordId, String title, String artist, String releaseDate) throws ParseException, NotFoundException {
+        Record record = getRecordUseCase.getRecordByID(recordId);
         if (title.length() > 0) {
             record.setTitle(title);
         }
@@ -52,9 +51,11 @@ public class RecordService {
             record.setArtist(artist);
         }
 
-        if (releaseDate.length() > 0) {
+        if (releaseDate != null && releaseDate.length() > 0) {
             record.setReleaseDate(releaseDate);
         }
+        record = addRecordUseCase.updateRecord(recordId, record);
+        return record;
     }
 
 }

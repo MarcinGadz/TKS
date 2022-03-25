@@ -17,6 +17,11 @@ import java.util.stream.Collectors;
 @Component
 public class RecordRepositoryAdapter implements AddRecord, GetRecords, RemoveRecord {
 
+    @Override
+    public Record updateRecord(String recordId, Record record) {
+        return RecordConverter.convertRecordEntityToRecord(repo.updateRecord(recordId, RecordConverter.convertRecordToRecordEntity(record)));
+    }
+
     @Autowired
     private RecordRepository repo;
 

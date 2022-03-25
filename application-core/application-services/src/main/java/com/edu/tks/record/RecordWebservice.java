@@ -70,8 +70,6 @@ public class RecordWebservice {
                 throw new InputException("Wrong uuid format");
             }
 
-            Record record = recordManager.getRecordByID(recordID);
-
             String title = body.getTitle();
             if (title.length() != 0 && !title.matches("^[a-zA-Z0-9_ -]{3,50}$")) {
                 throw new InputException("Title must be between 3 and 50 characters");
@@ -84,9 +82,8 @@ public class RecordWebservice {
             }
 
             String releaseDate = body.getReleaseDate().toString();
+            return recordManager.modifyRecord(recordID, title, artist, releaseDate);
 
-            recordManager.modifyRecord(record, title, artist, releaseDate);
-            return record;
         } catch (ParseException e) {
             throw new InputException("Wrong date format");
         } catch (NullPointerException e) {

@@ -50,4 +50,17 @@ public class RecordRepository {
 
         records.remove(record);
     }
+
+    public RecordEntity updateRecord(String recordId, RecordEntity record) {
+        RecordEntity tmp = null;
+        try {
+            tmp = this.getRecordByID(recordId);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
+        tmp.setReleaseDate(record.getReleaseDate());
+        tmp.setArtist(record.getArtist());
+        tmp.setTitle(record.getTitle());
+        return tmp;
+    }
 }
