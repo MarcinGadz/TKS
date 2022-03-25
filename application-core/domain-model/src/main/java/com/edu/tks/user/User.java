@@ -17,7 +17,7 @@ public class User implements Cloneable {
     private UUID userID;
     private String login;
     private UserType type;
-    private Boolean active = true;
+    private boolean active = false;
 
     public User() {
     }
@@ -26,14 +26,16 @@ public class User implements Cloneable {
     private final List<Record> cart = new ArrayList<>();
 
     public User(String login, UserType type) {
-        this(UUID.randomUUID(), login, type);
+        this(UUID.randomUUID(), login, false, type);
     }
 
-    public User(UUID userID, String login, UserType type) {
+    public User(UUID userID, String login, boolean isActive, UserType type) {
         this.userID = userID;
         this.login = login;
         this.type = type;
+        this.active = isActive;
     }
+
 
     public UUID getUserID() {
         return userID;

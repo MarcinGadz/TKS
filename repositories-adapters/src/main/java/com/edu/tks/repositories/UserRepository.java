@@ -1,4 +1,5 @@
 package com.edu.tks.repositories;
+
 import com.edu.tks.entity.UserEntity;
 import com.edu.tks.entity.UserTypeEntity;
 import com.edu.tks.exception.*;
@@ -15,7 +16,7 @@ public class UserRepository {
 
     public UserRepository() {
         UserEntity[] arr = {
-                new UserEntity( "Eleanor", UserTypeEntity.CLIENT),
+                new UserEntity("Eleanor", UserTypeEntity.CLIENT),
                 new UserEntity("Jason", UserTypeEntity.CLIENT),
                 new UserEntity("Chidi", UserTypeEntity.CLIENT),
                 new UserEntity("Tahani", UserTypeEntity.CLIENT),
@@ -31,7 +32,7 @@ public class UserRepository {
 
     public UserEntity getUserByID(String userid) throws NotFoundException {
         UserEntity user = users.stream()
-                .filter( u -> u.getUserID().toString().equals(userid))
+                .filter(u -> u.getUserID().toString().equals(userid))
                 .findFirst()
                 .orElse(null);
         if (user == null) {
@@ -42,14 +43,14 @@ public class UserRepository {
 
     public UserEntity getUserByLogin(String login) {
         return users.stream()
-                .filter( user -> user.getLogin().equals(login))
+                .filter(user -> user.getLogin().equals(login))
                 .findFirst()
                 .orElse(null);
     }
 
     public List<UserEntity> getUsersByLogin(String login) {
         return users.stream()
-                .filter( user -> user.getLogin().contains(login))
+                .filter(user -> user.getLogin().contains(login))
                 .collect(Collectors.toList());
     }
 
@@ -68,8 +69,30 @@ public class UserRepository {
     }
 
     public void extendRentReturnDays(String renterId, String userId, int days) throws PermissionException, RentalException, NotFoundException {
-       UserEntity renter = this.getUserByID(renterId);
-       UserEntity user = this.getUserByID(userId);
-       user.extendRentReturnDays(renter, days);
+        UserEntity renter = this.getUserByID(renterId);
+        UserEntity user = this.getUserByID(userId);
+        user.extendRentReturnDays(renter, days);
+    }
+
+    public UserEntity updateUserLogin(String userid, String newLogin) {
+        UserEntity user = null;
+        try {
+            user = getUserByID(userid);
+            user.setLogin(newLogin);
+        } catch (NotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        return user;
+    }
+
+    public UserEntity updateActive(String userId, boolean active) {
+        UserEntity user = null;
+        try {
+            user = getUserByID(userId);
+            user.setActive(active);
+        } catch (NotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        return user;
     }
 }

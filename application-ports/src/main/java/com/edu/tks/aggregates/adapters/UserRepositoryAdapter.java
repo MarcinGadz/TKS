@@ -23,6 +23,16 @@ public class UserRepositoryAdapter implements AddUser, GetUsers, ExtendRentals, 
     UserRepository repo;
 
     @Override
+    public User updateUserLogin(String userid, String newLogin) {
+        return UserConverter.convertUserEntityToUser(repo.updateUserLogin(userid, newLogin));
+    }
+
+    @Override
+    public User updateActive(String userId, boolean active) {
+        return UserConverter.convertUserEntityToUser(repo.updateActive(userId, active));
+    }
+
+    @Override
     public void appendUser(User user) throws InputException {
         repo.appendUser(UserConverter.convertUserToUserEntity(user));
     }

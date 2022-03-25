@@ -28,18 +28,12 @@ public class UserService {
         this.removeUserUseCase = removeUserUseCase;
     }
 
-    public synchronized void setUserLogin(String userid, String newLogin) throws InputException, NotFoundException {
-        User user = getUsersUseCase.getUserByID(userid);
-
-        if (user.getLogin().equals(newLogin)) {
-            throw new InputException("This login is already set");
-        }
-
+    public synchronized User setUserLogin(String userid, String newLogin) throws InputException, NotFoundException {
         if (getUsersUseCase.getUserByLogin(newLogin) != null) {
             throw new InputException("This login already exists");
         }
-
-        user.setLogin(newLogin);
+        User user = addUserUseCase.updateUserLogin(userid, newLogin);
+        return user;
     }
 
     public List<User> getAllUsers() {
@@ -71,6 +65,15 @@ public class UserService {
         removeUserUseCase.removeUser(userid);
     }
 
+    public User activate(String userID) {
+        User u = addUserUseCase.updateActive(userID, true);
+        return u;
+    }
+
+    public User deactivate(String userID) {
+        User u = addUserUseCase.updateActive(userID,false);
+        return u;
+    }
 }
 
 

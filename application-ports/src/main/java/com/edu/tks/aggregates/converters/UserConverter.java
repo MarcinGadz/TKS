@@ -16,9 +16,11 @@ public class UserConverter {
     }
 
     public static User convertUserEntityToUser(UserEntity userEntity) {
+        if (userEntity == null) return null;
         return new User(
                 userEntity.getUserID(),
                 userEntity.getLogin(),
+                userEntity.isActive(),
                 convertUserTypeEntityToUserType(userEntity.getType())
         );
     }

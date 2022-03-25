@@ -69,33 +69,24 @@ public class UserWebservice {
     @PostMapping(path = "/{userID}/changeLogin")
     public User changeUserLogin(@PathVariable String userID, @RequestBody User body) throws InputException,
             NotFoundException {
-
         String login = body.getLogin();
         if (!login.matches("^[a-zA-Z0-9_-]{8,16}$")) {
             throw new InputException("Login must be between 8 and 16 characters");
         }
-
-        User user = userService.getUserByID(userID);
-        userService.setUserLogin(userID, login);
-
+        User user = userService.setUserLogin(userID, login);
         return user;
     }
 
 
     @PostMapping(path = "/{userID}/activate")
     public User activateUser(@PathVariable String userID) throws NotFoundException, InputException {
-        User user = userService.getUserByID(userID);
-        user.activate();
-
-        return user;
+        return userService.activate(userID);
     }
 
 
     @PostMapping(path = "/{userID}/deactivate")
     public User deactivateUser(@PathVariable String userID) throws NotFoundException, InputException {
-        User user = userService.getUserByID(userID);
-        user.deactivate();
-
+        User user = userService.deactivate(userID);
         return user;
     }
 

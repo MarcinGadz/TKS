@@ -11,14 +11,17 @@ import java.util.List;
 import java.util.UUID;
 
 public class UserEntity implements Cloneable {
-    private final UUID userID;
+    private UUID userID;
     private String login;
-    private final UserTypeEntity type;
-    private Boolean active = true;
+    private UserTypeEntity type;
+    private boolean active;
 
     private final List<RentalEntity> rentalEntities = new ArrayList<>();
     private final List<RentalEntity> archiveRentalEntities = new ArrayList<>();
     private final List<RecordEntity> cart = new ArrayList<>();
+
+    public UserEntity() {
+    }
 
     public UserEntity(String login, UserTypeEntity type) {
         this(UUID.randomUUID(), login, type);
@@ -36,25 +39,6 @@ public class UserEntity implements Cloneable {
 
     public String getLogin() {
         return login;
-    }
-
-    public Boolean isActive() {
-        return active;
-    }
-
-
-    public void activate() throws InputException {
-        if (this.active) {
-            throw new InputException("shop.User already activated");
-        }
-        this.active = true;
-    }
-
-    public void deactivate() throws InputException {
-        if (!this.active) {
-            throw new InputException("shop.User already deactivated");
-        }
-        this.active = false;
     }
 
     public void setLogin(String login) {
@@ -187,4 +171,15 @@ public class UserEntity implements Cloneable {
                 .toHashCode();
     }
 
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public boolean getActive() {
+        return active;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
 }
