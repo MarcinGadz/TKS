@@ -1,30 +1,41 @@
 package com.edu.tks.user;
 
-import com.edu.tks.aggregates.adapters.UserRepositoryAdapter;
 import com.edu.tks.exception.*;
+import com.edu.tks.infrastructure.repository.user.AddUser;
+import com.edu.tks.infrastructure.repository.user.ExtendRentals;
+import com.edu.tks.infrastructure.repository.user.GetUsers;
+import com.edu.tks.infrastructure.repository.user.RemoveUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+// TODO check if UpdateUser should be done within getUser interface
+
 @Service
 public class UserService {
 
-    private final UserRepositoryAdapter repository;
+    private final AddUser addUserUseCase;
+    private final ExtendRentals extendRentalsUseCase;
+    private final GetUsers getUsersUseCase;
+    private final RemoveUser removeUserUseCase;
 
     @Autowired
-    public UserService(UserRepositoryAdapter repository) {
-        this.repository = repository;
+    public UserService(AddUser addUserUseCase, ExtendRentals extendRentalsUseCase, GetUsers getUsersUseCase, RemoveUser removeUserUseCase) {
+        this.addUserUseCase = addUserUseCase;
+        this.extendRentalsUseCase = extendRentalsUseCase;
+        this.getUsersUseCase = getUsersUseCase;
+        this.removeUserUseCase = removeUserUseCase;
     }
 
     public synchronized void setUserLogin(String userid, String newLogin) throws InputException, NotFoundException {
-        User user = repository.getUserByID(userid);
+        User user = getUsersUseCase.getUserByID(userid);
 
         if (user.getLogin().equals(newLogin)) {
             throw new InputException("This login is already set");
         }
 
-        if (repository.getUserByLogin(newLogin) != null) {
+        if (getUsersUseCase.getUserByLogin(newLogin) != null) {
             throw new InputException("This login already exists");
         }
 
@@ -32,32 +43,32 @@ public class UserService {
     }
 
     public List<User> getAllUsers() {
-        return repository.getAllUsers();
+        return getUsersUseCase.getAllUsers();
     }
 
     public User getUserByID(String userid) throws NotFoundException {
-        return repository.getUserByID(userid);
+        return getUsersUseCase.getUserByID(userid);
     }
 
     public User getUserByLogin(String login) {
-        return repository.getUserByLogin(login);
+        return getUsersUseCase.getUserByLogin(login);
     }
 
     public synchronized void extendRentReturnDays(String renterId, String userId, int days) throws RentalException, PermissionException, NotFoundException {
-        repository.extendRentReturnDays(renterId, userId, days);
+        extendRentalsUseCase.extendRentReturnDays(renterId, userId, days);
     }
 
 
     public List<User> getUsersByLogin(String login) {
-        return repository.getUsersByLogin(login);
+        return getUsersUseCase.getUsersByLogin(login);
     }
 
     public synchronized void appendUser(User user) throws InputException {
-        repository.appendUser(user);
+        addUserUseCase.appendUser(user);
     }
 
     public synchronized void removeUser(String userid) throws BasicException {
-        repository.removeUser(userid);
+        removeUserUseCase.removeUser(userid);
     }
 
 }

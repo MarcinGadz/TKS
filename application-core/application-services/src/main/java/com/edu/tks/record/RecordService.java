@@ -3,6 +3,9 @@ package com.edu.tks.record;
 import com.edu.tks.aggregates.adapters.RecordRepositoryAdapter;
 import com.edu.tks.exception.NotFoundException;
 import com.edu.tks.exception.RentalException;
+import com.edu.tks.infrastructure.repository.record.AddRecord;
+import com.edu.tks.infrastructure.repository.record.GetRecords;
+import com.edu.tks.infrastructure.repository.record.RemoveRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,30 +15,35 @@ import java.util.List;
 
 @Service
 public class RecordService {
-    private final RecordRepositoryAdapter repository;
+    private final AddRecord addRecordUseCase;
+    private final GetRecords getRecordUseCase;
+    private final RemoveRecord removeRecordUseCase;
 
     @Autowired
-    public RecordService(RecordRepositoryAdapter repository) {
-        this.repository = repository;
+    public RecordService(AddRecord addRecordUseCase, GetRecords getRecordUseCase, RemoveRecord removeRecordUseCase) {
+        this.addRecordUseCase = addRecordUseCase;
+        this.getRecordUseCase = getRecordUseCase;
+        this.removeRecordUseCase = removeRecordUseCase;
     }
 
     public Record getRecordByID(String recordid) throws NotFoundException {
-        return repository.getRecordByID(recordid);
+        return getRecordUseCase.getRecordByID(recordid);
     }
 
     public List<Record> getAllRecords() {
-        return repository.getAllRecords();
+        return getRecordUseCase.getAllRecords();
     }
 
-    public synchronized void appendRecord(Record record){
-        repository.appendRecord(record);
+    public synchronized void appendRecord(Record record) {
+        addRecordUseCase.appendRecord(record);
     }
 
     public synchronized void removeRecord(String recordid) throws RentalException, NotFoundException {
-        repository.removeRecord(recordid);
+        removeRecordUseCase.removeRecord(recordid);
     }
 
-    public synchronized void modifyRecord(Record record, String title, String artist, String releaseDate) throws ParseException {
+    public synchronized void modifyRecord(Record record, String title, String artist, String releaseDate) throws ParseException, NotFoundException {
+        record = getRecordUseCase.getRecordByID(record.getRecordID().toString());
         if (title.length() > 0) {
             record.setTitle(title);
         }

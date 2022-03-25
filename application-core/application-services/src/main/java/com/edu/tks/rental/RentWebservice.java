@@ -1,8 +1,6 @@
 package com.edu.tks.rental;
 
-import com.edu.tks.exception.InputException;
 import com.edu.tks.exception.NotFoundException;
-import com.edu.tks.exception.PermissionException;
 import com.edu.tks.exception.RentalException;
 import com.edu.tks.record.Record;
 import com.edu.tks.record.RecordService;
@@ -45,10 +43,9 @@ public class RentWebservice {
         return user.getCart();
     }
 
-    @PostMapping(path= "/{userID}/cart")
+    @PostMapping(path = "/{userID}/cart")
     public List<Record> addRentToCart(@PathVariable("userID") String userID, @RequestBody Record body) throws NotFoundException,
-                                                                                                    RentalException
-    {
+            RentalException {
         String recordID = body.getRecordID().toString();
         User user = userService.getUserByID(userID);
         user.addToCart(recordManager.getRecordByID(recordID));
@@ -57,13 +54,12 @@ public class RentWebservice {
 
     @DeleteMapping(path = "/{userID}/cart/{recordID}")
     public List<Record> removeRentFromCart(@PathVariable("userID") String userID,
-                                            @PathVariable("recordID") String recordID) throws NotFoundException,
-                                                                                              RentalException
-    {
-            User user = userService.getUserByID(userID);
-            Record record = recordManager.getRecordByID(recordID);
-            user.removeFromCart(record);
-            return user.getCart();
+                                           @PathVariable("recordID") String recordID) throws NotFoundException,
+            RentalException {
+        User user = userService.getUserByID(userID);
+        Record record = recordManager.getRecordByID(recordID);
+        user.removeFromCart(record);
+        return user.getCart();
     }
 
     @DeleteMapping(path = "/{userID}/cart")
