@@ -1,7 +1,5 @@
-package com.edu.tks.aggregates.adapters;
+package com.edu.tks.aggregates.adapters.repository;
 
-import com.edu.tks.entity.UserEntity;
-import com.edu.tks.entity.UserTypeEntity;
 import com.edu.tks.exception.*;
 import com.edu.tks.infrastructure.repository.user.AddUser;
 import com.edu.tks.infrastructure.repository.user.ExtendRentals;
@@ -9,7 +7,7 @@ import com.edu.tks.infrastructure.repository.user.GetUsers;
 import com.edu.tks.infrastructure.repository.user.RemoveUser;
 import com.edu.tks.repositories.UserRepository;
 import com.edu.tks.user.User;
-import com.edu.tks.aggregates.converters.UserConverter;
+import com.edu.tks.aggregates.converters.repository.UserConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

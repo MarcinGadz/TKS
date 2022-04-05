@@ -13,36 +13,46 @@ import java.util.List;
 
 
 @Service
-public class RecordService {
-    private final AddRecord addRecordUseCase;
-    private final GetRecords getRecordUseCase;
-    private final RemoveRecord removeRecordUseCase;
+public class RecordService implements AddRecordUseCase, GetRecordsUseCase, RemoveRecordUseCase {
+    private final AddRecord addRecord;
+    private final GetRecords getRecords;
+    private final RemoveRecord removeRecord;
 
     @Autowired
-    public RecordService(AddRecord addRecordUseCase, GetRecords getRecordUseCase, RemoveRecord removeRecordUseCase) {
-        this.addRecordUseCase = addRecordUseCase;
-        this.getRecordUseCase = getRecordUseCase;
-        this.removeRecordUseCase = removeRecordUseCase;
+    public RecordService(AddRecord addRecord, GetRecords getRecords, RemoveRecord removeRecord) {
+        this.addRecord = addRecord;
+        this.getRecords = getRecords;
+        this.removeRecord = removeRecord;
     }
 
+    @Override
     public Record getRecordByID(String recordid) throws NotFoundException {
-        return getRecordUseCase.getRecordByID(recordid);
+        return getRecords.getRecordByID(recordid);
     }
 
+    @Override
     public List<Record> getAllRecords() {
-        return getRecordUseCase.getAllRecords();
+        return getRecords.getAllRecords();
     }
 
+    @Override
     public synchronized void appendRecord(Record record) {
-        addRecordUseCase.appendRecord(record);
+        addRecord.appendRecord(record);
     }
 
+    @Override
     public synchronized void removeRecord(String recordid) throws RentalException, NotFoundException {
-        removeRecordUseCase.removeRecord(recordid);
+        removeRecord.removeRecord(recordid);
+    }
+
+    // TODO clean it
+    @Override
+    public Record updateRecord(String recordId, Record record) throws NotFoundException, ParseException {
+        return modifyRecord(recordId, record.getTitle(), record.getArtist(), record.getReleaseDate().toString());
     }
 
     public synchronized Record modifyRecord(String recordId, String title, String artist, String releaseDate) throws ParseException, NotFoundException {
-        Record record = getRecordUseCase.getRecordByID(recordId);
+        Record record = getRecords.getRecordByID(recordId);
         if (title.length() > 0) {
             record.setTitle(title);
         }
@@ -54,7 +64,7 @@ public class RecordService {
         if (releaseDate != null && releaseDate.length() > 0) {
             record.setReleaseDate(releaseDate);
         }
-        record = addRecordUseCase.updateRecord(recordId, record);
+        record = addRecord.updateRecord(recordId, record);
         return record;
     }
 

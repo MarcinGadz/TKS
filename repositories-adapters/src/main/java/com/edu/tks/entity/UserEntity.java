@@ -24,12 +24,13 @@ public class UserEntity implements Cloneable {
     }
 
     public UserEntity(String login, UserTypeEntity type) {
-        this(UUID.randomUUID(), login, type);
+        this(UUID.randomUUID(), login, false, type);
     }
 
-    public UserEntity(UUID userID, String login, UserTypeEntity type) {
+    public UserEntity(UUID userID, String login, boolean isActive, UserTypeEntity type) {
         this.userID = userID;
         this.login = login;
+        this.active = isActive;
         this.type = type;
     }
 

@@ -1,6 +1,6 @@
-package com.edu.tks.aggregates.adapters;
+package com.edu.tks.aggregates.adapters.repository;
 
-import com.edu.tks.aggregates.converters.RecordConverter;
+import com.edu.tks.aggregates.converters.repository.RecordConverter;
 import com.edu.tks.exception.NotFoundException;
 import com.edu.tks.exception.RentalException;
 import com.edu.tks.infrastructure.repository.record.AddRecord;
