@@ -1,4 +1,4 @@
-package com.edu.tks.infrastructure.service.rental;
+package com.edu.tks.rental;
 
 import com.edu.tks.exception.InputException;
 import com.edu.tks.exception.NotFoundException;

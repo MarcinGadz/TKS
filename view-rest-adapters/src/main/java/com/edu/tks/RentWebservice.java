@@ -2,7 +2,9 @@ package com.edu.tks;
 
 import com.edu.tks.exception.NotFoundException;
 import com.edu.tks.exception.RentalException;
+import com.edu.tks.record.Record;
 import com.edu.tks.record.RecordService;
+import com.edu.tks.rental.Rental;
 import com.edu.tks.rental.RentalService;
 import com.edu.tks.user.User;
 import com.edu.tks.user.UserService;

@@ -1,4 +1,4 @@
-package com.edu.tks.infrastructure.service.record;
+package com.edu.tks.record;
 
 
 // TODO REMOVE PACKAGE IF NOT NEEDED

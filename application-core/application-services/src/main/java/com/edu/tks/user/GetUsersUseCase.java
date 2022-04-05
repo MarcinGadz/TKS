@@ -1,4 +1,4 @@
-package com.edu.tks.infrastructure.service.user;
+package com.edu.tks.user;
 
 import com.edu.tks.exception.NotFoundException;
 import com.edu.tks.user.User;

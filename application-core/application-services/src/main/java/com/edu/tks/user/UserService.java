@@ -5,10 +5,6 @@ import com.edu.tks.infrastructure.repository.user.AddUser;
 import com.edu.tks.infrastructure.repository.user.ExtendRentals;
 import com.edu.tks.infrastructure.repository.user.GetUsers;
 import com.edu.tks.infrastructure.repository.user.RemoveUser;
-import com.edu.tks.infrastructure.service.user.AddUserUseCase;
-import com.edu.tks.infrastructure.service.user.ExtendRentalsUseCase;
-import com.edu.tks.infrastructure.service.user.GetUsersUseCase;
-import com.edu.tks.infrastructure.service.user.RemoveUserUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

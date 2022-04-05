@@ -5,9 +5,6 @@ import com.edu.tks.exception.NotFoundException;
 import com.edu.tks.infrastructure.repository.rental.AddRental;
 import com.edu.tks.infrastructure.repository.rental.ArchiveRentals;
 import com.edu.tks.infrastructure.repository.rental.GetRentals;
-import com.edu.tks.infrastructure.service.rental.AddRentalUseCase;
-import com.edu.tks.infrastructure.service.rental.ArchiveRentalsUseCase;
-import com.edu.tks.infrastructure.service.rental.GetRentalsUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.edu.tks.infrastructure.service.record;
+package com.edu.tks.record;
 
 import com.edu.tks.exception.NotFoundException;
 import com.edu.tks.record.Record;

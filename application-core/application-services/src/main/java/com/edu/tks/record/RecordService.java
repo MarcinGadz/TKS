@@ -5,9 +5,6 @@ import com.edu.tks.exception.RentalException;
 import com.edu.tks.infrastructure.repository.record.AddRecord;
 import com.edu.tks.infrastructure.repository.record.GetRecords;
 import com.edu.tks.infrastructure.repository.record.RemoveRecord;
-import com.edu.tks.infrastructure.service.record.AddRecordUseCase;
-import com.edu.tks.infrastructure.service.record.GetRecordsUseCase;
-import com.edu.tks.infrastructure.service.record.RemoveRecordUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
