@@ -69,7 +69,7 @@ public class RecordWebservice {
         return record;
     }
 
-    @PostMapping("/{recordID}/edit")
+    @PutMapping("/{recordID}")
     public Record modifyRecord(@PathVariable(required = true) String recordID, @RequestBody Record body)
             throws InputException, NotFoundException {
 
