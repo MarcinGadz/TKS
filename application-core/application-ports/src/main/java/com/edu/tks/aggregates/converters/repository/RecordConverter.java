@@ -1,4 +1,4 @@
-package com.edu.tks.aggregates.converters;
+package com.edu.tks.aggregates.converters.repository;
 
 import com.edu.tks.entity.RecordEntity;
 import com.edu.tks.record.Record;

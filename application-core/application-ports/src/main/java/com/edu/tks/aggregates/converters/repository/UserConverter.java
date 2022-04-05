@@ -1,4 +1,4 @@
-package com.edu.tks.aggregates.converters;
+package com.edu.tks.aggregates.converters.repository;
 
 import com.edu.tks.entity.UserEntity;
 import com.edu.tks.entity.UserTypeEntity;
@@ -34,9 +34,11 @@ public class UserConverter {
     }
 
     public static UserEntity convertUserToUserEntity(User user) {
+        if (user == null) return null;
         return new UserEntity(
                 user.getUserID(),
                 user.getLogin(),
+                user.isActive(),
                 convertUserTypeToUserTypeEntity(user.getType())
         );
     }

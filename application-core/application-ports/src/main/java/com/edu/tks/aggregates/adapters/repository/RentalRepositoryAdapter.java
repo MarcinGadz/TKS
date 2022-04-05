@@ -1,7 +1,6 @@
-package com.edu.tks.aggregates.adapters;
+package com.edu.tks.aggregates.adapters.repository;
 
-import com.edu.tks.aggregates.converters.RentalConverter;
-import com.edu.tks.entity.RentalEntity;
+import com.edu.tks.aggregates.converters.repository.RentalConverter;
 import com.edu.tks.exception.InputException;
 import com.edu.tks.exception.NotFoundException;
 import com.edu.tks.infrastructure.repository.rental.AddRental;

@@ -1,57 +1,65 @@
 package com.edu.tks.rental;
 
-import com.edu.tks.aggregates.adapters.RentalRepositoryAdapter;
 import com.edu.tks.exception.InputException;
 import com.edu.tks.exception.NotFoundException;
-import com.edu.tks.exception.RentalException;
 import com.edu.tks.infrastructure.repository.rental.AddRental;
 import com.edu.tks.infrastructure.repository.rental.ArchiveRentals;
 import com.edu.tks.infrastructure.repository.rental.GetRentals;
+import com.edu.tks.infrastructure.service.rental.AddRentalUseCase;
+import com.edu.tks.infrastructure.service.rental.ArchiveRentalsUseCase;
+import com.edu.tks.infrastructure.service.rental.GetRentalsUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class RentalService {
+public class RentalService implements AddRentalUseCase, GetRentalsUseCase, ArchiveRentalsUseCase {
 
-    private final GetRentals getRentalsUseCase;
-    private final AddRental addRentalUseCase;
-    private final ArchiveRentals archiveRentalUseCase;
+    private final GetRentals getRentals;
+    private final AddRental addRental;
+    private final ArchiveRentals archiveRentals;
 
     @Autowired
-    public RentalService(GetRentals getRentalsUseCase, AddRental addRentalUseCase, ArchiveRentals archiveRentalUseCase) {
-        this.getRentalsUseCase = getRentalsUseCase;
-        this.addRentalUseCase = addRentalUseCase;
-        this.archiveRentalUseCase = archiveRentalUseCase;
+    public RentalService(GetRentals getRentals, AddRental addRental, ArchiveRentals archiveRentals) {
+        this.getRentals = getRentals;
+        this.addRental = addRental;
+        this.archiveRentals = archiveRentals;
     }
 
+    @Override
     public Rental getRentalByID(String rentalID) throws NotFoundException {
-        return getRentalsUseCase.getRentalByID(rentalID);
+        return getRentals.getRentalByID(rentalID);
     }
 
+    @Override
     public List<Rental> getAllRentals() {
-        return getRentalsUseCase.getAllRentals();
+        return getRentals.getAllRentals();
     }
 
+    @Override
     public List<Rental> getAllArchiveRentals() {
-        return getRentalsUseCase.getAllArchiveRentals();
+        return getRentals.getAllArchiveRentals();
     }
 
+    @Override
     public synchronized void appendRental(Rental rental) {
-        addRentalUseCase.appendRental(rental);
+        addRental.appendRental(rental);
     }
 
+    @Override
     public synchronized void appendRentals(List<Rental> rents) {
-        addRentalUseCase.appendRentals(rents);
+        addRental.appendRentals(rents);
     }
 
-    public synchronized void archiveRental(String rentalID) throws RentalException, NotFoundException, InputException {
-        archiveRentalUseCase.archiveRental(rentalID);
+    @Override
+    public synchronized void archiveRental(String rentalID) throws NotFoundException, InputException {
+        archiveRentals.archiveRental(rentalID);
     }
 
-    public synchronized void archiveRentals(List<Rental> rents) throws RentalException, NotFoundException, InputException {
-        archiveRentalUseCase.archiveRentals(rents);
+    @Override
+    public synchronized void archiveRentals(List<Rental> rents) throws InputException {
+        archiveRentals.archiveRentals(rents);
     }
 
 }
