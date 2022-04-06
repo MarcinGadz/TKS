@@ -45,7 +45,6 @@ public class RecordService implements AddRecordUseCase, GetRecordsUseCase, Remov
         removeRecord.removeRecord(recordid);
     }
 
-    // TODO clean it
     @Override
     public Record updateRecord(String recordId, Record record) throws NotFoundException, ParseException {
         return modifyRecord(recordId, record.getTitle(), record.getArtist(), record.getReleaseDate().toString());
