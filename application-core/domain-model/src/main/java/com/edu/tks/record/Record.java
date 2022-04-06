@@ -21,9 +21,9 @@ public class Record {
         this(UUID.randomUUID(), title, artist, releaseDate, false);
     }
 
-    public Record(UUID userID, String title, String artist, String releaseDate, boolean isRented) {
+    public Record(UUID recordID, String title, String artist, String releaseDate, boolean isRented) {
         this.isRented = isRented;
-        this.recordID = userID;
+        this.recordID = recordID;
         this.title = title;
         this.artist = artist;
         this.releaseDate = LocalDate.parse(releaseDate);
@@ -87,6 +87,17 @@ public class Record {
     }
 
     @Override
+    public String toString() {
+        return "Record{" +
+                "recordID=" + recordID +
+                ", isRented=" + isRented +
+                ", title='" + title + '\'' +
+                ", artist='" + artist + '\'' +
+                ", releaseDate=" + releaseDate +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
 
@@ -96,6 +107,9 @@ public class Record {
 
         return new EqualsBuilder()
                 .append(recordID, record.recordID)
+                .append(title, record.title)
+                .append(artist, record.artist)
+                .append(releaseDate, record.releaseDate)
                 .isEquals();
     }
 

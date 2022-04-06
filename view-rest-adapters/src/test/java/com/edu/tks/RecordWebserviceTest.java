@@ -59,6 +59,14 @@ class RecordWebserviceTest {
     }
 
     @Test
+    void getNonExistingRecordByID() {
+        String nonExistingUUID = "37575e25-2929-415d-a7d9-254e96250970";
+        ResponseEntity<Record> response = rest.getForEntity(BASE_PATH + "/records/" + nonExistingUUID, Record.class);
+        assertEquals(404, response.getStatusCode().value());
+        assertNull(response.getBody().getRecordID());
+    }
+
+    @Test
     void addAndRemoveRecord() {
         String title = "title";
         String artist = "artist";
@@ -83,11 +91,14 @@ class RecordWebserviceTest {
     @Test
     void modifyRecord() {
         String newTitle = "newTitle";
-        Record r = new Record(newTitle, INIT_DATA[0].getArtist(), INIT_DATA[0].getReleaseDate().toString());
+        Record r = new Record(INIT_DATA[0].getRecordID(), newTitle, INIT_DATA[0].getArtist(), INIT_DATA[0].getReleaseDate().toString(), INIT_DATA[0].isRented());
         HttpEntity<Record> ent = new HttpEntity<>(r);
         ResponseEntity<Record> response = rest.exchange(BASE_PATH + "/records/" + INIT_DATA[0].getRecordID().toString(), HttpMethod.PUT, ent, Record.class);
         assertTrue(response.getStatusCode().is2xxSuccessful());
         Record responseRecord = rest.getForObject(BASE_PATH + "/records/" + INIT_DATA[0].getRecordID().toString(), Record.class);
-        assertEquals(INIT_DATA[0], responseRecord);
+        assertEquals(r, responseRecord);
+        r.setTitle(INIT_DATA[0].getTitle());
+        response = rest.exchange(BASE_PATH + "/records/" + INIT_DATA[0].getRecordID().toString(), HttpMethod.PUT, ent, Record.class);
+        assertTrue(response.getStatusCode().is2xxSuccessful());
     }
 }
