@@ -8,6 +8,7 @@ import java.util.UUID;
 public class RecordConverter {
 
     public static Record convertRecordEntityToRecord(RecordEntity recordEntity) {
+        if(recordEntity == null) return null;
         return new Record(
                 recordEntity.getRecordID(),
                 recordEntity.getTitle(),
@@ -18,6 +19,7 @@ public class RecordConverter {
     }
 
     public static RecordEntity convertRecordToRecordEntity(Record record) {
+        if(record == null) return null;
         return new RecordEntity(
                 record.getRecordID(),
                 record.getTitle(),

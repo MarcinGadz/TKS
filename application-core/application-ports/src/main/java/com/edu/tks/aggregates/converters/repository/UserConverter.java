@@ -17,7 +17,7 @@ public class UserConverter {
 
     public static User convertUserEntityToUser(UserEntity userEntity) {
         if (userEntity == null) return null;
-        return new User(
+        return new com.edu.tks.user.User(
                 userEntity.getUserID(),
                 userEntity.getLogin(),
                 userEntity.isActive(),

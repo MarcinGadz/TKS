@@ -72,7 +72,7 @@ public class UserWebservice {
     }
 
 
-    @PostMapping(path = "/{userID}/changeLogin")
+    @PutMapping(path = "/{userID}/changeLogin")
     public User changeUserLogin(@PathVariable String userID, @RequestBody User body) throws InputException,
             NotFoundException {
         String login = body.getLogin();
@@ -84,13 +84,13 @@ public class UserWebservice {
     }
 
 
-    @PostMapping(path = "/{userID}/activate")
+    @PutMapping(path = "/{userID}/activate")
     public User activateUser(@PathVariable String userID) throws NotFoundException, InputException {
         return addUserUseCase.updateActive(userID, true);
     }
 
 
-    @PostMapping(path = "/{userID}/deactivate")
+    @PutMapping(path = "/{userID}/deactivate")
     public User deactivateUser(@PathVariable String userID) throws NotFoundException, InputException {
         User user = addUserUseCase.updateActive(userID, false);
         return user;

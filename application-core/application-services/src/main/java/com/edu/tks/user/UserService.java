@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-// TODO check if UpdateUser should be done within getUser interface
-
 @Service
 public class UserService implements AddUserUseCase, GetUsersUseCase, RemoveUserUseCase, ExtendRentalsUseCase {
 
