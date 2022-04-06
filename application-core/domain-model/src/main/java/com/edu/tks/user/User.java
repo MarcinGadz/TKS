@@ -36,6 +36,16 @@ public class User implements Cloneable {
         this.active = isActive;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "userID=" + userID +
+                ", login='" + login + '\'' +
+                ", type=" + type +
+                ", active=" + active +
+                ", cart=" + cart +
+                '}';
+    }
 
     public UUID getUserID() {
         return userID;

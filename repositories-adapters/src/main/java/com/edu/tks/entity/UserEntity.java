@@ -161,7 +161,6 @@ public class UserEntity implements Cloneable {
     @Override
     public UserEntity clone() throws CloneNotSupportedException {
         UserEntity u = (UserEntity)super.clone();
-
         return u;
     }
 
