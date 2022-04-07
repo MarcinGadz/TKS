@@ -24,8 +24,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class RentWebserviceTest {
 
-    // TODO Fix record is rented exception
-
     private final Rental[] INIT_DATA = {new Rental(
             UUID.fromString("02cf35bf-d025-440b-a6ec-17cc6c77b013"),
             new User(UUID.fromString("cebbee82-2398-4dc2-a94d-a4c863286ff0"), "Eleanora", true, UserType.CLIENT),
