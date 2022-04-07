@@ -68,14 +68,14 @@ public class RecordEntity {
         this.releaseDate = releaseDate;
     }
 
-    public void rent(RentalEntity rentalEntity) throws InputException {
-        if (this.isRented) {
-            throw new InputException("shop.Record already rented");
-        }
-        this.isRented = true;
-        this.currentRent = rentalEntity;
-    }
-
+//    public void rent(RentalEntity rentalEntity) throws InputException {
+//        if (this.isRented) {
+//            throw new InputException("shop.Record already rented");
+//        }
+//        this.isRented = true;
+//        this.currentRent = rentalEntity;
+//    }
+//
     public void release() throws InputException {
         if (!this.isRented) {
             throw new InputException("This record is not rented");

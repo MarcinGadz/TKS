@@ -8,6 +8,7 @@ import com.edu.tks.user.User;
 import com.edu.tks.user.UserType;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Rental {
@@ -107,6 +108,34 @@ public class Rental {
     public void archive() {
         this.active = false;
     }
+
+    @Override
+    public String toString() {
+        return "Rental{" +
+                "clientID='" + clientID + '\'' +
+                ", renterID='" + renterID + '\'' +
+                ", recordID='" + recordID + '\'' +
+                ", rentDate=" + rentDate +
+                ", expectedReturnDate=" + expectedReturnDate +
+                ", actualReturnDate=" + actualReturnDate +
+                ", active=" + active +
+                '}';
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Rental rental = (Rental) o;
+        return Objects.equals(rentalID, rental.rentalID) && Objects.equals(clientID, rental.clientID) && Objects.equals(renterID, rental.renterID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(rentalID, clientID, renterID);
+    }
+
 
     public void extendReturnDays(int days) throws RentalException {
         if (days <= 0) {

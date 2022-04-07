@@ -27,7 +27,7 @@ public class RentalRepositoryAdapter implements GetRentals, AddRental, ArchiveRe
 
     @Override
     public void appendRentals(List<Rental> rents) {
-        repo.appendRentalEntitys(
+        repo.appendRentalEntities(
                 rents.stream()
                         .map(RentalConverter::convertRentalToRentalEntity)
                         .collect(Collectors.toList())
@@ -41,7 +41,7 @@ public class RentalRepositoryAdapter implements GetRentals, AddRental, ArchiveRe
 
     @Override
     public void archiveRentals(List<Rental> rents) throws InputException {
-        repo.archiveRentalEntitys(
+        repo.archiveRentalEntities(
             rents.stream()
                     .map(RentalConverter::convertRentalToRentalEntity)
                     .collect(Collectors.toList())
@@ -50,14 +50,14 @@ public class RentalRepositoryAdapter implements GetRentals, AddRental, ArchiveRe
 
     @Override
     public List<Rental> getAllRentals() {
-        return repo.getAllRentalEntitys().stream()
+        return repo.getAllRentalEntities().stream()
                 .map(RentalConverter::convertRentalEntityToRental)
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<Rental> getAllArchiveRentals() {
-        return repo.getAllArchiveRentalEntitys().stream()
+        return repo.getAllArchiveRentalEntities().stream()
                 .map(RentalConverter::convertRentalEntityToRental)
                 .collect(Collectors.toList());
     }

@@ -40,7 +40,7 @@ public class RentalEntity {
         this.recordEntity = recordEntity;
 
         this.rentDate = LocalDateTime.now();
-        this.recordEntity.rent(this);
+//        this.recordEntity.rent(this);
 
         this.expectedReturnDate = this.rentDate.plusDays(7);
     }

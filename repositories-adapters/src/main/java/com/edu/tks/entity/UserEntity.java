@@ -55,36 +55,36 @@ public class UserEntity implements Cloneable {
     public List<RecordEntity> getCart() {
         return this.cart;
     }
-
-    public void addToCart(RecordEntity recordEntity) throws RentalException {
-        if (!this.active) {
-            throw new RentalException("shop.User is not active");
-        }
-
-        if (recordEntity.isRented()) {
-            throw new RentalException("shop.Record already rented");
-        }
-        cart.add(recordEntity);
-    }
-
-    public void removeFromCart(RecordEntity recordEntity) throws RentalException {
-        if (!this.active) {
-            throw new RentalException("shop.User is not active");
-        }
-
-        if (!cart.contains(recordEntity)) {
-            throw new RentalException("shop.Record not in cart");
-        }
-        cart.remove(recordEntity);
-    }
-
-    public void clearCart() throws RentalException {
-        if (!this.active) {
-            throw new RentalException("shop.User is not active");
-        }
-
-        cart.clear();
-    }
+//
+//    public void addToCart(RecordEntity recordEntity) throws RentalException {
+//        if (!this.active) {
+//            throw new RentalException("shop.User is not active");
+//        }
+//
+//        if (recordEntity.isRented()) {
+//            throw new RentalException("shop.Record already rented");
+//        }
+//        cart.add(recordEntity);
+//    }
+//
+//    public void removeFromCart(RecordEntity recordEntity) throws RentalException {
+//        if (!this.active) {
+//            throw new RentalException("shop.User is not active");
+//        }
+//
+//        if (!cart.contains(recordEntity)) {
+//            throw new RentalException("shop.Record not in cart");
+//        }
+//        cart.remove(recordEntity);
+//    }
+//
+//    public void clearCart() throws RentalException {
+//        if (!this.active) {
+//            throw new RentalException("shop.User is not active");
+//        }
+//
+//        cart.clear();
+//    }
 
 
     // RENTALS METHODS
@@ -97,40 +97,40 @@ public class UserEntity implements Cloneable {
         return archiveRentalEntities;
     }
 
-    public List<RentalEntity> rentCart(UserEntity renter) throws PermissionException, InputException, RentalException {
-        List<RentalEntity> newRentalEntities = new ArrayList<>();
+//    public List<RentalEntity> rentCart(UserEntity renter) throws PermissionException, InputException, RentalException {
+//        List<RentalEntity> newRentalEntities = new ArrayList<>();
+//
+//        if (!this.active) {
+//            throw new RentalException("User is not active");
+//        }
+//
+//        if (renter.getType() != UserTypeEntity.RENTER) {
+//            throw new PermissionException("Indicated renter has no permissions to do this operation");
+//        }
+//
+//        for (RecordEntity recordEntity : this.cart) {
+//            RentalEntity newRent = new RentalEntity(this, renter, recordEntity);
+//            rentalEntities.add(newRent);
+//            newRentalEntities.add(newRent);
+//        }
+//
+//        this.clearCart();
+//        return newRentalEntities;
+//    }
 
-        if (!this.active) {
-            throw new RentalException("User is not active");
-        }
-
-        if (renter.getType() != UserTypeEntity.RENTER) {
-            throw new PermissionException("Indicated renter has no permissions to do this operation");
-        }
-
-        for (RecordEntity recordEntity : this.cart) {
-            RentalEntity newRent = new RentalEntity(this, renter, recordEntity);
-            rentalEntities.add(newRent);
-            newRentalEntities.add(newRent);
-        }
-
-        this.clearCart();
-        return newRentalEntities;
-    }
-
-    public void clearRentals(UserEntity renter) throws PermissionException, RentalException {
-        if (!this.active) {
-            throw new RentalException("shop.User is not active");
-        }
-
-        if (renter.getType() != UserTypeEntity.RENTER) {
-            throw new PermissionException("Indicated renter has no permissions to do this operation");
-        }
-
-        this.archiveRentalEntities.addAll(this.rentalEntities);
-        rentalEntities.clear();
-    }
-
+//    public void clearRentals(UserEntity renter) throws PermissionException, RentalException {
+//        if (!this.active) {
+//            throw new RentalException("shop.User is not active");
+//        }
+//
+//        if (renter.getType() != UserTypeEntity.RENTER) {
+//            throw new PermissionException("Indicated renter has no permissions to do this operation");
+//        }
+//
+//        this.archiveRentalEntities.addAll(this.rentalEntities);
+//        rentalEntities.clear();
+//    }
+//
     public void extendRentReturnDays(UserEntity renter, int days) throws RentalException, PermissionException {
         if (!this.active) {
             throw new RentalException("shop.User is not active");
