@@ -15,7 +15,7 @@ import java.util.List;
 
 
 @Service
-public class RecordService implements AddRecordUseCase, GetRecordsUseCase, RemoveRecordUseCase, RentRecordUseCase {
+public class RecordService implements AddRecordUseCase, GetRecordsUseCase, RemoveRecordUseCase {
     private final AddRecord addRecord;
     private final GetRecords getRecords;
     private final RemoveRecord removeRecord;
@@ -69,10 +69,5 @@ public class RecordService implements AddRecordUseCase, GetRecordsUseCase, Remov
         }
         record = addRecord.updateRecord(recordId, record);
         return record;
-    }
-
-    @Override
-    public void rent(String recordID) throws InputException, NotFoundException {
-        rentRecord.rent(recordID);
     }
 }

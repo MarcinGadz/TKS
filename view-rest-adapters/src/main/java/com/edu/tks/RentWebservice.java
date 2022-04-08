@@ -44,11 +44,8 @@ public class RentWebservice {
 
     @PostMapping(path = "/{userID}/rent")
     public Rental rentRecords(@PathVariable String userID, @RequestBody Map<String, String> body) throws NotFoundException, InputException {
-        var client = userService.getUserByID(userID);
-        var record = recordManager.getRecordByID(body.get("recordID"));
-        var out = rentalService.createRental(client, record);
-        recordManager.rent(record.getRecordID().toString());
-        return out;
+        return rentalService.createRental(userID, body.get("recordID"));
+
     }
 
     @GetMapping(path = "/{userID}/cart")
