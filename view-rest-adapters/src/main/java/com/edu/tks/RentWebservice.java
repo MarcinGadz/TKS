@@ -11,10 +11,10 @@ import com.edu.tks.user.User;
 import com.edu.tks.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.xmlunit.builder.Input;
 
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("users")
@@ -43,9 +43,19 @@ public class RentWebservice {
     }
 
     @PostMapping(path = "/{userID}/rent")
-    public Rental rentRecords(@PathVariable String userID, @RequestBody Map<String, String> body) throws NotFoundException, InputException {
+    public Rental rentRecord(@PathVariable String userID, @RequestBody Map<String, String> body) throws NotFoundException, InputException {
         return rentalService.createRental(userID, body.get("recordID"));
+    }
 
+    @PostMapping(path = "/{userID}/return")
+    public Rental returnRecord(@PathVariable String userID, @RequestBody Map<String, String> body) throws NotFoundException, InputException {
+        Rental rental = rentalService.getRentalByID(body.get("rentalID"));
+
+        if (!rental.getClientID().equals(userID)) {
+            System.out.println("THIS USER DOES NOT OWN THIS RECORD");
+            throw new InputException("This user does not own this record!");
+        }
+        return rentalService.archiveRental(body.get("rentalID"));
     }
 
     @GetMapping(path = "/{userID}/cart")
@@ -80,8 +90,6 @@ public class RentWebservice {
         user.clearCart();
         return user.getCart();
     }
-
-
 }
 
 

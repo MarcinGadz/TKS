@@ -33,12 +33,12 @@ public class RentalEntity {
         this.actualReturnDate = actualReturnDate;
     }
 
-    public RentalEntity(UUID rentalID, UserEntity client, RecordEntity recordEntity) throws PermissionException, InputException {
-        this(rentalID, client.getUserID(), recordEntity.getRecordID(), LocalDateTime.now(), LocalDateTime.now().plusDays(7), null, true);
+    public RentalEntity(UUID rentalID, UUID clientID, UUID recordID) throws PermissionException, InputException {
+        this(rentalID, clientID, recordID, LocalDateTime.now(), LocalDateTime.now().plusDays(7), null, true);
     }
 
-    public RentalEntity(UserEntity userEntity, RecordEntity recordEntity) throws PermissionException, InputException {
-        this(UUID.randomUUID(), userEntity, recordEntity);
+    public RentalEntity(UUID clientID, UUID recordID) throws PermissionException, InputException {
+        this(UUID.randomUUID(), clientID, recordID);
     }
 
     public UUID getRentalID() {

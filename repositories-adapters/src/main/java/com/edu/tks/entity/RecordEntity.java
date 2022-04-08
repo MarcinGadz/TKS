@@ -12,8 +12,6 @@ import java.util.UUID;
 
 public class RecordEntity {
     private UUID recordID;
-    private RentalEntity currentRent;
-    private final List<RentalEntity> archiveRents = new ArrayList<>();
     private boolean isRented;
 
     private String title;
@@ -38,14 +36,6 @@ public class RecordEntity {
 
     public UUID getRecordID() {
         return recordID;
-    }
-
-    public List<RentalEntity> getArchiveRents() {
-        return archiveRents;
-    }
-
-    public RentalEntity getCurrentRent() {
-        return currentRent;
     }
 
     public void setRecordID(String id) {
@@ -79,9 +69,7 @@ public class RecordEntity {
         if (!this.isRented) {
             throw new InputException("This record is not rented");
         }
-        this.archiveRents.add(this.currentRent);
         this.isRented = false;
-        this.currentRent = null;
     }
 
     public void setTitle(String title) {

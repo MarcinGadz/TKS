@@ -21,9 +21,9 @@ public class RentalRepository {
     public RentalRepository() {
         try {
             RentalEntity init = new RentalEntity(
-                    UUID.fromString("02cf35bf-d025-440b-a6ec-17cc6c77b013"),
-                    new UserEntity(UUID.fromString("cebbee82-2398-4dc2-a94d-a4c863286ff0"), "Eleanora", true, UserTypeEntity.CLIENT),
-                    new RecordEntity(UUID.fromString("02cf35bf-d025-440b-a6ec-17cc6c77b021"),"Moral Power", "Nothing but Lorde", "2020-03-04", false));
+                    UUID.fromString("418d0406-e040-408a-abf3-7788db83b889"),
+                    UUID.fromString("cebbee82-2398-4dc2-a94d-a4c863286ff0"),
+                    UUID.fromString("02cf35bf-d025-440b-a6ec-17cc6c77b021"));
             rentals.add(init);
         } catch (Exception ignored) {}
     }

@@ -8,5 +8,4 @@ import java.util.List;
 
 public interface ArchiveRentals {
     void archiveRental(String rentalID) throws NotFoundException, InputException;
-    void archiveRentals(List<Rental> rents) throws InputException;
 }

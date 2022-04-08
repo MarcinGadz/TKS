@@ -4,10 +4,7 @@ import com.edu.tks.aggregates.converters.repository.RecordConverter;
 import com.edu.tks.exception.InputException;
 import com.edu.tks.exception.NotFoundException;
 import com.edu.tks.exception.RentalException;
-import com.edu.tks.infrastructure.repository.record.AddRecord;
-import com.edu.tks.infrastructure.repository.record.GetRecords;
-import com.edu.tks.infrastructure.repository.record.RemoveRecord;
-import com.edu.tks.infrastructure.repository.record.RentRecord;
+import com.edu.tks.infrastructure.repository.record.*;
 import com.edu.tks.record.Record;
 import com.edu.tks.repositories.RecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class RecordRepositoryAdapter implements AddRecord, GetRecords, RemoveRecord, RentRecord {
+public class RecordRepositoryAdapter implements AddRecord, GetRecords, RemoveRecord, RentRecord, ReturnRecord {
 
     @Override
     public Record updateRecord(String recordId, Record record) {
@@ -53,4 +50,12 @@ public class RecordRepositoryAdapter implements AddRecord, GetRecords, RemoveRec
     public void rent(String recordID) throws InputException, NotFoundException {
         repo.getRecordByID(recordID).rent();
     }
+
+    @Override
+    public Record returnRecord(String recordID) throws NotFoundException, InputException {
+        var recordEntity = repo.getRecordByID(recordID);
+        recordEntity.release();
+        return RecordConverter.convertRecordEntityToRecord(recordEntity);
+    }
+
 }

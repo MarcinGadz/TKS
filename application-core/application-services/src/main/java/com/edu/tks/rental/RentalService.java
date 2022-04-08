@@ -4,6 +4,7 @@ import com.edu.tks.exception.InputException;
 import com.edu.tks.exception.NotFoundException;
 import com.edu.tks.infrastructure.repository.record.GetRecords;
 import com.edu.tks.infrastructure.repository.record.RentRecord;
+import com.edu.tks.infrastructure.repository.record.ReturnRecord;
 import com.edu.tks.infrastructure.repository.rental.AddRental;
 import com.edu.tks.infrastructure.repository.rental.ArchiveRentals;
 import com.edu.tks.infrastructure.repository.rental.GetRentals;
@@ -24,15 +25,17 @@ public class RentalService implements AddRentalUseCase, GetRentalsUseCase, Archi
     private final GetUsers getUsers;
     private final GetRecords getRecords;
     private final RentRecord rentRecord;
+    private final ReturnRecord returnRecord;
 
     @Autowired
-    public RentalService(GetRentals getRentals, AddRental addRental, ArchiveRentals archiveRentals, GetUsers getUsers, GetRecords getRecords, RentRecord rentRecord) {
+    public RentalService(GetRentals getRentals, AddRental addRental, ArchiveRentals archiveRentals, GetUsers getUsers, GetRecords getRecords, RentRecord rentRecord, ReturnRecord returnRecord) {
         this.getRentals = getRentals;
         this.addRental = addRental;
         this.archiveRentals = archiveRentals;
         this.getUsers = getUsers;
         this.getRecords = getRecords;
         this.rentRecord = rentRecord;
+        this.returnRecord = returnRecord;
     }
 
     @Override
@@ -60,16 +63,12 @@ public class RentalService implements AddRentalUseCase, GetRentalsUseCase, Archi
         return newRental;
     }
 
-
-
     @Override
-    public synchronized void archiveRental(String rentalID) throws NotFoundException, InputException {
+    public synchronized Rental archiveRental(String rentalID) throws NotFoundException, InputException {
+        Rental rental = getRentals.getRentalByID(rentalID);
+        Record record = getRecords.getRecordByID(rental.getRecordID());
         archiveRentals.archiveRental(rentalID);
+        returnRecord.returnRecord(record.getRecordID().toString());
+        return rental;
     }
-
-    @Override
-    public synchronized void archiveRentals(List<Rental> rents) throws InputException {
-        archiveRentals.archiveRentals(rents);
-    }
-
 }
