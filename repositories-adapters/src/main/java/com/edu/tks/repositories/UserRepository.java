@@ -22,7 +22,7 @@ public class UserRepository {
                 new UserEntity(UUID.fromString("c6f3fbf7-135b-498e-8154-3a5b9d291145"), "Chidi", true, UserTypeEntity.CLIENT),
                 new UserEntity(UUID.fromString("f6abb370-5dbb-4473-bf8d-505bdcf6ccce"), "Tahani", true, UserTypeEntity.CLIENT),
                 new UserEntity(UUID.fromString("73d2c12b-179e-4700-879d-8e3de56fe55f"), "Michael", true, UserTypeEntity.ADMINISTRATOR),
-                new UserEntity(UUID.fromString("bfac0aaa-e7d2-4e33-9fa9-8111b14bcd58"), "DiscoJanet", true, UserTypeEntity.RENTER)
+                new UserEntity(UUID.fromString("bfac0aaa-e7d2-4e33-9fa9-8111b14bcd58"), "DiscoJanet", true, UserTypeEntity.CLIENT)
         };
         this.users = new ArrayList<>(Arrays.asList(arr));
     }

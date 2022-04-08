@@ -9,63 +9,47 @@ import java.util.UUID;
 
 public class RentalEntity {
     private final UUID rentalID;
-    private final String clientID;
-    private final String renterID;
-    private final String recordID;
-
-    private transient final UserEntity client;
-    private transient final UserEntity renter;
-    private transient final RecordEntity recordEntity;
+    private final UUID clientID;
+    private final UUID recordID;
 
     private final LocalDateTime rentDate;
     private LocalDateTime expectedReturnDate;
     private LocalDateTime actualReturnDate;
 
-    public RentalEntity(UserEntity client, UserEntity renter, RecordEntity recordEntity) throws PermissionException, InputException {
-        this(UUID.randomUUID(), client, renter, recordEntity);
+    private boolean active;
+
+    public RentalEntity(UUID rentalID, UUID clientID, UUID recordID, LocalDateTime rentDate,
+                        LocalDateTime expectedReturnDate, LocalDateTime actualReturnDate, boolean active)
+            throws InputException {
+        this.rentalID = rentalID;
+
+        this.clientID = clientID;
+        this.recordID = recordID;
+
+        this.rentDate = rentDate;
+        this.active = active;
+
+        this.expectedReturnDate = expectedReturnDate;
+        this.actualReturnDate = actualReturnDate;
     }
 
-    public RentalEntity(UUID rentalID, UserEntity client, UserEntity renter, RecordEntity recordEntity) throws PermissionException, InputException {
-        this.rentalID = rentalID;
-        if (renter.getType() != UserTypeEntity.RENTER) {
-            throw new PermissionException("Indicated renter has no permissions to do this operation");
-        }
+    public RentalEntity(UUID rentalID, UserEntity client, RecordEntity recordEntity) throws PermissionException, InputException {
+        this(rentalID, client.getUserID(), recordEntity.getRecordID(), LocalDateTime.now(), LocalDateTime.now().plusDays(7), null, true);
+    }
 
-        this.clientID = client.getUserID().toString();
-        this.renterID = renter.getUserID().toString();
-        this.recordID = recordEntity.getRecordID().toString();
-
-        this.client = client;
-        this.renter = renter;
-        this.recordEntity = recordEntity;
-
-        this.rentDate = LocalDateTime.now();
-//        this.recordEntity.rent(this);
-
-        this.expectedReturnDate = this.rentDate.plusDays(7);
+    public RentalEntity(UserEntity userEntity, RecordEntity recordEntity) throws PermissionException, InputException {
+        this(UUID.randomUUID(), userEntity, recordEntity);
     }
 
     public UUID getRentalID() {
         return rentalID;
     }
 
-    public UserEntity getClient() {
-        return client;
-    }
-
-    public UserEntity getRenter() {
-        return renter;
-    }
-
-    public String getClientID() {
+    public UUID getClientID() {
         return clientID;
     }
 
-    public String getRenterID() {
-        return renterID;
-    }
-
-    public String getRecordID() {
+    public UUID getRecordID() {
         return recordID;
     }
 
@@ -77,17 +61,16 @@ public class RentalEntity {
         return expectedReturnDate;
     }
 
-    public RecordEntity getRecord() {
-        return recordEntity;
-    }
-
     public LocalDateTime getActualReturnDate() {
         return actualReturnDate;
     }
 
-    public void returnRecord() throws InputException {
-        this.actualReturnDate = LocalDateTime.now();
-        this.recordEntity.release();
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public void extendReturnDays(int days) throws RentalException {

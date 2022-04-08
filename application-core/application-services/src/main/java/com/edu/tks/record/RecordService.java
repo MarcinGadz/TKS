@@ -1,10 +1,12 @@
 package com.edu.tks.record;
 
+import com.edu.tks.exception.InputException;
 import com.edu.tks.exception.NotFoundException;
 import com.edu.tks.exception.RentalException;
 import com.edu.tks.infrastructure.repository.record.AddRecord;
 import com.edu.tks.infrastructure.repository.record.GetRecords;
 import com.edu.tks.infrastructure.repository.record.RemoveRecord;
+import com.edu.tks.infrastructure.repository.record.RentRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,21 +15,23 @@ import java.util.List;
 
 
 @Service
-public class RecordService implements AddRecordUseCase, GetRecordsUseCase, RemoveRecordUseCase {
+public class RecordService implements AddRecordUseCase, GetRecordsUseCase, RemoveRecordUseCase, RentRecordUseCase {
     private final AddRecord addRecord;
     private final GetRecords getRecords;
     private final RemoveRecord removeRecord;
+    private final RentRecord rentRecord;
 
     @Autowired
-    public RecordService(AddRecord addRecord, GetRecords getRecords, RemoveRecord removeRecord) {
+    public RecordService(AddRecord addRecord, GetRecords getRecords, RemoveRecord removeRecord, RentRecord rentRecord) {
         this.addRecord = addRecord;
         this.getRecords = getRecords;
         this.removeRecord = removeRecord;
+        this.rentRecord = rentRecord;
     }
 
     @Override
-    public Record getRecordByID(String recordid) throws NotFoundException {
-        return getRecords.getRecordByID(recordid);
+    public Record getRecordByID(String recordID) throws NotFoundException {
+        return getRecords.getRecordByID(recordID);
     }
 
     @Override
@@ -67,4 +71,8 @@ public class RecordService implements AddRecordUseCase, GetRecordsUseCase, Remov
         return record;
     }
 
+    @Override
+    public void rent(String recordID) throws InputException, NotFoundException {
+        rentRecord.rent(recordID);
+    }
 }

@@ -5,17 +5,22 @@ import com.edu.tks.exception.InputException;
 import com.edu.tks.exception.PermissionException;
 import com.edu.tks.rental.Rental;
 
+import java.util.UUID;
+
 public class RentalConverter {
 
     public static Rental convertRentalEntityToRental(RentalEntity rentalEntity) {
         try {
             return new Rental(
                     rentalEntity.getRentalID(),
-                    UserConverter.convertUserEntityToUser(rentalEntity.getClient()),
-                    UserConverter.convertUserEntityToUser(rentalEntity.getRenter()),
-                    RecordConverter.convertRecordEntityToRecord(rentalEntity.getRecord())
+                    rentalEntity.getClientID().toString(),
+                    rentalEntity.getRecordID().toString(),
+                    rentalEntity.getRentDate(),
+                    rentalEntity.getExpectedReturnDate(),
+                    rentalEntity.getActualReturnDate(),
+                    rentalEntity.isActive()
             );
-        } catch (PermissionException | InputException e) {
+        } catch (InputException e) {
             e.printStackTrace();
             throw new RuntimeException("Couldn't convert RentalEntity to Rental");
         }
@@ -25,11 +30,14 @@ public class RentalConverter {
         try {
             return new RentalEntity(
                     rental.getRentalID(),
-                    UserConverter.convertUserToUserEntity(rental.getClient()),
-                    UserConverter.convertUserToUserEntity(rental.getRenter()),
-                    RecordConverter.convertRecordToRecordEntity(rental.getRecord())
+                    UUID.fromString(rental.getClientID()),
+                    UUID.fromString(rental.getRecordID()),
+                    rental.getRentDate(),
+                    rental.getExpectedReturnDate(),
+                    rental.getActualReturnDate(),
+                    rental.isActive()
             );
-        } catch (PermissionException | InputException e) {
+        } catch (InputException e) {
             e.printStackTrace();
             throw new RuntimeException("Couldn't convert RentalEntity to Rental");
         }

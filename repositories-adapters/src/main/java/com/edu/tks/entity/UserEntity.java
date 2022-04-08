@@ -136,10 +136,6 @@ public class UserEntity implements Cloneable {
             throw new RentalException("shop.User is not active");
         }
 
-        if (renter.getType() != UserTypeEntity.RENTER) {
-            throw new PermissionException("Indicated renter has no permissions to do this operation");
-        }
-
         for (RentalEntity rentalEntity : this.rentalEntities) {
             rentalEntity.extendReturnDays(days);
         }

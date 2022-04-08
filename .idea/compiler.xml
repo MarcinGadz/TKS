@@ -7,21 +7,23 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="repositories-adapters" />
-        <module name="domain-model" />
-        <module name="application-services" />
         <module name="view-soap-adapters" />
         <module name="application-ports" />
+        <module name="view-adapters" />
         <module name="view-rest-adapters" />
+        <module name="domain-model" />
+        <module name="application-services" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="application-core" options="" />
+      <module name="application-core" options="-parameters" />
       <module name="application-ports" options="-parameters" />
       <module name="application-services" options="-parameters" />
       <module name="domain-model" options="-parameters" />
       <module name="repositories-adapters" options="-parameters" />
+      <module name="view-adapters" options="-parameters" />
       <module name="view-rest-adapters" options="-parameters" />
       <module name="view-soap-adapters" options="-parameters" />
     </option>

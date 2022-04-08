@@ -60,7 +60,7 @@ public class Record {
         this.releaseDate = releaseDate;
     }
 
-    public void rent(Rental rental) throws InputException {
+    public void rent() throws InputException {
         if (this.isRented) {
             throw new InputException("shop.Record already rented");
         }

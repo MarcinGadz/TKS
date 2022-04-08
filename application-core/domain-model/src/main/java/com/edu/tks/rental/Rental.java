@@ -1,12 +1,11 @@
 package com.edu.tks.rental;
 
 import com.edu.tks.exception.InputException;
-import com.edu.tks.exception.PermissionException;
 import com.edu.tks.exception.RentalException;
 import com.edu.tks.record.Record;
 import com.edu.tks.user.User;
-import com.edu.tks.user.UserType;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
@@ -14,41 +13,34 @@ import java.util.UUID;
 public class Rental {
     private UUID rentalID;
     private String clientID;
-    private String renterID;
     private String recordID;
-
-    private transient User client;
-    private transient User renter;
-    private transient Record record;
 
     private LocalDateTime rentDate;
     private LocalDateTime expectedReturnDate;
     private LocalDateTime actualReturnDate;
     private boolean active;
 
-    public Rental(User client, User renter, Record record) throws PermissionException, InputException {
-        this(UUID.randomUUID(), client, renter, record);
+    public Rental(UUID rentalID, String clientID, String recordID, LocalDateTime rentDate, LocalDateTime returnDate,
+                  LocalDateTime actualReturnDate, boolean active) throws InputException {
+        this.rentalID = rentalID;
+
+        this.clientID = clientID;
+        this.recordID = recordID;
+
+        this.rentDate = rentDate;
+        this.active = active;
+
+        this.expectedReturnDate = returnDate;
+        this.actualReturnDate = actualReturnDate;
     }
 
-    public Rental(UUID rentalID, User client, User renter, Record record) throws PermissionException, InputException {
-        this.rentalID = rentalID;
-        if (renter.getType() != UserType.RENTER) {
-            throw new PermissionException("Indicated renter has no permissions to do this operation");
-        }
+    public Rental(UUID rentalID, User client, Record record) throws InputException {
+        this(rentalID, client.getUserID().toString(), record.getRecordID().toString(), LocalDateTime.now(), LocalDateTime.now().plusDays(7), null, true);
+        record.rent();
+    }
 
-        this.clientID = client.getUserID().toString();
-        this.renterID = renter.getUserID().toString();
-        this.recordID = record.getRecordID().toString();
-
-        this.client = client;
-        this.renter = renter;
-        this.record = record;
-
-        this.rentDate = LocalDateTime.now();
-        this.record.rent(this);
-        this.active = true;
-
-        this.expectedReturnDate = this.rentDate.plusDays(7);
+    public Rental(User client, Record record) throws InputException {
+        this(UUID.randomUUID(), client, record);
     }
 
     public Rental() {
@@ -58,20 +50,8 @@ public class Rental {
         return rentalID;
     }
 
-    public User getClient() {
-        return client;
-    }
-
-    public User getRenter() {
-        return renter;
-    }
-
     public String getClientID() {
         return clientID;
-    }
-
-    public String getRenterID() {
-        return renterID;
     }
 
     public String getRecordID() {
@@ -86,20 +66,15 @@ public class Rental {
         return expectedReturnDate;
     }
 
-    public Record getRecord() {
-        return record;
-    }
-
     public LocalDateTime getActualReturnDate() {
         return actualReturnDate;
     }
 
-    public int callCops() { return 997; }
-
-    public void returnRecord() throws InputException {
-        this.actualReturnDate = LocalDateTime.now();
-        this.record.release();
+    public void setActualReturnDate(LocalDateTime actualReturnDate) {
+        this.actualReturnDate = actualReturnDate;
     }
+
+    public int callCops() { return 997; }
 
     public boolean isActive() {
         return active;
@@ -113,7 +88,6 @@ public class Rental {
     public String toString() {
         return "Rental{" +
                 "clientID='" + clientID + '\'' +
-                ", renterID='" + renterID + '\'' +
                 ", recordID='" + recordID + '\'' +
                 ", rentDate=" + rentDate +
                 ", expectedReturnDate=" + expectedReturnDate +
@@ -128,12 +102,12 @@ public class Rental {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Rental rental = (Rental) o;
-        return Objects.equals(rentalID, rental.rentalID) && Objects.equals(clientID, rental.clientID) && Objects.equals(renterID, rental.renterID);
+        return Objects.equals(rentalID, rental.rentalID) && Objects.equals(clientID, rental.clientID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(rentalID, clientID, renterID);
+        return Objects.hash(rentalID, clientID);
     }
 
 

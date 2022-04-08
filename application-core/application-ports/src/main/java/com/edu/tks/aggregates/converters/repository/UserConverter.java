@@ -10,7 +10,6 @@ public class UserConverter {
     public static UserType convertUserTypeEntityToUserType(UserTypeEntity userTypeEntity) {
         return switch (userTypeEntity) {
             case CLIENT -> UserType.CLIENT;
-            case RENTER -> UserType.RENTER;
             case ADMINISTRATOR -> UserType.ADMINISTRATOR;
         };
     }
@@ -28,7 +27,6 @@ public class UserConverter {
     public static UserTypeEntity convertUserTypeToUserTypeEntity(UserType userType) {
         return switch (userType) {
             case CLIENT -> UserTypeEntity.CLIENT;
-            case RENTER -> UserTypeEntity.RENTER;
             case ADMINISTRATOR -> UserTypeEntity.ADMINISTRATOR;
         };
     }

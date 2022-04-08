@@ -23,7 +23,6 @@ public class RentalRepository {
             RentalEntity init = new RentalEntity(
                     UUID.fromString("02cf35bf-d025-440b-a6ec-17cc6c77b013"),
                     new UserEntity(UUID.fromString("cebbee82-2398-4dc2-a94d-a4c863286ff0"), "Eleanora", true, UserTypeEntity.CLIENT),
-                    new UserEntity(UUID.fromString("bfac0aaa-e7d2-4e33-9fa9-8111b14bcd58"), "DiscoJanet", true, UserTypeEntity.RENTER),
                     new RecordEntity(UUID.fromString("02cf35bf-d025-440b-a6ec-17cc6c77b021"),"Moral Power", "Nothing but Lorde", "2020-03-04", false));
             rentals.add(init);
         } catch (Exception ignored) {}
@@ -59,14 +58,14 @@ public class RentalRepository {
     public void archiveRentalEntity(String rentalID) throws NotFoundException, InputException {
         RentalEntity rental = this.getRentalEntityByID(rentalID);
 
-        rental.returnRecord();
+//        rental.returnRecord();
         archiveRentalEntities.add(rental);
         rentals.remove(rental);
     }
 
     public void archiveRentalEntities(List<RentalEntity> rents) throws InputException {
         for (RentalEntity rental : rentals) {
-            rental.returnRecord();
+//            rental.returnRecord();
         }
         rentals.removeAll(rents);
         archiveRentalEntities.addAll(rents);

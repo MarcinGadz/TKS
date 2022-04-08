@@ -2,9 +2,12 @@ package com.edu.tks.rental;
 
 import com.edu.tks.exception.InputException;
 import com.edu.tks.exception.NotFoundException;
+import com.edu.tks.infrastructure.repository.record.RentRecord;
 import com.edu.tks.infrastructure.repository.rental.AddRental;
 import com.edu.tks.infrastructure.repository.rental.ArchiveRentals;
 import com.edu.tks.infrastructure.repository.rental.GetRentals;
+import com.edu.tks.user.User;
+import com.edu.tks.record.Record;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +21,7 @@ public class RentalService implements AddRentalUseCase, GetRentalsUseCase, Archi
     private final ArchiveRentals archiveRentals;
 
     @Autowired
-    public RentalService(GetRentals getRentals, AddRental addRental, ArchiveRentals archiveRentals) {
+    public RentalService(GetRentals getRentals, AddRental addRental, ArchiveRentals archiveRentals, RentRecord rentRecord) {
         this.getRentals = getRentals;
         this.addRental = addRental;
         this.archiveRentals = archiveRentals;
@@ -40,13 +43,10 @@ public class RentalService implements AddRentalUseCase, GetRentalsUseCase, Archi
     }
 
     @Override
-    public synchronized void appendRental(Rental rental) {
-        addRental.appendRental(rental);
-    }
-
-    @Override
-    public synchronized void appendRentals(List<Rental> rents) {
-        addRental.appendRentals(rents);
+    public Rental createRental(User client, Record record) throws InputException, NotFoundException {
+        var newRental = new Rental(client, record);
+        addRental.appendRental(newRental);
+        return newRental;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.edu.tks;
 
+import com.edu.tks.exception.InputException;
 import com.edu.tks.exception.NotFoundException;
 import com.edu.tks.exception.RentalException;
 import com.edu.tks.record.Record;
@@ -12,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("users")
@@ -37,6 +40,15 @@ public class RentWebservice {
     @GetMapping(path = "/archiveRentals")
     public List<Rental> getAllArchiveRentals() {
         return rentalService.getAllArchiveRentals();
+    }
+
+    @PostMapping(path = "/{userID}/rent")
+    public Rental rentRecords(@PathVariable String userID, @RequestBody Map<String, String> body) throws NotFoundException, InputException {
+        var client = userService.getUserByID(userID);
+        var record = recordManager.getRecordByID(body.get("recordID"));
+        var out = rentalService.createRental(client, record);
+        recordManager.rent(record.getRecordID().toString());
+        return out;
     }
 
     @GetMapping(path = "/{userID}/cart")
