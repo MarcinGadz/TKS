@@ -16,7 +16,7 @@ public class RecordRepository {
 
     public RecordRepository() {
         RecordEntity[] arr = {
-          new RecordEntity(UUID.fromString("02cf35bf-d025-440b-a6ec-17cc6c77b021"),"Moral Power", "Nothing but Lorde", "2020-03-04", false),
+          new RecordEntity(UUID.fromString("02cf35bf-d025-440b-a6ec-17cc6c77b021"),"Moral Power", "Nothing but Lorde", "2020-03-04", true),
           new RecordEntity(UUID.fromString("3e3719e5-8689-4e65-883f-4cd06cae7195"), "Solar Panic", "Thieves", "2021-10-13", false)
         };
         this.records  =  new ArrayList<>(Arrays.asList(arr));
