@@ -18,16 +18,12 @@ import java.util.stream.Collectors;
 
 public class UserSOAPAdapter implements SOAPAddUser, SOAPGetUsers, SOAPRemoveUser {
 
-    private final AddUserUseCase addUserUseCase;
-    private final RemoveUserUseCase removeUserUseCases;
-    private final GetUsersUseCase getUsersUseCase;
-
     @Autowired
-    public UserSOAPAdapter(AddUserUseCase addUserUseCase, RemoveUserUseCase removeUserUseCases, GetUsersUseCase getUsersUseCase) {
-        this.addUserUseCase = addUserUseCase;
-        this.removeUserUseCases = removeUserUseCases;
-        this.getUsersUseCase = getUsersUseCase;
-    }
+    private AddUserUseCase addUserUseCase;
+    @Autowired
+    private RemoveUserUseCase removeUserUseCases;
+    @Autowired
+    private GetUsersUseCase getUsersUseCase;
 
     @Override
     public UserSOAPEntity appendUser(UserSOAPEntity user) throws InputException {

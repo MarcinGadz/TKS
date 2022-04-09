@@ -17,16 +17,12 @@ import java.util.stream.Collectors;
 
 public class RentalSOAPAdapter implements SOAPAddRental, SOAPGetRentals, SOAPArchiveRentals {
 
-    private final AddRentalUseCase addRentalUseCase;
-    private final GetRentalsUseCase getRentalsUseCase;
-    private final ArchiveRentalsUseCase archiveRentalsUseCasea;
-
     @Autowired
-    public RentalSOAPAdapter(AddRentalUseCase addRentalUseCase, GetRentalsUseCase getRentalsUseCase, ArchiveRentalsUseCase archiveRentalsUseCasea) {
-        this.addRentalUseCase = addRentalUseCase;
-        this.getRentalsUseCase = getRentalsUseCase;
-        this.archiveRentalsUseCasea = archiveRentalsUseCasea;
-    }
+    private AddRentalUseCase addRentalUseCase;
+    @Autowired
+    private GetRentalsUseCase getRentalsUseCase;
+    @Autowired
+    private ArchiveRentalsUseCase archiveRentalsUseCase;
 
     @Override
     public RentalSOAPEntity createRental(String userID, String recordID) throws InputException, NotFoundException {
@@ -35,7 +31,7 @@ public class RentalSOAPAdapter implements SOAPAddRental, SOAPGetRentals, SOAPArc
 
     @Override
     public RentalSOAPEntity archiveRental(String rentalID) throws InputException, NotFoundException {
-        return RentalSOAPConverter.convertRentalToRentalSOAPEntity(archiveRentalsUseCasea.archiveRental(rentalID));
+        return RentalSOAPConverter.convertRentalToRentalSOAPEntity(archiveRentalsUseCase.archiveRental(rentalID));
     }
 
     @Override

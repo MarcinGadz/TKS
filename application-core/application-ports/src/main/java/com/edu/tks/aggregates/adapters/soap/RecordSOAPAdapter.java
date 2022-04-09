@@ -16,16 +16,12 @@ import java.util.stream.Collectors;
 
 public class RecordSOAPAdapter implements SOAPAddRecord, SOAPGetRecords, SOAPRemoveRecord {
 
-    private final AddRecordUseCase addRecordUseCase;
-    private final RemoveRecordUseCase removeRecordUseCase;
-    private final GetRecordsUseCase getRecordsUseCase;
-
     @Autowired
-    public RecordSOAPAdapter(AddRecordUseCase addRecordUseCase, RemoveRecordUseCase removeRecordUseCase, GetRecordsUseCase getRecordsUseCase) {
-        this.addRecordUseCase = addRecordUseCase;
-        this.removeRecordUseCase = removeRecordUseCase;
-        this.getRecordsUseCase = getRecordsUseCase;
-    }
+    private AddRecordUseCase addRecordUseCase;
+    @Autowired
+    private RemoveRecordUseCase removeRecordUseCase;
+    @Autowired
+    private GetRecordsUseCase getRecordsUseCase;
 
     @Override
     public RecordSOAPEntity appendRecord(RecordSOAPEntity record) {
