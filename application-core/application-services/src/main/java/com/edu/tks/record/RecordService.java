@@ -1,6 +1,5 @@
 package com.edu.tks.record;
 
-import com.edu.tks.exception.InputException;
 import com.edu.tks.exception.NotFoundException;
 import com.edu.tks.exception.RentalException;
 import com.edu.tks.infrastructure.repository.record.AddRecord;
@@ -40,13 +39,13 @@ public class RecordService implements AddRecordUseCase, GetRecordsUseCase, Remov
     }
 
     @Override
-    public synchronized void appendRecord(Record record) {
-        addRecord.appendRecord(record);
+    public synchronized Record appendRecord(Record record) {
+        return addRecord.appendRecord(record);
     }
 
     @Override
-    public synchronized void removeRecord(String recordid) throws RentalException, NotFoundException {
-        removeRecord.removeRecord(recordid);
+    public synchronized Record removeRecord(String recordid) throws RentalException, NotFoundException {
+        return removeRecord.removeRecord(recordid);
     }
 
     @Override

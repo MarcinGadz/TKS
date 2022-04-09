@@ -38,18 +38,19 @@ public class RecordRepository {
     }
 
 
-    public void appendRecord(RecordEntity record) {
+    public RecordEntity appendRecord(RecordEntity record) {
         records.add(record);
+        return record;
     }
 
-    public void removeRecord(String recordID) throws RentalException, NotFoundException {
+    public RecordEntity removeRecord(String recordID) throws RentalException, NotFoundException {
         RecordEntity record = this.getRecordByID(recordID);
 
         if (record.isRented()) {
             throw new RentalException("Can't remove - this record is rented.");
         }
-
         records.remove(record);
+        return record;
     }
 
     public RecordEntity updateRecord(String recordId, RecordEntity record) {

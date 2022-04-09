@@ -25,8 +25,8 @@ public class RecordRepositoryAdapter implements AddRecord, GetRecords, RemoveRec
     private RecordRepository repo;
 
     @Override
-    public void appendRecord(Record record) {
-        repo.appendRecord(RecordConverter.convertRecordToRecordEntity(record));
+    public Record appendRecord(Record record) {
+        return RecordConverter.convertRecordEntityToRecord(repo.appendRecord(RecordConverter.convertRecordToRecordEntity(record)));
     }
 
     @Override
@@ -42,8 +42,8 @@ public class RecordRepositoryAdapter implements AddRecord, GetRecords, RemoveRec
     }
 
     @Override
-    public void removeRecord(String recordID) throws RentalException, NotFoundException {
-        repo.removeRecord(recordID);
+    public Record removeRecord(String recordID) throws RentalException, NotFoundException {
+        return RecordConverter.convertRecordEntityToRecord(repo.removeRecord(recordID));
     }
 
     @Override
