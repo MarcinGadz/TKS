@@ -18,6 +18,30 @@ public class UserSOAPEntity implements Cloneable {
         this.type = type;
     }
 
+    public UUID getUserID() {
+        return userID;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public UserTypeSOAPEntity getType() {
+        return type;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public boolean getActive() {
+        return active;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -44,15 +68,4 @@ public class UserSOAPEntity implements Cloneable {
                 .toHashCode();
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public boolean getActive() {
-        return active;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
 }
