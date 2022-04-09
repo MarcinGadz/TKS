@@ -51,8 +51,8 @@ public class UserService implements AddUserUseCase, GetUsersUseCase, RemoveUserU
     }
 
     @Override
-    public synchronized void extendRentReturnDays(String renterId, String userId, int days) throws RentalException, PermissionException, NotFoundException {
-        extendRentals.extendRentReturnDays(renterId, userId, days);
+    public synchronized void extendRentReturnDays(String userId, int days) throws RentalException, PermissionException, NotFoundException {
+        extendRentals.extendRentReturnDays(userId, days);
     }
 
     @Override

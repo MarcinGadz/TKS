@@ -3,15 +3,17 @@ package com.edu.tks;
 import com.edu.tks.exception.InputException;
 import com.edu.tks.exception.NotFoundException;
 import com.edu.tks.exception.RentalException;
+import com.edu.tks.record.AddRecordUseCase;
+import com.edu.tks.record.GetRecordsUseCase;
 import com.edu.tks.record.Record;
-import com.edu.tks.record.RecordService;
+import com.edu.tks.record.RemoveRecordUseCase;
+import com.edu.tks.rental.AddRentalUseCase;
+import com.edu.tks.rental.ArchiveRentalsUseCase;
+import com.edu.tks.rental.GetRentalsUseCase;
 import com.edu.tks.rental.Rental;
-import com.edu.tks.rental.RentalService;
-import com.edu.tks.user.User;
-import com.edu.tks.user.UserService;
+import com.edu.tks.user.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.xmlunit.builder.Input;
 
 import java.util.List;
 import java.util.Map;
@@ -20,75 +22,45 @@ import java.util.Map;
 @RequestMapping("users")
 public class RentWebservice {
 
-    private final UserService userService;
-    private final RecordService recordManager;
-    private final RentalService rentalService;
+    private final AddRentalUseCase addRentalUseCase;
+    private final GetRentalsUseCase getRentalsUseCase;
+    private final ArchiveRentalsUseCase archiveRentalsUseCase;
 
     @Autowired
-    public RentWebservice(UserService userService, RecordService recordManager, RentalService rentalService) {
-        this.userService = userService;
-        this.recordManager = recordManager;
-        this.rentalService = rentalService;
+    public RentWebservice(
+            AddRentalUseCase addRentalUseCase,
+            GetRentalsUseCase getRentalsUseCase,
+            ArchiveRentalsUseCase archiveRentalsUseCase) {
+        this.addRentalUseCase = addRentalUseCase;
+        this.getRentalsUseCase = getRentalsUseCase;
+        this.archiveRentalsUseCase = archiveRentalsUseCase;
     }
 
     @GetMapping(path = "/rentals")
     public List<Rental> getAllRentals() {
-        return rentalService.getAllRentals();
+        return getRentalsUseCase.getAllRentals();
     }
 
 
     @GetMapping(path = "/archiveRentals")
     public List<Rental> getAllArchiveRentals() {
-        return rentalService.getAllArchiveRentals();
+        return getRentalsUseCase.getAllArchiveRentals();
     }
 
     @PostMapping(path = "/{userID}/rent")
     public Rental rentRecord(@PathVariable String userID, @RequestBody Map<String, String> body) throws NotFoundException, InputException {
-        return rentalService.createRental(userID, body.get("recordID"));
+        return addRentalUseCase.createRental(userID, body.get("recordID"));
     }
 
     @PostMapping(path = "/{userID}/return")
     public Rental returnRecord(@PathVariable String userID, @RequestBody Map<String, String> body) throws NotFoundException, InputException {
-        Rental rental = rentalService.getRentalByID(body.get("rentalID"));
+        Rental rental = getRentalsUseCase.getRentalByID(body.get("rentalID"));
 
         if (!rental.getClientID().equals(userID)) {
             System.out.println("THIS USER DOES NOT OWN THIS RECORD");
             throw new InputException("This user does not own this record!");
         }
-        return rentalService.archiveRental(body.get("rentalID"));
-    }
-
-    @GetMapping(path = "/{userID}/cart")
-    public List<Record> getCart(@PathVariable String userID) throws NotFoundException {
-        User user = userService.getUserByID(userID);
-        return user.getCart();
-    }
-
-    @PostMapping(path = "/{userID}/cart")
-    public List<Record> addRentToCart(@PathVariable("userID") String userID, @RequestBody Record body) throws NotFoundException,
-            RentalException {
-        String recordID = body.getRecordID().toString();
-        User user = userService.getUserByID(userID);
-        user.addToCart(recordManager.getRecordByID(recordID));
-        return user.getCart();
-    }
-
-    @DeleteMapping(path = "/{userID}/cart/{recordID}")
-    public List<Record> removeRentFromCart(@PathVariable("userID") String userID,
-                                           @PathVariable("recordID") String recordID) throws NotFoundException,
-            RentalException {
-        User user = userService.getUserByID(userID);
-        Record record = recordManager.getRecordByID(recordID);
-        user.removeFromCart(record);
-        return user.getCart();
-    }
-
-    @DeleteMapping(path = "/{userID}/cart")
-    public List<Record> removeAllFromCart(@PathVariable("userID") String userID) throws NotFoundException,
-            RentalException {
-        User user = userService.getUserByID(userID);
-        user.clearCart();
-        return user.getCart();
+        return archiveRentalsUseCase.archiveRental(body.get("rentalID"));
     }
 }
 

@@ -1,8 +1,6 @@
 package com.edu.tks;
 
-import com.edu.tks.exception.BasicException;
-import com.edu.tks.exception.InputException;
-import com.edu.tks.exception.NotFoundException;
+import com.edu.tks.exception.*;
 import com.edu.tks.user.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -94,6 +92,11 @@ public class UserWebservice {
     public User deactivateUser(@PathVariable String userID) throws NotFoundException, InputException {
         User user = addUserUseCase.updateActive(userID, false);
         return user;
+    }
+
+    @PostMapping("/{userId}/extend")
+    public void extendRentReturnDays(@PathVariable String userId, @RequestParam Integer days) throws PermissionException, RentalException, NotFoundException {
+        extendRentalsUseCase.extendRentReturnDays(userId, days);
     }
 
 }

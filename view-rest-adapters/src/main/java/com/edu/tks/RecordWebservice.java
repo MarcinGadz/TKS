@@ -87,8 +87,6 @@ public class RecordWebservice {
             if (artist.length() != 0 && !artist.matches("^[a-zA-Z0-9_ -]{3,50}$")) {
                 throw new InputException("Artist name must be between 3 and 50 characters");
             }
-
-            String releaseDate = body.getReleaseDate().toString();
             return addRecordUseCase.updateRecord(recordID, body);
 
         } catch (ParseException e) {

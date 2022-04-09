@@ -36,8 +36,8 @@ public class UserRepositoryAdapter implements AddUser, GetUsers, ExtendRentals, 
     }
 
     @Override
-    public void extendRentReturnDays(String renterId, String userId, int days) throws PermissionException, RentalException, NotFoundException {
-        repo.extendRentReturnDays(renterId, userId, days);
+    public void extendRentReturnDays(String userId, int days) throws PermissionException, RentalException, NotFoundException {
+        repo.extendRentReturnDays(userId, days);
     }
 
     @Override

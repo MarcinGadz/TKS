@@ -7,6 +7,7 @@
     <file url="file://$PROJECT_DIR$/application-core/domain-model/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/application-core/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/application-core/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/application-ports/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/repositories-adapters/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/repositories-adapters/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />

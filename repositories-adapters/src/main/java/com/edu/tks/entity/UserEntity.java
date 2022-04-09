@@ -131,7 +131,7 @@ public class UserEntity implements Cloneable {
 //        rentalEntities.clear();
 //    }
 //
-    public void extendRentReturnDays(UserEntity renter, int days) throws RentalException, PermissionException {
+    public void extendRentReturnDays(int days) throws RentalException {
         if (!this.active) {
             throw new RentalException("shop.User is not active");
         }

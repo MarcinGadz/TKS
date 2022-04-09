@@ -69,10 +69,9 @@ public class UserRepository {
         users.remove(user);
     }
 
-    public void extendRentReturnDays(String renterId, String userId, int days) throws PermissionException, RentalException, NotFoundException {
-        UserEntity renter = this.getUserByID(renterId);
+    public void extendRentReturnDays(String userId, int days) throws PermissionException, RentalException, NotFoundException {
         UserEntity user = this.getUserByID(userId);
-        user.extendRentReturnDays(renter, days);
+        user.extendRentReturnDays(days);
     }
 
     public UserEntity updateUserLogin(String userid, String newLogin) {

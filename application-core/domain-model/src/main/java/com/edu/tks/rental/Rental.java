@@ -7,6 +7,7 @@ import com.edu.tks.user.User;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -102,7 +103,13 @@ public class Rental {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Rental rental = (Rental) o;
-        return Objects.equals(rentalID, rental.rentalID) && Objects.equals(clientID, rental.clientID);
+        if(!rental.getRentDate().truncatedTo(ChronoUnit.MINUTES).isEqual(getRentDate().truncatedTo(ChronoUnit.MINUTES))) {
+            return false;
+        }
+        if(!rental.getExpectedReturnDate().truncatedTo(ChronoUnit.MINUTES).isEqual(getExpectedReturnDate().truncatedTo(ChronoUnit.MINUTES))) {
+            return false;
+        }
+        return rentalID.equals(rental.rentalID) && clientID.equals(rental.clientID);
     }
 
     @Override

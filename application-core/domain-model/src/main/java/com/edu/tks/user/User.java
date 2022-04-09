@@ -145,4 +145,7 @@ public class User implements Cloneable {
                 .toHashCode();
     }
 
+    public void setUserId(UUID clientID) {
+        this.userID = clientID;
+    }
 }
