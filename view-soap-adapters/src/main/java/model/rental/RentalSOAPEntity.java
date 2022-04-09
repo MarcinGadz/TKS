@@ -1,6 +1,5 @@
 package model.rental;
 
-import model.exceptions.SOAPInputException;
 import model.exceptions.SOAPRentalException;
 
 import java.time.LocalDateTime;
@@ -14,12 +13,10 @@ public class RentalSOAPEntity {
     private final LocalDateTime rentDate;
     private LocalDateTime expectedReturnDate;
     private LocalDateTime actualReturnDate;
-
-    private boolean active;
+private boolean active;
 
     public RentalSOAPEntity(UUID rentalID, UUID clientID, UUID recordID, LocalDateTime rentDate,
-                            LocalDateTime expectedReturnDate, LocalDateTime actualReturnDate, boolean active)
-            throws SOAPInputException {
+                            LocalDateTime expectedReturnDate, LocalDateTime actualReturnDate, boolean active) {
         this.rentalID = rentalID;
 
         this.clientID = clientID;

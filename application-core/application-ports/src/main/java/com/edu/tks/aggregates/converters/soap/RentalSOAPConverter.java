@@ -2,14 +2,13 @@ package com.edu.tks.aggregates.converters.soap;
 
 import com.edu.tks.exception.InputException;
 import com.edu.tks.rental.Rental;
-import model.exceptions.SOAPInputException;
 import model.rental.RentalSOAPEntity;
 
 import java.util.UUID;
 
 public class RentalSOAPConverter {
 
-    public static RentalSOAPEntity convertRentalToRentalSOAPEntity(Rental rental) throws SOAPInputException {
+    public static RentalSOAPEntity convertRentalToRentalSOAPEntity(Rental rental) {
         if (rental == null) return null;
         return new RentalSOAPEntity(
                 rental.getRentalID(),
