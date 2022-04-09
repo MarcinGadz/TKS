@@ -63,10 +63,10 @@ public class UserRepository {
         users.add(user);
     }
 
-    public void removeUser(String userid) throws BasicException {
+    public UserEntity removeUser(String userid) throws BasicException {
         UserEntity user = this.getUserByID(userid);
-
         users.remove(user);
+        return user;
     }
 
     public void extendRentReturnDays(String renterId, String userId, int days) throws PermissionException, RentalException, NotFoundException {

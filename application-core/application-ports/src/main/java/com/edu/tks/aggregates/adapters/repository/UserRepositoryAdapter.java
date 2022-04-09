@@ -65,7 +65,7 @@ public class UserRepositoryAdapter implements AddUser, GetUsers, ExtendRentals, 
     }
 
     @Override
-    public void removeUser(String userid) throws BasicException {
-        repo.removeUser(userid);
+    public User removeUser(String userid) throws BasicException {
+        return UserConverter.convertUserEntityToUser(repo.removeUser(userid));
     }
 }

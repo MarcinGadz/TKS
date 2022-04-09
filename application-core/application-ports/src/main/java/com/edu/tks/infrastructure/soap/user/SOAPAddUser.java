@@ -6,6 +6,6 @@ import model.user.UserSOAPEntity;
 
 public interface SOAPAddUser {
     UserSOAPEntity appendUser(UserSOAPEntity user) throws InputException;
-    UserSOAPEntity updateUserLogin(String userid, String newLogin);
+    UserSOAPEntity updateUserLogin(String userid, String newLogin) throws InputException;
     UserSOAPEntity updateActive(String userId, boolean active);
 }

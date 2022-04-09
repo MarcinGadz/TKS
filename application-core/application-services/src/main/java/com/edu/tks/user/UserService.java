@@ -71,8 +71,8 @@ public class UserService implements AddUserUseCase, GetUsersUseCase, RemoveUserU
     }
 
     @Override
-    public synchronized void removeUser(String userid) throws BasicException {
-        removeUser.removeUser(userid);
+    public synchronized User removeUser(String userid) throws BasicException {
+        return removeUser.removeUser(userid);
     }
 }
 

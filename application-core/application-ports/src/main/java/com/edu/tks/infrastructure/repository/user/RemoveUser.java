@@ -1,7 +1,8 @@
 package com.edu.tks.infrastructure.repository.user;
 
 import com.edu.tks.exception.BasicException;
+import com.edu.tks.user.User;
 
 public interface RemoveUser {
-    void removeUser(String userid) throws BasicException;
+    User removeUser(String userid) throws BasicException;
 }
