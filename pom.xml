@@ -208,8 +208,8 @@
     <modules>
         <module>repositories-adapters</module>
         <module>application-core</module>
-        <module>view-rest-adapters</module>
-        <module>view-soap-adapters</module>
+        <module>view-adapters</module>
+        <module>application-ports</module>
     </modules>
 
 </project>
