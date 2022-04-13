@@ -125,19 +125,19 @@
                     <configuration>
                     </configuration>
                 </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>3.0.0-M5</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>integration-test</goal>
-                                <goal>verify</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
+<!--                <plugin>-->
+<!--                    <groupId>org.apache.maven.plugins</groupId>-->
+<!--                    <artifactId>maven-failsafe-plugin</artifactId>-->
+<!--                    <version>3.0.0-M5</version>-->
+<!--                    <executions>-->
+<!--                        <execution>-->
+<!--                            <goals>-->
+<!--                                <goal>integration-test</goal>-->
+<!--                                <goal>verify</goal>-->
+<!--                            </goals>-->
+<!--                        </execution>-->
+<!--                    </executions>-->
+<!--                </plugin>-->
 <!--                <plugin>-->
 <!--                    <groupId>fish.payara.maven.plugins</groupId>-->
 <!--                    <artifactId>payara-micro-maven-plugin</artifactId>-->
@@ -208,8 +208,8 @@
     <modules>
         <module>repositories-adapters</module>
         <module>application-core</module>
-        <module>view-rest-adapters</module>
-        <module>view-soap-adapters</module>
+        <module>view-adapters</module>
+        <module>application-ports</module>
     </modules>
 
 </project>

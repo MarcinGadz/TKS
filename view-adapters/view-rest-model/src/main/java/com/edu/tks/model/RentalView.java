@@ -1,17 +1,14 @@
-package com.edu.tks.rental;
+package com.edu.tks.model;
 
 import com.edu.tks.exception.InputException;
 import com.edu.tks.exception.RentalException;
-import com.edu.tks.record.Record;
-import com.edu.tks.user.User;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Rental {
+public class RentalView {
     private UUID rentalID;
     private String clientID;
     private String recordID;
@@ -21,8 +18,8 @@ public class Rental {
     private LocalDateTime actualReturnDate;
     private boolean active;
 
-    public Rental(UUID rentalID, String clientID, String recordID, LocalDateTime rentDate, LocalDateTime returnDate,
-                  LocalDateTime actualReturnDate, boolean active) throws InputException {
+    public RentalView(UUID rentalID, String clientID, String recordID, LocalDateTime rentDate, LocalDateTime returnDate,
+                      LocalDateTime actualReturnDate, boolean active) throws InputException {
         this.rentalID = rentalID;
 
         this.clientID = clientID;
@@ -35,16 +32,16 @@ public class Rental {
         this.actualReturnDate = actualReturnDate;
     }
 
-    public Rental(UUID rentalID, User client, Record record) throws InputException {
+    public RentalView(UUID rentalID, UserView client, RecordView record) throws InputException {
         this(rentalID, client.getUserID().toString(), record.getRecordID().toString(), LocalDateTime.now(), LocalDateTime.now().plusDays(7), null, true);
         record.rent();
     }
 
-    public Rental(User client, Record record) throws InputException {
+    public RentalView(UserView client, RecordView record) throws InputException {
         this(UUID.randomUUID(), client, record);
     }
 
-    public Rental() {
+    public RentalView() {
     }
 
     public UUID getRentalID() {
@@ -102,7 +99,7 @@ public class Rental {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Rental rental = (Rental) o;
+        RentalView rental = (RentalView) o;
         if(!rental.getRentDate().truncatedTo(ChronoUnit.MINUTES).isEqual(getRentDate().truncatedTo(ChronoUnit.MINUTES))) {
             return false;
         }

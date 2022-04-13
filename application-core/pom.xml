@@ -5,7 +5,6 @@
     <modules>
         <module>domain-model</module>
         <module>application-services</module>
-        <module>application-ports</module>
     </modules>
 
     <parent>

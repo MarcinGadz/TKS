@@ -1,11 +1,8 @@
-package com.edu.tks.user;
+package com.edu.tks.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.edu.tks.exception.InputException;
-import com.edu.tks.exception.PermissionException;
 import com.edu.tks.exception.RentalException;
-import com.edu.tks.record.Record;
-import com.edu.tks.rental.Rental;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -13,23 +10,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class User implements Cloneable {
+public class UserView implements Cloneable {
     private UUID userID;
     private String login;
-    private UserType type;
+    private UserTypeView type;
     private boolean active = false;
 
-    public User() {
+    public UserView() {
     }
 
     @JsonIgnore
-    private final List<Record> cart = new ArrayList<>();
+    private final List<RecordView> cart = new ArrayList<>();
 
-    public User(String login, UserType type) {
+    public UserView(String login, UserTypeView type) {
         this(UUID.randomUUID(), login, false, type);
     }
 
-    public User(UUID userID, String login, boolean isActive, UserType type) {
+    public UserView(UUID userID, String login, boolean isActive, UserTypeView type) {
         this.userID = userID;
         this.login = login;
         this.type = type;
@@ -38,7 +35,7 @@ public class User implements Cloneable {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserView{" +
                 "userID=" + userID +
                 ", login='" + login + '\'' +
                 ", type=" + type +
@@ -78,17 +75,17 @@ public class User implements Cloneable {
         this.login = login;
     }
 
-    public UserType getType() {
+    public UserTypeView getType() {
         return type;
     }
 
     // CART METHODS
 
-    public List<Record> getCart() {
+    public List<RecordView> getCart() {
         return this.cart;
     }
 
-    public void addToCart(Record record) throws RentalException {
+    public void addToCart(RecordView record) throws RentalException {
         if (!this.active) {
             throw new RentalException("shop.User is not active");
         }
@@ -99,7 +96,7 @@ public class User implements Cloneable {
         cart.add(record);
     }
 
-    public void removeFromCart(Record record) throws RentalException {
+    public void removeFromCart(RecordView record) throws RentalException {
         if (!this.active) {
             throw new RentalException("shop.User is not active");
         }
@@ -124,7 +121,7 @@ public class User implements Cloneable {
 
         if (o == null || getClass() != o.getClass()) return false;
 
-        User user = (User) o;
+        UserView user = (UserView) o;
 
         return new EqualsBuilder()
                 .append(userID, user.userID)
@@ -132,8 +129,8 @@ public class User implements Cloneable {
     }
 
     @Override
-    public User clone() throws CloneNotSupportedException {
-        User u = (User) super.clone();
+    public UserView clone() throws CloneNotSupportedException {
+        UserView u = (UserView) super.clone();
 
         return u;
     }
