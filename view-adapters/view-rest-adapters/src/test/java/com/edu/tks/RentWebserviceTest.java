@@ -7,7 +7,6 @@ import com.edu.tks.model.RentalView;
 import com.edu.tks.model.UserTypeView;
 import com.edu.tks.rest.RestServiceApplication;
 import com.edu.tks.model.UserView;
-import com.edu.tks.user.UserType;
 import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.Test;
 import org.junit.runners.MethodSorters;

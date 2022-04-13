@@ -6,7 +6,8 @@ import com.edu.tks.exception.NotFoundException;
 import com.edu.tks.exception.RentalException;
 import com.edu.tks.ports.infrastructure.repository.record.*;
 import com.edu.tks.record.Record;
-import com.edu.tks.repositories.RecordRepository;
+import com.edu.tks.repo.entity.RecordEntity;
+import com.edu.tks.repo.repositories.RecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -38,23 +39,48 @@ public class RecordRepositoryAdapter implements AddRecord, GetRecords, RemoveRec
 
     @Override
     public Record getRecordByID(String recordID) throws NotFoundException {
-        return RecordConverter.convertRecordEntityToRecord(repo.getRecordByID(recordID));
+        try {
+            return RecordConverter.convertRecordEntityToRecord(repo.getRecordByID(recordID));
+        } catch (com.edu.tks.repo.exception.NotFoundException e) {
+            throw new NotFoundException(e.getMessage());
+        }
     }
 
     @Override
     public void removeRecord(String recordID) throws RentalException, NotFoundException {
-        repo.removeRecord(recordID);
+        try {
+            repo.removeRecord(recordID);
+        } catch (com.edu.tks.repo.exception.RentalException e) {
+            throw new RentalException(e.getMessage());
+        } catch (com.edu.tks.repo.exception.NotFoundException e) {
+            throw new NotFoundException(e.getMessage());
+        }
     }
 
     @Override
     public void rent(String recordID) throws InputException, NotFoundException {
-        repo.getRecordByID(recordID).rent();
+        try {
+            repo.getRecordByID(recordID).rent();
+        } catch (com.edu.tks.repo.exception.InputException e) {
+            throw new InputException(e.getMessage());
+        } catch (com.edu.tks.repo.exception.NotFoundException e) {
+            throw new NotFoundException(e.getMessage());
+        }
     }
 
     @Override
     public Record returnRecord(String recordID) throws NotFoundException, InputException {
-        var recordEntity = repo.getRecordByID(recordID);
-        recordEntity.release();
+        RecordEntity recordEntity = null;
+        try {
+            recordEntity = repo.getRecordByID(recordID);
+        } catch (com.edu.tks.repo.exception.NotFoundException e) {
+            throw new NotFoundException(e.getMessage());
+        }
+        try {
+            recordEntity.release();
+        } catch (com.edu.tks.repo.exception.InputException e) {
+            throw new InputException(e.getMessage());
+        }
         return RecordConverter.convertRecordEntityToRecord(recordEntity);
     }
 

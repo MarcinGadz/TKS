@@ -1,6 +1,6 @@
 package com.edu.tks.ports.aggregates.converters.repository;
 
-import com.edu.tks.entity.RecordEntity;
+import com.edu.tks.repo.entity.RecordEntity;
 import com.edu.tks.record.Record;
 
 import java.util.UUID;

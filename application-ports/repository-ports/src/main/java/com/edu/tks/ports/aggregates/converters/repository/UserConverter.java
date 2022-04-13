@@ -1,7 +1,7 @@
 package com.edu.tks.ports.aggregates.converters.repository;
 
-import com.edu.tks.entity.UserEntity;
-import com.edu.tks.entity.UserTypeEntity;
+import com.edu.tks.repo.entity.UserEntity;
+import com.edu.tks.repo.entity.UserTypeEntity;
 import com.edu.tks.user.User;
 import com.edu.tks.user.UserType;
 

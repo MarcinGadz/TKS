@@ -5,9 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(
         scanBasePackages = {
-                "com.edu.tks",
-                "com.edu.tks.ports",
-                "com.edu.tks.service"
+                "com.edu.tks.*"
         }
 )
 public class RestServiceApplication {

@@ -1,6 +1,6 @@
 package com.edu.tks.ports.aggregates.converters.repository;
 
-import com.edu.tks.entity.RentalEntity;
+import com.edu.tks.repo.entity.RentalEntity;
 import com.edu.tks.exception.InputException;
 import com.edu.tks.exception.PermissionException;
 import com.edu.tks.rental.Rental;
@@ -20,7 +20,7 @@ public class RentalConverter {
                     rentalEntity.getActualReturnDate(),
                     rentalEntity.isActive()
             );
-        } catch (InputException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Couldn't convert RentalEntity to Rental");
         }
@@ -37,7 +37,7 @@ public class RentalConverter {
                     rental.getActualReturnDate(),
                     rental.isActive()
             );
-        } catch (InputException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Couldn't convert RentalEntity to Rental");
         }

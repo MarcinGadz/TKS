@@ -1,13 +1,13 @@
 package com.edu.tks.ports.aggregates.adapters.repository;
 
 import com.edu.tks.ports.aggregates.converters.repository.RentalConverter;
-import com.edu.tks.exception.InputException;
-import com.edu.tks.exception.NotFoundException;
 import com.edu.tks.ports.infrastructure.repository.rental.AddRental;
 import com.edu.tks.ports.infrastructure.repository.rental.ArchiveRentals;
 import com.edu.tks.ports.infrastructure.repository.rental.GetRentals;
 import com.edu.tks.rental.Rental;
-import com.edu.tks.repositories.RentalRepository;
+import com.edu.tks.exception.InputException;
+import com.edu.tks.exception.NotFoundException;
+import com.edu.tks.repo.repositories.RentalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -36,7 +36,13 @@ public class RentalRepositoryAdapter implements GetRentals, AddRental, ArchiveRe
 
     @Override
     public void archiveRental(String rentalID) throws NotFoundException, InputException {
-        repo.archiveRentalEntity(rentalID);
+        try {
+            repo.archiveRentalEntity(rentalID);
+        } catch (com.edu.tks.repo.exception.NotFoundException e) {
+            throw new NotFoundException(e.getMessage());
+        } catch (com.edu.tks.repo.exception.InputException e) {
+            throw new InputException(e.getMessage());
+        }
     }
 
     @Override
@@ -55,6 +61,10 @@ public class RentalRepositoryAdapter implements GetRentals, AddRental, ArchiveRe
 
     @Override
     public Rental getRentalByID(String rentalID) throws NotFoundException {
-        return RentalConverter.convertRentalEntityToRental(repo.getRentalEntityByID(rentalID));
+        try {
+            return RentalConverter.convertRentalEntityToRental(repo.getRentalEntityByID(rentalID));
+        } catch (com.edu.tks.repo.exception.NotFoundException e) {
+            throw new NotFoundException(e.getMessage());
+        }
     }
 }

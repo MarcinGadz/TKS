@@ -5,7 +5,7 @@ import com.edu.tks.ports.infrastructure.repository.user.AddUser;
 import com.edu.tks.ports.infrastructure.repository.user.ExtendRentals;
 import com.edu.tks.ports.infrastructure.repository.user.GetUsers;
 import com.edu.tks.ports.infrastructure.repository.user.RemoveUser;
-import com.edu.tks.repositories.UserRepository;
+import com.edu.tks.repo.repositories.UserRepository;
 import com.edu.tks.user.User;
 import com.edu.tks.ports.aggregates.converters.repository.UserConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +32,24 @@ public class UserRepositoryAdapter implements AddUser, GetUsers, ExtendRentals, 
 
     @Override
     public void appendUser(User user) throws InputException {
-        repo.appendUser(UserConverter.convertUserToUserEntity(user));
+        try {
+            repo.appendUser(UserConverter.convertUserToUserEntity(user));
+        } catch (com.edu.tks.repo.exception.InputException e) {
+            throw new InputException(e.getMessage());
+        }
     }
 
     @Override
     public void extendRentReturnDays(String userId, int days) throws PermissionException, RentalException, NotFoundException {
-        repo.extendRentReturnDays(userId, days);
+        try {
+            repo.extendRentReturnDays(userId, days);
+        } catch (com.edu.tks.repo.exception.PermissionException e) {
+            throw new PermissionException(e.getMessage());
+        } catch (com.edu.tks.repo.exception.RentalException e) {
+            throw new RentalException(e.getMessage());
+        } catch (com.edu.tks.repo.exception.NotFoundException e) {
+            throw new NotFoundException(e.getMessage());
+        }
     }
 
     @Override
@@ -49,7 +61,11 @@ public class UserRepositoryAdapter implements AddUser, GetUsers, ExtendRentals, 
 
     @Override
     public User getUserByID(String userid) throws NotFoundException {
-        return UserConverter.convertUserEntityToUser(repo.getUserByID(userid));
+        try {
+            return UserConverter.convertUserEntityToUser(repo.getUserByID(userid));
+        } catch (com.edu.tks.repo.exception.NotFoundException e) {
+            throw new NotFoundException(e.getMessage());
+        }
     }
 
     @Override
@@ -66,6 +82,10 @@ public class UserRepositoryAdapter implements AddUser, GetUsers, ExtendRentals, 
 
     @Override
     public void removeUser(String userid) throws BasicException {
-        repo.removeUser(userid);
+        try {
+            repo.removeUser(userid);
+        } catch (com.edu.tks.repo.exception.BasicException e) {
+            throw new BasicException(e.getMessage());
+        }
     }
 }
