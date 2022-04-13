@@ -28,12 +28,6 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.edu.tks</groupId>
-            <artifactId>application-ports</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>

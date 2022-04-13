@@ -30,7 +30,7 @@ public class UserWebservice {
     }
 
     @GetMapping
-    public List<UserView> getUsers(@RequestParam(required = false) String login) throws CloneNotSupportedException {
+    public List<UserView> getUsers(@RequestParam(required = false) String login) {
         if (login != null) {
             return getUsersUseCase.getUsersByLogin(login);
         } else {
@@ -40,17 +40,17 @@ public class UserWebservice {
 
 
     @GetMapping(path = "/{userID}")
-    public UserView getUserById(@PathVariable("userID") String userID) throws NotFoundException {
+    public UserView getUserById(@PathVariable("userID") String userID) throws NotFoundExceptionView {
         return getUsersUseCase.getUserByID(userID);
     }
 
     @PostMapping
-    public UserView addUser(@RequestBody UserView body) throws InputException {
+    public UserView addUser(@RequestBody UserView body) throws InputExceptionView {
         try {
             String login = body.getLogin();
 
             if (!login.matches("^[a-zA-Z0-9_-]{8,16}$")) {
-                throw new InputException("Login must be between 8 and 16 characters");
+                throw new InputExceptionView("Login must be between 8 and 16 characters");
             }
 
             UserTypeView type = body.getType();
@@ -62,13 +62,13 @@ public class UserWebservice {
         } catch (NullPointerException
                 | IllegalArgumentException
                 | IllegalStateException e) {
-            throw new InputException("Login Invalid");
+            throw new InputExceptionView("Login Invalid");
         }
     }
 
 
     @DeleteMapping("/{userID}")
-    public UserView deleteUser(@PathVariable("userID") String userID) throws BasicException {
+    public UserView deleteUser(@PathVariable("userID") String userID) throws BasicExceptionView {
         UserView user = getUsersUseCase.getUserByID(userID);
         removeUserUseCase.removeUser(userID);
         return user;
@@ -76,11 +76,11 @@ public class UserWebservice {
 
 
     @PutMapping(path = "/{userID}/changeLogin")
-    public UserView changeUserLogin(@PathVariable String userID, @RequestBody UserView body) throws InputException,
-            NotFoundException {
+    public UserView changeUserLogin(@PathVariable String userID, @RequestBody UserView body) throws InputExceptionView,
+            NotFoundExceptionView {
         String login = body.getLogin();
         if (!login.matches("^[a-zA-Z0-9_-]{8,16}$")) {
-            throw new InputException("Login must be between 8 and 16 characters");
+            throw new InputExceptionView("Login must be between 8 and 16 characters");
         }
         UserView user = addUserUseCase.updateUserLogin(userID, login);
         return user;
@@ -88,19 +88,19 @@ public class UserWebservice {
 
 
     @PutMapping(path = "/{userID}/activate")
-    public UserView activateUser(@PathVariable String userID) throws NotFoundException, InputException {
+    public UserView activateUser(@PathVariable String userID) throws NotFoundExceptionView, InputExceptionView {
         return addUserUseCase.updateActive(userID, true);
     }
 
 
     @PutMapping(path = "/{userID}/deactivate")
-    public UserView deactivateUser(@PathVariable String userID) throws NotFoundException, InputException {
+    public UserView deactivateUser(@PathVariable String userID) throws NotFoundExceptionView, InputExceptionView {
         UserView user = addUserUseCase.updateActive(userID, false);
         return user;
     }
 
     @PostMapping("/{userId}/extend")
-    public void extendRentReturnDays(@PathVariable String userId, @RequestParam Integer days) throws PermissionException, RentalException, NotFoundException {
+    public void extendRentReturnDays(@PathVariable String userId, @RequestParam Integer days) throws PermissionExceptionView, RentalExceptionView, NotFoundExceptionView {
         extendRentalsUseCase.extendRentReturnDays(userId, days);
     }
 

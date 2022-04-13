@@ -1,7 +1,9 @@
 package com.edu.tks.ports.aggregates.adapters.view;
 
 import com.edu.tks.exception.InputException;
+import com.edu.tks.exception.InputExceptionView;
 import com.edu.tks.exception.NotFoundException;
+import com.edu.tks.exception.NotFoundExceptionView;
 import com.edu.tks.model.RentalView;
 import com.edu.tks.ports.aggregates.converters.view.RentalViewConverter;
 import com.edu.tks.ports.view.service.rental.AddRentalUseCase;
@@ -21,13 +23,25 @@ public class RentalViewAdapter implements AddRentalUseCase, ArchiveRentalsUseCas
     private RentalService rentalService;
 
     @Override
-    public RentalView createRental(String clientID, String recordID) throws InputException, NotFoundException {
-        return RentalViewConverter.convertRentalToRentalView(rentalService.createRental(clientID, recordID));
+    public RentalView createRental(String clientID, String recordID) throws InputExceptionView, NotFoundExceptionView {
+        try {
+            return RentalViewConverter.convertRentalToRentalView(rentalService.createRental(clientID, recordID));
+        } catch (InputException e) {
+            throw new InputExceptionView(e.getMessage());
+        } catch (NotFoundException e) {
+            throw new NotFoundExceptionView(e.getMessage());
+        }
     }
 
     @Override
-    public RentalView archiveRental(String rentalID) throws NotFoundException, InputException {
-        return RentalViewConverter.convertRentalToRentalView(rentalService.archiveRental(rentalID));
+    public RentalView archiveRental(String rentalID) throws NotFoundExceptionView, InputExceptionView {
+        try {
+            return RentalViewConverter.convertRentalToRentalView(rentalService.archiveRental(rentalID));
+        } catch (NotFoundException e) {
+            throw new NotFoundExceptionView(e.getMessage());
+        } catch (InputException e) {
+            throw new InputExceptionView(e.getMessage());
+        }
     }
 
     @Override
@@ -47,7 +61,11 @@ public class RentalViewAdapter implements AddRentalUseCase, ArchiveRentalsUseCas
     }
 
     @Override
-    public RentalView getRentalByID(String rentalID) throws NotFoundException {
-        return RentalViewConverter.convertRentalToRentalView(rentalService.getRentalByID(rentalID));
+    public RentalView getRentalByID(String rentalID) throws NotFoundExceptionView {
+        try {
+            return RentalViewConverter.convertRentalToRentalView(rentalService.getRentalByID(rentalID));
+        } catch (NotFoundException e) {
+            throw new NotFoundExceptionView(e.getMessage());
+        }
     }
 }

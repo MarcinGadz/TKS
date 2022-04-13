@@ -1,7 +1,7 @@
 package com.edu.tks.model;
 
-import com.edu.tks.exception.InputException;
-import com.edu.tks.exception.RentalException;
+import com.edu.tks.exception.InputExceptionView;
+import com.edu.tks.exception.RentalExceptionView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -57,16 +57,16 @@ public class UserView implements Cloneable {
     }
 
 
-    public void activate() throws InputException {
+    public void activate() throws InputExceptionView {
         if (this.active) {
-            throw new InputException("shop.User already activated");
+            throw new InputExceptionView("shop.User already activated");
         }
         this.active = true;
     }
 
-    public void deactivate() throws InputException {
+    public void deactivate() throws InputExceptionView {
         if (!this.active) {
-            throw new InputException("shop.User already deactivated");
+            throw new InputExceptionView("shop.User already deactivated");
         }
         this.active = false;
     }
@@ -85,31 +85,31 @@ public class UserView implements Cloneable {
         return this.cart;
     }
 
-    public void addToCart(RecordView record) throws RentalException {
+    public void addToCart(RecordView record) throws RentalExceptionView {
         if (!this.active) {
-            throw new RentalException("shop.User is not active");
+            throw new RentalExceptionView("shop.User is not active");
         }
 
         if (record.isRented()) {
-            throw new RentalException("shop.Record already rented");
+            throw new RentalExceptionView("shop.Record already rented");
         }
         cart.add(record);
     }
 
-    public void removeFromCart(RecordView record) throws RentalException {
+    public void removeFromCart(RecordView record) throws RentalExceptionView {
         if (!this.active) {
-            throw new RentalException("shop.User is not active");
+            throw new RentalExceptionView("shop.User is not active");
         }
 
         if (!cart.contains(record)) {
-            throw new RentalException("shop.Record not in cart");
+            throw new RentalExceptionView("shop.Record not in cart");
         }
         cart.remove(record);
     }
 
-    public void clearCart() throws RentalException {
+    public void clearCart() throws RentalExceptionView {
         if (!this.active) {
-            throw new RentalException("shop.User is not active");
+            throw new RentalExceptionView("shop.User is not active");
         }
 
         cart.clear();

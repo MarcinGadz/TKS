@@ -1,7 +1,7 @@
 package com.edu.tks.rest;
 
-import com.edu.tks.exception.InputException;
-import com.edu.tks.exception.NotFoundException;
+import com.edu.tks.exception.InputExceptionView;
+import com.edu.tks.exception.NotFoundExceptionView;
 import com.edu.tks.model.RentalView;
 import com.edu.tks.ports.view.service.rental.AddRentalUseCase;
 import com.edu.tks.ports.view.service.rental.ArchiveRentalsUseCase;
@@ -42,17 +42,17 @@ public class RentWebservice {
     }
 
     @PostMapping(path = "/{userID}/rent")
-    public RentalView rentRecord(@PathVariable String userID, @RequestBody Map<String, String> body) throws NotFoundException, InputException {
+    public RentalView rentRecord(@PathVariable String userID, @RequestBody Map<String, String> body) throws NotFoundExceptionView, InputExceptionView {
         return addRentalUseCase.createRental(userID, body.get("recordID"));
     }
 
     @PostMapping(path = "/{userID}/return")
-    public RentalView returnRecord(@PathVariable String userID, @RequestBody Map<String, String> body) throws NotFoundException, InputException {
+    public RentalView returnRecord(@PathVariable String userID, @RequestBody Map<String, String> body) throws NotFoundExceptionView, InputExceptionView {
         RentalView rental = getRentalsUseCase.getRentalByID(body.get("rentalID"));
 
         if (!rental.getClientID().equals(userID)) {
             System.out.println("THIS USER DOES NOT OWN THIS RECORD");
-            throw new InputException("This user does not own this record!");
+            throw new InputExceptionView("This user does not own this record!");
         }
         return archiveRentalsUseCase.archiveRental(body.get("rentalID"));
     }

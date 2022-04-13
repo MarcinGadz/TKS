@@ -1,11 +1,8 @@
 package com.edu.tks.user;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.edu.tks.exception.InputException;
-import com.edu.tks.exception.PermissionException;
 import com.edu.tks.exception.RentalException;
 import com.edu.tks.record.Record;
-import com.edu.tks.rental.Rental;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -22,7 +19,6 @@ public class User implements Cloneable {
     public User() {
     }
 
-    @JsonIgnore
     private final List<Record> cart = new ArrayList<>();
 
     public User(String login, UserType type) {

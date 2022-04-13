@@ -1,6 +1,6 @@
 package com.edu.tks.model;
 
-import com.edu.tks.exception.InputException;
+import com.edu.tks.exception.InputExceptionView;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -59,16 +59,16 @@ public class RecordView {
         this.releaseDate = releaseDate;
     }
 
-    public void rent() throws InputException {
+    public void rent() throws InputExceptionView {
         if (this.isRented) {
-            throw new InputException("shop.Record already rented");
+            throw new InputExceptionView("shop.Record already rented");
         }
         this.isRented = true;
     }
 
-    public void release() throws InputException {
+    public void release() throws InputExceptionView {
         if (!this.isRented) {
-            throw new InputException("This record is not rented");
+            throw new InputExceptionView("This record is not rented");
         }
         this.isRented = false;
     }

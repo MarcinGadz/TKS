@@ -1,7 +1,7 @@
 package com.edu.tks.model;
 
-import com.edu.tks.exception.InputException;
-import com.edu.tks.exception.RentalException;
+import com.edu.tks.exception.InputExceptionView;
+import com.edu.tks.exception.RentalExceptionView;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -19,7 +19,7 @@ public class RentalView {
     private boolean active;
 
     public RentalView(UUID rentalID, String clientID, String recordID, LocalDateTime rentDate, LocalDateTime returnDate,
-                      LocalDateTime actualReturnDate, boolean active) throws InputException {
+                      LocalDateTime actualReturnDate, boolean active) throws InputExceptionView {
         this.rentalID = rentalID;
 
         this.clientID = clientID;
@@ -32,12 +32,12 @@ public class RentalView {
         this.actualReturnDate = actualReturnDate;
     }
 
-    public RentalView(UUID rentalID, UserView client, RecordView record) throws InputException {
+    public RentalView(UUID rentalID, UserView client, RecordView record) throws InputExceptionView {
         this(rentalID, client.getUserID().toString(), record.getRecordID().toString(), LocalDateTime.now(), LocalDateTime.now().plusDays(7), null, true);
         record.rent();
     }
 
-    public RentalView(UserView client, RecordView record) throws InputException {
+    public RentalView(UserView client, RecordView record) throws InputExceptionView {
         this(UUID.randomUUID(), client, record);
     }
 
@@ -115,9 +115,9 @@ public class RentalView {
     }
 
 
-    public void extendReturnDays(int days) throws RentalException {
+    public void extendReturnDays(int days) throws RentalExceptionView {
         if (days <= 0) {
-            throw new RentalException("Wrong number of days");
+            throw new RentalExceptionView("Wrong number of days");
         }
 
         this.expectedReturnDate = expectedReturnDate.plusDays(days);

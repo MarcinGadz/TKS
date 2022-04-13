@@ -1,8 +1,8 @@
 package com.edu.tks.rest;
 
-import com.edu.tks.exception.InputException;
-import com.edu.tks.exception.NotFoundException;
-import com.edu.tks.exception.RentalException;
+import com.edu.tks.exception.InputExceptionView;
+import com.edu.tks.exception.NotFoundExceptionView;
+import com.edu.tks.exception.RentalExceptionView;
 import com.edu.tks.model.RecordView;
 import com.edu.tks.ports.view.service.record.AddRecordUseCase;
 import com.edu.tks.ports.view.service.record.GetRecordsUseCase;
@@ -35,22 +35,22 @@ public class RecordWebservice {
     }
 
     @GetMapping("/{recordID}")
-    public RecordView getRecordByID(@PathVariable(required = false) String recordID) throws NotFoundException {
+    public RecordView getRecordByID(@PathVariable(required = false) String recordID) throws NotFoundExceptionView {
         return getRecordsUseCase.getRecordByID(recordID);
     }
 
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
-    public RecordView addRecord(@RequestBody RecordView body) throws InputException {
+    public RecordView addRecord(@RequestBody RecordView body) throws InputExceptionView {
 
         String title = body.getTitle();
         if (!title.matches("^[a-zA-Z0-9_ -]{3,50}$")) {
-            throw new InputException("Title must be between 3 and 50 characters");
+            throw new InputExceptionView("Title must be between 3 and 50 characters");
         }
 
         String artist = body.getArtist();
         if (!artist.matches("^[a-zA-Z0-9_ -]{3,50}$")) {
-            throw new InputException("Artist name must be between 3 and 50 characters");
+            throw new InputExceptionView("Artist name must be between 3 and 50 characters");
         }
 
         String releaseDate = body.getReleaseDate().toString();
@@ -62,7 +62,7 @@ public class RecordWebservice {
     }
 
     @DeleteMapping("/{recordID}")
-    public RecordView removeRecord(@PathVariable(required = true) String recordID) throws NotFoundException, RentalException {
+    public RecordView removeRecord(@PathVariable(required = true) String recordID) throws NotFoundExceptionView, RentalExceptionView {
         RecordView record = getRecordsUseCase.getRecordByID(recordID);
         removeRecordUseCase.removeRecord(recordID);
         return record;
@@ -70,29 +70,29 @@ public class RecordWebservice {
 
     @PutMapping("/{recordID}")
     public RecordView modifyRecord(@PathVariable(required = true) String recordID, @RequestBody RecordView body)
-            throws InputException, NotFoundException {
+            throws InputExceptionView, NotFoundExceptionView {
 
         try {
             if (!recordID.matches("\\b[0-9a-f]{8}\\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\\b[0-9a-f]{12}\\b")) {
-                throw new InputException("Wrong uuid format");
+                throw new InputExceptionView("Wrong uuid format");
             }
 
             String title = body.getTitle();
             if (title.length() != 0 && !title.matches("^[a-zA-Z0-9_ -]{3,50}$")) {
-                throw new InputException("Title must be between 3 and 50 characters");
+                throw new InputExceptionView("Title must be between 3 and 50 characters");
             }
 
 
             String artist = body.getArtist();
             if (artist.length() != 0 && !artist.matches("^[a-zA-Z0-9_ -]{3,50}$")) {
-                throw new InputException("Artist name must be between 3 and 50 characters");
+                throw new InputExceptionView("Artist name must be between 3 and 50 characters");
             }
             return addRecordUseCase.updateRecord(recordID, body);
 
         } catch (ParseException e) {
-            throw new InputException("Wrong date format");
+            throw new InputExceptionView("Wrong date format");
         } catch (NullPointerException e) {
-            throw new InputException("Not every field was provided");
+            throw new InputExceptionView("Not every field was provided");
         }
 
     }
