@@ -56,7 +56,7 @@ public class UserRepositoryAdapter implements AddUser, GetUsers, ExtendRentals, 
     public List<User> getAllUsers() {
         return repo.getAllUsers().stream()
                 .map(UserConverter::convertUserEntityToUser)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -77,7 +77,7 @@ public class UserRepositoryAdapter implements AddUser, GetUsers, ExtendRentals, 
     public List<User> getUsersByLogin(String login) {
         return repo.getUsersByLogin(login).stream()
                 .map(UserConverter::convertUserEntityToUser)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

@@ -49,7 +49,7 @@ public class RentalViewAdapter implements AddRentalUseCase, ArchiveRentalsUseCas
         return rentalService.getAllRentals()
                 .stream()
                 .map(RentalViewConverter::convertRentalToRentalView)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -57,7 +57,7 @@ public class RentalViewAdapter implements AddRentalUseCase, ArchiveRentalsUseCas
         return rentalService.getAllArchiveRentals()
                 .stream()
                 .map(RentalViewConverter::convertRentalToRentalView)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

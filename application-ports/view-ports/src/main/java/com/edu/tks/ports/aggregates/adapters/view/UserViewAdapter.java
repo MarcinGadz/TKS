@@ -61,7 +61,7 @@ public class UserViewAdapter implements AddUserUseCase, GetUsersUseCase, RemoveU
         return userService.getAllUsers()
                 .stream()
                 .map(UserViewConverter::convertUserToUserView)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -83,7 +83,7 @@ public class UserViewAdapter implements AddUserUseCase, GetUsersUseCase, RemoveU
         return userService.getUsersByLogin(login)
                 .stream()
                 .map(UserViewConverter::convertUserToUserView)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

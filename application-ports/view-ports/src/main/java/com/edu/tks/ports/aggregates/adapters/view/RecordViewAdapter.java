@@ -27,7 +27,7 @@ public class RecordViewAdapter implements AddRecordUseCase, GetRecordsUseCase, R
         return recordService.getAllRecords()
                 .stream()
                 .map(RecordViewConverter::convertRecordToRecordView)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

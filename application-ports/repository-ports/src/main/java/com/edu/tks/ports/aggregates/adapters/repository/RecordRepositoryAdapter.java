@@ -34,7 +34,7 @@ public class RecordRepositoryAdapter implements AddRecord, GetRecords, RemoveRec
     public List<Record> getAllRecords() {
         return repo.getAllRecords().stream()
                 .map(RecordConverter::convertRecordEntityToRecord)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
