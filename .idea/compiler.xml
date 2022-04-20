@@ -8,11 +8,12 @@
         <outputRelativeToContentRoot value="true" />
         <module name="repositories-adapters" />
         <module name="view-soap-adapters" />
-        <module name="application-ports" />
-        <module name="view-adapters" />
+        <module name="repository-ports" />
         <module name="view-rest-adapters" />
+        <module name="view-rest-model" />
         <module name="domain-model" />
         <module name="application-services" />
+        <module name="view-ports" />
       </profile>
     </annotationProcessing>
   </component>
@@ -23,8 +24,11 @@
       <module name="application-services" options="-parameters" />
       <module name="domain-model" options="-parameters" />
       <module name="repositories-adapters" options="-parameters" />
+      <module name="repository-ports" options="-parameters" />
       <module name="view-adapters" options="-parameters" />
+      <module name="view-ports" options="-parameters" />
       <module name="view-rest-adapters" options="-parameters" />
+      <module name="view-rest-model" options="-parameters" />
       <module name="view-soap-adapters" options="-parameters" />
     </option>
   </component>
