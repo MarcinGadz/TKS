@@ -1,0 +1,7 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:gs="http://model.tks.edu.com/record">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <gs:getRecordsRequest/>
+    </soapenv:Body>
+</soapenv:Envelope>

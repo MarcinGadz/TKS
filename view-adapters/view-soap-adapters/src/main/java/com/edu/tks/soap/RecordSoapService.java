@@ -32,7 +32,7 @@ public class RecordSoapService {
     public GetRecordsResponse getRecords() {
         GetRecordsResponse response = new GetRecordsResponse();
         for (RecordSOAP record : soapGetRecords.getAllRecords()) {
-            response.getUser().add(record);
+            response.getRecord().add(record);
         }
         return response;
     }
