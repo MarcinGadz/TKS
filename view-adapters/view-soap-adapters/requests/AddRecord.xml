@@ -1,0 +1,15 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:gs="http://model.tks.edu.com/record">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <gs:addRecordRequest>
+            <gs:record>
+                <gs:recordID>c1cf35bf-d025-440b-a6ec-17cc6c77b021</gs:recordID>
+                <gs:title>SoapRecordTitle</gs:title>
+                <gs:artist>SoapRecordArtist</gs:artist>
+                <gs:releaseDate>2022-11-15</gs:releaseDate>
+                <gs:rented>false</gs:rented>
+            </gs:record>
+        </gs:addRecordRequest>
+    </soapenv:Body>
+</soapenv:Envelope>
