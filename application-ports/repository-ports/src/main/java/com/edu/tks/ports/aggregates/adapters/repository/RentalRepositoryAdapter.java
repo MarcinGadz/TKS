@@ -49,14 +49,14 @@ public class RentalRepositoryAdapter implements GetRentals, AddRental, ArchiveRe
     public List<Rental> getAllRentals() {
         return repo.getAllRentalEntities().stream()
                 .map(RentalConverter::convertRentalEntityToRental)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<Rental> getAllArchiveRentals() {
         return repo.getAllArchiveRentalEntities().stream()
                 .map(RentalConverter::convertRentalEntityToRental)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     @Override

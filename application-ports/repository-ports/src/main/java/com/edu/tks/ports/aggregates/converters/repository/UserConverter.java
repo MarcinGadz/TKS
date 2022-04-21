@@ -8,10 +8,11 @@ import com.edu.tks.user.UserType;
 public class UserConverter {
 
     public static UserType convertUserTypeEntityToUserType(UserTypeEntity userTypeEntity) {
-        return switch (userTypeEntity) {
-            case CLIENT -> UserType.CLIENT;
-            case ADMINISTRATOR -> UserType.ADMINISTRATOR;
-        };
+        switch (userTypeEntity) {
+            case CLIENT: return UserType.CLIENT;
+            case ADMINISTRATOR: return UserType.ADMINISTRATOR;
+        }
+        return null;
     }
 
     public static User convertUserEntityToUser(UserEntity userEntity) {
@@ -25,10 +26,11 @@ public class UserConverter {
     }
 
     public static UserTypeEntity convertUserTypeToUserTypeEntity(UserType userType) {
-        return switch (userType) {
-            case CLIENT -> UserTypeEntity.CLIENT;
-            case ADMINISTRATOR -> UserTypeEntity.ADMINISTRATOR;
-        };
+        switch (userType) {
+            case CLIENT: return UserTypeEntity.CLIENT;
+            case ADMINISTRATOR: return UserTypeEntity.ADMINISTRATOR;
+        }
+        return null;
     }
 
     public static UserEntity convertUserToUserEntity(User user) {

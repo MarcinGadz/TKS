@@ -56,7 +56,7 @@ public class UserRepositoryAdapter implements AddUser, GetUsers, ExtendRentals, 
     public List<User> getAllUsers() {
         return repo.getAllUsers().stream()
                 .map(UserConverter::convertUserEntityToUser)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -77,13 +77,13 @@ public class UserRepositoryAdapter implements AddUser, GetUsers, ExtendRentals, 
     public List<User> getUsersByLogin(String login) {
         return repo.getUsersByLogin(login).stream()
                 .map(UserConverter::convertUserEntityToUser)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     @Override
-    public void removeUser(String userid) throws BasicException {
+    public User removeUser(String userid) throws BasicException {
         try {
-            repo.removeUser(userid);
+            return UserConverter.convertUserEntityToUser(repo.removeUser(userid));
         } catch (com.edu.tks.repo.exception.BasicException e) {
             throw new BasicException(e.getMessage());
         }

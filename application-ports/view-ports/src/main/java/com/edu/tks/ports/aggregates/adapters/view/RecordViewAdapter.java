@@ -1,9 +1,9 @@
 package com.edu.tks.ports.aggregates.adapters.view;
 
 import com.edu.tks.exception.NotFoundException;
-import com.edu.tks.exception.NotFoundExceptionView;
+import com.edu.tks.exception.SOAPNotFoundException;
 import com.edu.tks.exception.RentalException;
-import com.edu.tks.exception.RentalExceptionView;
+import com.edu.tks.exception.SOAPRentalException;
 import com.edu.tks.model.RecordView;
 import com.edu.tks.ports.aggregates.converters.view.RecordViewConverter;
 import com.edu.tks.ports.view.service.record.AddRecordUseCase;
@@ -27,26 +27,26 @@ public class RecordViewAdapter implements AddRecordUseCase, GetRecordsUseCase, R
         return recordService.getAllRecords()
                 .stream()
                 .map(RecordViewConverter::convertRecordToRecordView)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     @Override
-    public RecordView getRecordByID(String recordID) throws NotFoundExceptionView {
+    public RecordView getRecordByID(String recordID) throws SOAPNotFoundException {
         try {
             return RecordViewConverter.convertRecordToRecordView(recordService.getRecordByID(recordID));
         } catch (NotFoundException e) {
-            throw new NotFoundExceptionView((e.getMessage()));
+            throw new SOAPNotFoundException((e.getMessage()));
         }
     }
 
     @Override
-    public void removeRecord(String recordID) throws RentalExceptionView, NotFoundExceptionView {
+    public void removeRecord(String recordID) throws SOAPRentalException, SOAPNotFoundException {
         try {
             recordService.removeRecord(recordID);
         } catch (RentalException e) {
-            throw new RentalExceptionView(e.getMessage());
+            throw new SOAPRentalException(e.getMessage());
         } catch (NotFoundException e) {
-            throw new NotFoundExceptionView(e.getMessage());
+            throw new SOAPNotFoundException(e.getMessage());
         }
     }
 
@@ -56,11 +56,11 @@ public class RecordViewAdapter implements AddRecordUseCase, GetRecordsUseCase, R
     }
 
     @Override
-    public RecordView updateRecord(String recordId, RecordView record) throws NotFoundExceptionView, ParseException {
+    public RecordView updateRecord(String recordId, RecordView record) throws SOAPNotFoundException, ParseException {
         try {
             return RecordViewConverter.convertRecordToRecordView(recordService.updateRecord(recordId, RecordViewConverter.convertRecordViewToRecord(record)));
         } catch (NotFoundException e) {
-            throw new NotFoundExceptionView(e.getMessage());
+            throw new SOAPNotFoundException(e.getMessage());
         }
     }
 }

@@ -1,9 +1,9 @@
 package com.edu.tks.ports.view.service.user;
 
-import com.edu.tks.exception.NotFoundExceptionView;
-import com.edu.tks.exception.PermissionExceptionView;
-import com.edu.tks.exception.RentalExceptionView;
+import com.edu.tks.exception.SOAPNotFoundException;
+import com.edu.tks.exception.SOAPPermissionException;
+import com.edu.tks.exception.SOAPRentalException;
 
 public interface ExtendRentalsUseCase {
-    void extendRentReturnDays(String userId, int days) throws PermissionExceptionView, RentalExceptionView, NotFoundExceptionView;
+    void extendRentReturnDays(String userId, int days) throws SOAPPermissionException, SOAPRentalException, SOAPNotFoundException;
 }

@@ -52,7 +52,7 @@ public class UserRepository {
     public List<UserEntity> getUsersByLogin(String login) {
         return users.stream()
                 .filter(user -> user.getLogin().contains(login))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public void appendUser(UserEntity user) throws InputException {

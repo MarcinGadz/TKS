@@ -1,0 +1,93 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://model.tks.edu.com/record"
+           targetNamespace="http://model.tks.edu.com/record"
+           elementFormDefault="qualified">
+
+    <xs:complexType name="RecordSOAP">
+        <xs:sequence>
+            <xs:element name="recordID" type="xs:string"/>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="artist" type="xs:string"/>
+            <xs:element name="releaseDate" type="xs:date"/>
+            <xs:element name="rented" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="getRecordsRequest"/>
+
+    <xs:element name="getRecordsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="user" type="tns:RecordSOAP"
+                            minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="getRecordByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getRecordByIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="record" type="tns:RecordSOAP"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addRecordRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="record" type="tns:RecordSOAP"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addRecordResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="record" type="tns:RecordSOAP"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="removeRecordRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="recordID" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="removeRecordResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="record" type="tns:RecordSOAP"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="modifyRecordRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="recordID" type="xs:string"/>
+                <xs:element name="record" type="tns:RecordSOAP"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="modifyRecordResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="record" type="tns:RecordSOAP"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

@@ -1,11 +1,12 @@
 package com.edu.tks;
 
 import com.edu.tks.exception.InputExceptionView;
-import com.edu.tks.exception.PermissionExceptionView;
+import com.edu.tks.exception.SOAPInputException;
+import com.edu.tks.exception.SOAPPermissionException;
 import com.edu.tks.model.RecordView;
 import com.edu.tks.model.RentalView;
 import com.edu.tks.model.UserTypeView;
-import com.edu.tks.rest.RestServiceApplication;
+import com.edu.tks.soap.RestServiceApplication;
 import com.edu.tks.model.UserView;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ class RentWebserviceTest {
 
     private String BASE_PATH;
 
-    RentWebserviceTest() throws PermissionExceptionView, InputExceptionView {
+    RentWebserviceTest() throws SOAPPermissionException, SOAPInputException, InputExceptionView {
     }
 
     @PostConstruct
@@ -75,13 +76,18 @@ class RentWebserviceTest {
     }
 
     @Test
-    void shouldAddRental() throws InputExceptionView {
+    void shouldAddRental() throws SOAPInputException {
         UserView newUser = new UserView();
         newUser.setUserId(UUID.fromString(INIT_DATA[0].getClientID()));
 
         RecordView newRec = new RecordView();
         newRec.setRecordID("3e3719e5-8689-4e65-883f-4cd06cae7195");
-        RentalView newRental = new RentalView(newUser, newRec);
+        RentalView newRental = null;
+        try {
+            newRental = new RentalView(newUser, newRec);
+        } catch (InputExceptionView e) {
+            throw new RuntimeException(e);
+        }
 
         ResponseEntity<RentalView> res = rest.postForEntity(BASE_PATH + newUser.getUserID().toString() + "/rent", newRental, RentalView.class);
         assertTrue(res.getStatusCode().is2xxSuccessful());

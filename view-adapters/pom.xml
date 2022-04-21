@@ -12,13 +12,10 @@
 
     <artifactId>view-adapters</artifactId>
 
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-    </properties>
     <modules>
         <module>view-rest-adapters</module>
         <module>view-soap-adapters</module>
         <module>view-rest-model</module>
+        <module>view-soap-model</module>
     </modules>
 </project>

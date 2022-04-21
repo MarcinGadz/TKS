@@ -1,9 +1,6 @@
 package com.edu.tks.ports.aggregates.adapters.view;
 
-import com.edu.tks.exception.InputException;
-import com.edu.tks.exception.InputExceptionView;
-import com.edu.tks.exception.NotFoundException;
-import com.edu.tks.exception.NotFoundExceptionView;
+import com.edu.tks.exception.*;
 import com.edu.tks.model.RentalView;
 import com.edu.tks.ports.aggregates.converters.view.RentalViewConverter;
 import com.edu.tks.ports.view.service.rental.AddRentalUseCase;
@@ -23,24 +20,24 @@ public class RentalViewAdapter implements AddRentalUseCase, ArchiveRentalsUseCas
     private RentalService rentalService;
 
     @Override
-    public RentalView createRental(String clientID, String recordID) throws InputExceptionView, NotFoundExceptionView {
+    public RentalView createRental(String clientID, String recordID) throws SOAPInputException, SOAPNotFoundException {
         try {
             return RentalViewConverter.convertRentalToRentalView(rentalService.createRental(clientID, recordID));
         } catch (InputException e) {
-            throw new InputExceptionView(e.getMessage());
+            throw new SOAPInputException(e.getMessage());
         } catch (NotFoundException e) {
-            throw new NotFoundExceptionView(e.getMessage());
+            throw new SOAPNotFoundException(e.getMessage());
         }
     }
 
     @Override
-    public RentalView archiveRental(String rentalID) throws NotFoundExceptionView, InputExceptionView {
+    public RentalView archiveRental(String rentalID) throws SOAPInputException, SOAPNotFoundException {
         try {
             return RentalViewConverter.convertRentalToRentalView(rentalService.archiveRental(rentalID));
         } catch (NotFoundException e) {
-            throw new NotFoundExceptionView(e.getMessage());
+            throw new SOAPNotFoundException(e.getMessage());
         } catch (InputException e) {
-            throw new InputExceptionView(e.getMessage());
+            throw new SOAPInputException(e.getMessage());
         }
     }
 
@@ -49,7 +46,7 @@ public class RentalViewAdapter implements AddRentalUseCase, ArchiveRentalsUseCas
         return rentalService.getAllRentals()
                 .stream()
                 .map(RentalViewConverter::convertRentalToRentalView)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -57,15 +54,15 @@ public class RentalViewAdapter implements AddRentalUseCase, ArchiveRentalsUseCas
         return rentalService.getAllArchiveRentals()
                 .stream()
                 .map(RentalViewConverter::convertRentalToRentalView)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     @Override
-    public RentalView getRentalByID(String rentalID) throws NotFoundExceptionView {
+    public RentalView getRentalByID(String rentalID) throws SOAPNotFoundException {
         try {
             return RentalViewConverter.convertRentalToRentalView(rentalService.getRentalByID(rentalID));
         } catch (NotFoundException e) {
-            throw new NotFoundExceptionView(e.getMessage());
+            throw new SOAPNotFoundException(e.getMessage());
         }
     }
 }

@@ -40,13 +40,14 @@ public class RecordService {
     }
 
 
-    public synchronized void appendRecord(Record record) {
+    public synchronized Record appendRecord(Record record) {
         addRecord.appendRecord(record);
+        return record;
     }
 
 
-    public synchronized void removeRecord(String recordid) throws RentalException, NotFoundException {
-        removeRecord.removeRecord(recordid);
+    public synchronized Record removeRecord(String recordid) throws RentalException, NotFoundException {
+        return removeRecord.removeRecord(recordid);
     }
 
 

@@ -7,10 +7,11 @@ import com.edu.tks.user.UserType;
 
 public class UserViewConverter {
     public static UserType convertUserTypeViewToUserType(UserTypeView userTypeView) {
-        return switch (userTypeView) {
-            case CLIENT -> UserType.CLIENT;
-            case ADMINISTRATOR -> UserType.ADMINISTRATOR;
-        };
+        switch (userTypeView) {
+            case CLIENT: return UserType.CLIENT;
+            case ADMINISTRATOR: return UserType.ADMINISTRATOR;
+        }
+        return null;
     }
 
     public static User convertUserViewToUser(UserView userView) {
@@ -24,10 +25,11 @@ public class UserViewConverter {
     }
 
     public static UserTypeView convertUserTypeToUserTypeView(UserType userType) {
-        return switch (userType) {
-            case CLIENT -> UserTypeView.CLIENT;
-            case ADMINISTRATOR -> UserTypeView.ADMINISTRATOR;
-        };
+        switch (userType) {
+            case CLIENT: return UserTypeView.CLIENT;
+            case ADMINISTRATOR: return UserTypeView.ADMINISTRATOR;
+        }
+        return null;
     }
 
     public static UserView convertUserToUserView(User user) {

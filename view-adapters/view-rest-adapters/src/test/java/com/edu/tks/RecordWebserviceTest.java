@@ -1,7 +1,7 @@
 package com.edu.tks;
 
 import com.edu.tks.model.RecordView;
-import com.edu.tks.rest.RestServiceApplication;
+import com.edu.tks.soap.RestServiceApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

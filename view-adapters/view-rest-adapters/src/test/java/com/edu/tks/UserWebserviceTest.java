@@ -2,7 +2,7 @@ package com.edu.tks;
 
 import com.edu.tks.model.UserView;
 import com.edu.tks.model.UserTypeView;
-import com.edu.tks.rest.RestServiceApplication;
+import com.edu.tks.soap.RestServiceApplication;
 import com.edu.tks.user.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
