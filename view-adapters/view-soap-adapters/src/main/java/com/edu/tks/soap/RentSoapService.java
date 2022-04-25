@@ -7,10 +7,12 @@ import com.edu.tks.ports.soap.service.rental.SOAPAddRental;
 import com.edu.tks.ports.soap.service.rental.SOAPArchiveRentals;
 import com.edu.tks.ports.soap.service.rental.SOAPGetRentals;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+@Endpoint
 public class RentSoapService {
 
     private static final String NAMESPACE_URI = "http://model.tks.edu.com/rental";

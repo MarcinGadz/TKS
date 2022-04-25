@@ -6,12 +6,14 @@ import com.edu.tks.ports.soap.service.user.SOAPAddUser;
 import com.edu.tks.ports.soap.service.user.SOAPGetUsers;
 import com.edu.tks.ports.soap.service.user.SOAPRemoveUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import java.util.UUID;
 
+@Endpoint
 public class UserSoapService {
 
     private static final String NAMESPACE_URI = "http://model.tks.edu.com/user";
@@ -27,10 +29,10 @@ public class UserSoapService {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getUsersRequest")
     @ResponsePayload
-    public GetUsersResopnse getUsers() {
-        GetUsersResopnse response = new GetUsersResopnse();
+    public GetUsersResponse getUsers() {
+        GetUsersResponse response = new GetUsersResponse();
         for (UserSOAP user : soapGetUsers.getAllUsers()) {
-            response.getUsers().add(user);
+            response.getUser().add(user);
         }
         return response;
     }
@@ -112,7 +114,7 @@ public class UserSoapService {
     @ResponsePayload
     public DeactivateUserResponse deactivateUser(@RequestPayload DeactivateUserRequest request) throws SOAPNotFoundException, SOAPInputException {
         DeactivateUserResponse response = new DeactivateUserResponse();
-        response.setUser(soapAddUser.updateActive(request.getUserID(), true));
+        response.setUser(soapAddUser.updateActive(request.getUserID(), false));
         return response;
     }
 }

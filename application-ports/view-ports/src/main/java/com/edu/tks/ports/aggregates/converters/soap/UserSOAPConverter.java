@@ -22,6 +22,7 @@ public class UserSOAPConverter {
         UserSOAP userSOAP = new UserSOAP();
         userSOAP.setUserID(user.getUserID().toString());
         userSOAP.setLogin(user.getLogin());
+        userSOAP.setType(convertUserTypeToUserTypeSOAP(user.getType()));
         userSOAP.setActive(user.isActive());
         return userSOAP;
     }

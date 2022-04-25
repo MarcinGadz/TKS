@@ -21,10 +21,10 @@
 
     <xs:element name="getUsersRequest"/>
 
-    <xs:element name="getUsersResopnse">
+    <xs:element name="getUsersResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="users" type="tns:UserSOAP" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="user" type="tns:UserSOAP" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
