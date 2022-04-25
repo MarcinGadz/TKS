@@ -60,22 +60,20 @@ public class RecordSoapService {
             throw new InputExceptionView("Artist name must be between 3 and 50 characters");
         }
 
-        soapAddRecord.appendRecord(record);
-
         AddRecordResponse response = new AddRecordResponse();
-        response.setRecord(record);
+        response.setRecord(soapAddRecord.appendRecord(record));
         return response;
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "removeRecordRequest")
     @ResponsePayload
-    public RecordSOAP removeRecord(@RequestPayload RemoveRecordRequest request) throws SOAPNotFoundException, SOAPRentalException {
+    public RemoveRecordResponse removeRecord(@RequestPayload RemoveRecordRequest request) throws SOAPNotFoundException, SOAPRentalException {
         RecordSOAP record = soapGetRecords.getRecordByID(request.getRecordID());
         soapRemoveRecord.removeRecord(request.getRecordID());
 
         RemoveRecordResponse response = new RemoveRecordResponse();
         response.setRecord(record);
-        return record;
+        return response;
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "modifyRecordRequest")

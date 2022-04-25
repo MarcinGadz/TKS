@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.UUID;
 
 
 @Service
@@ -19,14 +20,12 @@ public class RecordService {
     private final AddRecord addRecord;
     private final GetRecords getRecords;
     private final RemoveRecord removeRecord;
-    private final RentRecord rentRecord;
 
     @Autowired
-    public RecordService(AddRecord addRecord, GetRecords getRecords, RemoveRecord removeRecord, RentRecord rentRecord) {
+    public RecordService(AddRecord addRecord, GetRecords getRecords, RemoveRecord removeRecord) {
         this.addRecord = addRecord;
         this.getRecords = getRecords;
         this.removeRecord = removeRecord;
-        this.rentRecord = rentRecord;
     }
 
 
@@ -41,8 +40,8 @@ public class RecordService {
 
 
     public synchronized Record appendRecord(Record record) {
-        addRecord.appendRecord(record);
-        return record;
+        record.setRecordID(UUID.randomUUID().toString());
+        return addRecord.appendRecord(record);
     }
 
 
