@@ -1,6 +1,9 @@
 package com.edu.tks;
 
+import com.edu.tks.clients.UserClient;
 import io.restassured.response.Response;
+import org.springframework.context.annotation.Bean;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
 import java.nio.charset.StandardCharsets;
 
@@ -27,5 +30,13 @@ public class TestUtils {
                 .body(requestPayload.getBytes(StandardCharsets.UTF_8))
                 .when()
                 .post("/ws");
+    }
+
+    public static Jaxb2Marshaller getUserMarshaller() {
+        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+        // this package must match the package in the <generatePackage> specified in
+        // pom.xml
+        marshaller.setContextPath("com.edu.tks.model.user");
+        return marshaller;
     }
 }

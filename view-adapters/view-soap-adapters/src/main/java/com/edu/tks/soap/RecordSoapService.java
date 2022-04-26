@@ -2,6 +2,7 @@ package com.edu.tks.soap;
 
 import com.edu.tks.exception.*;
 import com.edu.tks.model.record.*;
+import com.edu.tks.model.user.GetUsersRequest;
 import com.edu.tks.ports.soap.service.record.SOAPAddRecord;
 import com.edu.tks.ports.soap.service.record.SOAPGetRecords;
 import com.edu.tks.ports.soap.service.record.SOAPRemoveRecord;
@@ -29,7 +30,7 @@ public class RecordSoapService {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getRecordsRequest")
     @ResponsePayload
-    public GetRecordsResponse getRecords() {
+    public GetRecordsResponse getRecords(GetUsersRequest request) {
         GetRecordsResponse response = new GetRecordsResponse();
         for (RecordSOAP record : soapGetRecords.getAllRecords()) {
             response.getRecord().add(record);
