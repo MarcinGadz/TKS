@@ -18,19 +18,47 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = RestServiceApplication.class)
-class RentWebserviceTest {
+class RentalWebserviceTest {
 
-    private final RentalView[] INIT_DATA = {new RentalView(
+    private final RentalView[] INIT_DATA = {
+            new RentalView(
+                UUID.fromString("418d0406-e040-408a-abf3-7788db83b889"),
+                "cebbee82-2398-4dc2-a94d-a4c863286ff0",
+                "02cf35bf-d025-440b-a6ec-17cc6c77b021",
+                LocalDateTime.of(2022, 5, 3, 13, 36),
+                LocalDateTime.of(2022, 5, 10, 13, 36),
+                null,
+                true
+            ),
+            new RentalView(
+                    UUID.fromString("53d3b654-c542-11ec-9d64-0242ac120002"),
+                    "c6f3fbf7-135b-498e-8154-3a5b9d291145",
+                    "3e3719e5-8689-4e65-883f-4cd06cae7195",
+                    LocalDateTime.of(2022, 1, 12, 15, 23),
+                    LocalDateTime.of(2022, 1,19, 15, 23),
+                    null,
+                    true
+            ),
+    };
 
-            UUID.fromString("418d0406-e040-408a-abf3-7788db83b889"),
-            new UserView(UUID.fromString("cebbee82-2398-4dc2-a94d-a4c863286ff0"), "Eleanora", true, UserTypeView.CLIENT),
-            new RecordView(UUID.fromString("02cf35bf-d025-440b-a6ec-17cc6c77b021"), "Moral Power", "Nothing but Lorde", "2020-03-04", false))};
+    private final RentalView[] INIT_DATA_ARCHIVED = {
+            new RentalView(
+                    UUID.fromString("1fa7cdf2-2b0c-428b-bbf7-a593d56e3b74"),
+                    "c6f3fbf7-135b-498e-8154-3a5b9d291145",
+                    "c6f3fbf7-135b-498e-8154-3a5b9d291145",
+                    LocalDateTime.of(2021, 2, 13, 16, 13),
+                    LocalDateTime.of(2021, 2, 20, 16, 13),
+                    LocalDateTime.of(2021, 2, 20, 15, 45),
+                    false
+            ),
+    };
 
     @LocalServerPort
     private int port;
@@ -40,7 +68,7 @@ class RentWebserviceTest {
 
     private String BASE_PATH;
 
-    RentWebserviceTest() throws SOAPPermissionException, SOAPInputException, InputExceptionView {
+    RentalWebserviceTest() throws InputExceptionView {
     }
 
     @PostConstruct
@@ -72,17 +100,19 @@ class RentWebserviceTest {
         ResponseEntity<List<RentalView>> response = rest.exchange(targetUrl, HttpMethod.GET, null, typeRef);
         assertTrue(response.getStatusCode().is2xxSuccessful());
         List<RentalView> body = response.getBody();
-        assertTrue(body.isEmpty() || body.size() == 1);
+        for (int i = 0; i < INIT_DATA_ARCHIVED.length; i++) {
+            assertEquals(INIT_DATA_ARCHIVED[i], body.get(i));
+        }
     }
 
     @Test
-    void shouldAddRental() throws SOAPInputException {
+    void shouldAddRental() {
         UserView newUser = new UserView();
         newUser.setUserId(UUID.fromString(INIT_DATA[0].getClientID()));
 
         RecordView newRec = new RecordView();
         newRec.setRecordID("3e3719e5-8689-4e65-883f-4cd06cae7195");
-        RentalView newRental = null;
+        RentalView newRental;
         try {
             newRental = new RentalView(newUser, newRec);
         } catch (InputExceptionView e) {
@@ -107,7 +137,7 @@ class RentWebserviceTest {
         ResponseEntity<List<RentalView>> response = rest.exchange(BASE_PATH + "archiveRentals", HttpMethod.GET, null, typeRef);
         assertTrue(response.getStatusCode().is2xxSuccessful());
         List<RentalView> body = response.getBody();
-        assertEquals(1, body.size());
-        assertEquals(INIT_DATA[0].getRentalID(), body.get(0).getRentalID());
+        assertEquals(2, body.size());
+        assertEquals(INIT_DATA[0].getRentalID(), body.get(1).getRentalID());
     }
 }

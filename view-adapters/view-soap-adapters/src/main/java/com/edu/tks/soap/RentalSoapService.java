@@ -13,7 +13,7 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 @Endpoint
-public class RentSoapService {
+public class RentalSoapService {
 
     private static final String NAMESPACE_URI = "http://model.tks.edu.com/rental";
 
@@ -24,14 +24,14 @@ public class RentSoapService {
     @Autowired
     private SOAPArchiveRentals soapArchiveRentals;
 
-    public RentSoapService() {}
+    public RentalSoapService() {}
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getAllRentalsRequest")
     @ResponsePayload
     public GetAllRentalsResponse getAllRentals() throws SOAPInputException {
         GetAllRentalsResponse response = new GetAllRentalsResponse();
         for (RentalSOAP rental : soapGetRentals.getAllRentals()) {
-            response.getRentals().add(rental);
+            response.getRental().add(rental);
         }
         return response;
     }
@@ -42,7 +42,7 @@ public class RentSoapService {
     public GetAllArchiveRentalsResponse getAllArchiveRentals() {
         GetAllArchiveRentalsResponse response = new GetAllArchiveRentalsResponse();
         for (RentalSOAP rental : soapGetRentals.getAllArchiveRentals()) {
-            response.getRentals().add(rental);
+            response.getRental().add(rental);
         }
         return response;
     }
@@ -57,7 +57,7 @@ public class RentSoapService {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "returnRecordRequest")
     @ResponsePayload
-    public RentRecordResponse returnRecord(@RequestPayload ReturnRecordRequest request) throws SOAPNotFoundException, SOAPInputException {
+    public ReturnRecordResponse returnRecord(@RequestPayload ReturnRecordRequest request) throws SOAPNotFoundException, SOAPInputException {
         RentalSOAP rental = soapGetRentals.getRentalByID(request.getRentalID());
 
         if (!rental.getClientID().equals(request.getUserID())) {
@@ -65,7 +65,7 @@ public class RentSoapService {
             throw new SOAPInputException("This user does not own this record!");
         }
 
-        RentRecordResponse response = new RentRecordResponse();
+        ReturnRecordResponse response = new ReturnRecordResponse();
 
         response.setRental(soapArchiveRentals.archiveRental(request.getRentalID()));
         return response;

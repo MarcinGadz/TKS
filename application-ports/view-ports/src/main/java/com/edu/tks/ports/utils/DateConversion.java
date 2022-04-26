@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 
 public class DateConversion {
     public static XMLGregorianCalendar convertToXMLGregorianCalendar(LocalDate date) {
+        if (date == null) return null;
         try {
             return DatatypeFactory.newInstance().newXMLGregorianCalendarDate(
                     date.getYear(),
@@ -22,6 +23,7 @@ public class DateConversion {
     }
 
     public static XMLGregorianCalendar convertToXMLGregorianCalendar(LocalDateTime date) {
+        if (date == null) return null;
         try {
             return DatatypeFactory.newInstance().newXMLGregorianCalendar(
                     date.getYear(),
@@ -39,6 +41,7 @@ public class DateConversion {
     }
 
     public static LocalDateTime convertToLocalDateTime(XMLGregorianCalendar date) {
+        if (date == null) return null;
         return LocalDateTime.of(
                 date.getYear(),
                 date.getMonth(),

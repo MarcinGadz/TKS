@@ -14,14 +14,14 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("users")
-public class RentWebservice {
+public class RentalWebservice {
 
     private final AddRentalUseCase addRentalUseCase;
     private final GetRentalsUseCase getRentalsUseCase;
     private final ArchiveRentalsUseCase archiveRentalsUseCase;
 
     @Autowired
-    public RentWebservice(
+    public RentalWebservice(
             AddRentalUseCase addRentalUseCase,
             GetRentalsUseCase getRentalsUseCase,
             ArchiveRentalsUseCase archiveRentalsUseCase) {

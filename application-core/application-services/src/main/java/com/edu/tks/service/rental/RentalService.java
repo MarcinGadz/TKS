@@ -68,8 +68,7 @@ public class RentalService {
     public synchronized Rental archiveRental(String rentalID) throws NotFoundException, InputException {
         Rental rental = getRentals.getRentalByID(rentalID);
         Record record = getRecords.getRecordByID(rental.getRecordID());
-        archiveRentals.archiveRental(rentalID);
         returnRecord.returnRecord(record.getRecordID().toString());
-        return rental;
+        return archiveRentals.archiveRental(rentalID);
     }
 }

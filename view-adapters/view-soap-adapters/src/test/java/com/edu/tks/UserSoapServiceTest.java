@@ -3,40 +3,17 @@ package com.edu.tks;
 import com.edu.tks.model.user.UserSOAP;
 import com.edu.tks.model.user.UserTypeSOAP;
 import com.edu.tks.soap.SoapServiceApplication;
-import com.edu.tks.soap.UserSoapService;
-import com.edu.tks.soap.WebServiceConfig;
 import io.restassured.RestAssured;
-import io.restassured.response.Response;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.context.ApplicationContext;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.event.annotation.BeforeTestClass;
-import org.springframework.test.context.event.annotation.BeforeTestExecution;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.ws.test.server.MockWebServiceClient;
-import org.springframework.ws.test.server.RequestCreators;
-import org.springframework.ws.test.server.ResponseMatchers;
-import org.springframework.xml.transform.StringSource;
-
 import javax.annotation.PostConstruct;
-import javax.xml.transform.Source;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.request;
+import static com.edu.tks.TestUtils.*;
 import static org.hamcrest.Matchers.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = SoapServiceApplication.class)
@@ -51,13 +28,12 @@ class UserSoapServiceTest {
     private TestRestTemplate rest;
 
     private String BASE_PATH;
-    private String ENVELOPE = "Envelope.Body.";
 
     @PostConstruct
-    private void setBasePath() {
+    private void init() {
         BASE_PATH = "http://localhost:" + port;
         testData = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 2; i++) {
             UserSOAP newUser = new UserSOAP();
             newUser.setUserID("cebbee82-2398-4dc2-a94d-a4c863287ff" + i);
             newUser.setLogin("NewTestUserN" + 1);
@@ -67,31 +43,11 @@ class UserSoapServiceTest {
         }
     }
 
-    private String pack(String content) {
-        String out = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"" +
-            " xmlns:gs=\"http://model.tks.edu.com/user\">" +
-            "<soapenv:Header/>" +
-            "<soapenv:Body>" +
-            content +
-            "</soapenv:Body>" +
-            "</soapenv:Envelope>";
-        return  out;
-    }
-
-    private Response sendRequest(String requestPayload) {
-        return given()
-                .header("content-type", "text/xml")
-                .and()
-                .body(requestPayload.getBytes(StandardCharsets.UTF_8))
-                .when()
-                .post("/ws");
-    }
-
     @Test
     public void testGetUserById() {
         RestAssured.baseURI = BASE_PATH;
 
-        String requestPayload = pack("<gs:getUserByIDRequest>" +
+        String requestPayload = pack("user", "<gs:getUserByIDRequest>" +
                 "<gs:userID>cebbee82-2398-4dc2-a94d-a4c863286ff0</gs:userID>" +
                 "</gs:getUserByIDRequest>");
 
@@ -115,7 +71,7 @@ class UserSoapServiceTest {
     public void testGetUsers() {
         RestAssured.baseURI = BASE_PATH;
 
-        String requestPayload = pack("<gs:getUsersRequest/>");
+        String requestPayload = pack("user", "<gs:getUsersRequest/>");
 
         System.out.println(requestPayload);
 
@@ -145,7 +101,7 @@ class UserSoapServiceTest {
 
         UserSOAP userToAdd = testData.get(0);
 
-        String addPayload = pack("<gs:addUserRequest>" +
+        String addPayload = pack("user", "<gs:addUserRequest>" +
                 "<gs:user>" +
                 "<gs:userID>" + userToAdd.getUserID() + "</gs:userID>" +
                 "<gs:login>" + userToAdd.getLogin() + "</gs:login>" +
@@ -172,7 +128,7 @@ class UserSoapServiceTest {
 
         System.out.println("Added ID" + addedID);
 
-        String removePayload = pack("<gs:deleteUserRequest>" +
+        String removePayload = pack("user", "<gs:deleteUserRequest>" +
                 "<gs:userID>" + addedID + "</gs:userID>" +
                 "</gs:deleteUserRequest>");
 
@@ -197,7 +153,7 @@ class UserSoapServiceTest {
 
         String userID = "cebbee82-2398-4dc2-a94d-a4c863286ff0";
 
-        String deactivatePayload = pack("<gs:deactivateUserRequest>" +
+        String deactivatePayload = pack("user", "<gs:deactivateUserRequest>" +
                 "<gs:userID>" + userID + "</gs:userID>" +
                 "</gs:deactivateUserRequest>");
 
@@ -211,7 +167,7 @@ class UserSoapServiceTest {
                 .body("user.userID", equalTo(userID))
                 .body("user.active", equalTo("false"));
 
-        String activatePayload = pack("<gs:activateUserRequest>" +
+        String activatePayload = pack("user", "<gs:activateUserRequest>" +
                 "<gs:userID>" + userID + "</gs:userID>" +
                 "</gs:activateUserRequest>");
 

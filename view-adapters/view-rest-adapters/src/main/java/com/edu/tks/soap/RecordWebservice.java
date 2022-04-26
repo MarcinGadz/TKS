@@ -1,5 +1,6 @@
 package com.edu.tks.soap;
 
+import com.edu.tks.exception.InputException;
 import com.edu.tks.exception.SOAPInputException;
 import com.edu.tks.exception.SOAPNotFoundException;
 import com.edu.tks.exception.SOAPRentalException;
@@ -62,14 +63,14 @@ public class RecordWebservice {
     }
 
     @DeleteMapping("/{recordID}")
-    public RecordView removeRecord(@PathVariable(required = true) String recordID) throws SOAPNotFoundException, SOAPRentalException {
+    public RecordView removeRecord(@PathVariable String recordID) throws SOAPNotFoundException, SOAPRentalException {
         RecordView record = getRecordsUseCase.getRecordByID(recordID);
         removeRecordUseCase.removeRecord(recordID);
         return record;
     }
 
     @PutMapping("/{recordID}")
-    public RecordView modifyRecord(@PathVariable(required = true) String recordID, @RequestBody RecordView body)
+    public RecordView modifyRecord(@PathVariable String recordID, @RequestBody RecordView body)
             throws SOAPInputException, SOAPNotFoundException {
 
         try {

@@ -19,8 +19,7 @@ public class RentalEntity {
     private boolean active;
 
     public RentalEntity(UUID rentalID, UUID clientID, UUID recordID, LocalDateTime rentDate,
-                        LocalDateTime expectedReturnDate, LocalDateTime actualReturnDate, boolean active)
-            throws InputException {
+                        LocalDateTime expectedReturnDate, LocalDateTime actualReturnDate, boolean active) {
         this.rentalID = rentalID;
 
         this.clientID = clientID;
@@ -33,11 +32,11 @@ public class RentalEntity {
         this.actualReturnDate = actualReturnDate;
     }
 
-    public RentalEntity(UUID rentalID, UUID clientID, UUID recordID) throws PermissionException, InputException {
+    public RentalEntity(UUID rentalID, UUID clientID, UUID recordID) {
         this(rentalID, clientID, recordID, LocalDateTime.now(), LocalDateTime.now().plusDays(7), null, true);
     }
 
-    public RentalEntity(UUID clientID, UUID recordID) throws PermissionException, InputException {
+    public RentalEntity(UUID clientID, UUID recordID) {
         this(UUID.randomUUID(), clientID, recordID);
     }
 
@@ -63,6 +62,10 @@ public class RentalEntity {
 
     public LocalDateTime getActualReturnDate() {
         return actualReturnDate;
+    }
+
+    public void setActualReturnDate(LocalDateTime actualReturnDate) {
+        this.actualReturnDate = actualReturnDate;
     }
 
     public boolean isActive() {

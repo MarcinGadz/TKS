@@ -3,7 +3,6 @@ package com.edu.tks;
 import com.edu.tks.model.record.RecordSOAP;
 import com.edu.tks.soap.SoapServiceApplication;
 import io.restassured.RestAssured;
-import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
@@ -14,17 +13,15 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-import static io.restassured.RestAssured.given;
+import static com.edu.tks.TestUtils.*;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItems;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = SoapServiceApplication.class)
-class RecordWebserviceTest {
+class RecordSoapServiceTest {
 
     private static List<RecordSOAP> testData;
 
@@ -32,13 +29,12 @@ class RecordWebserviceTest {
     private int port;
 
     private String BASE_PATH;
-    private final String ENVELOPE = "Envelope.Body.";
 
     @PostConstruct
     private void init() {
         BASE_PATH = "http://localhost:" + port;
         testData = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 2; i++) {
             RecordSOAP newRecord = new RecordSOAP();
             newRecord.setRecordID("02cf35bf-d025-441b-a6ec-17cc6c68b02" + i);
             newRecord.setArtist("TestRecordArtistN" + i);
@@ -59,32 +55,13 @@ class RecordWebserviceTest {
         }
     }
 
-    private String pack(String content) {
-        return "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"" +
-                " xmlns:gs=\"http://model.tks.edu.com/record\">" +
-                "<soapenv:Header/>" +
-                "<soapenv:Body>" +
-                content +
-                "</soapenv:Body>" +
-                "</soapenv:Envelope>";
-    }
-
-    private Response sendRequest(String requestPayload) {
-        return given()
-                .header("content-type", "text/xml")
-                .and()
-                .body(requestPayload.getBytes(StandardCharsets.UTF_8))
-                .when()
-                .post("/ws");
-    }
-
     @Test
     public void getRecordById() {
         RestAssured.baseURI = BASE_PATH;
 
         String recordID = "02cf35bf-d025-440b-a6ec-17cc6c77b021";
 
-        String requestPayload = pack("<gs:getRecordByIdRequest>" +
+        String requestPayload = pack("record", "<gs:getRecordByIdRequest>" +
                 "<gs:id>" + recordID + "</gs:id>" +
                 "</gs:getRecordByIdRequest>");
 
@@ -101,7 +78,7 @@ class RecordWebserviceTest {
     void getRecordsTests() {
         RestAssured.baseURI = BASE_PATH;
 
-        String requestPayload = pack("<gs:getRecordsRequest/>");
+        String requestPayload = pack("record", "<gs:getRecordsRequest/>");
 
         sendRequest(requestPayload)
                 .then()
@@ -121,7 +98,7 @@ class RecordWebserviceTest {
 
         RecordSOAP record = testData.get(0);
 
-        String addPayload = pack("<gs:addRecordRequest>" +
+        String addPayload = pack("record", "<gs:addRecordRequest>" +
             "<gs:record>" +
             "<gs:recordID>" + record.getRecordID() + "</gs:recordID>" +
             "<gs:title>" + record.getTitle() + "</gs:title>" +
@@ -143,7 +120,7 @@ class RecordWebserviceTest {
                 .body("record.rented", equalTo(Boolean.toString(record.isRented())))
                 .extract().body().xmlPath().setRootPath(ENVELOPE + "addRecordResponse").getString("record.recordID");
 
-        String removePayload = pack("<gs:removeRecordRequest>" +
+        String removePayload = pack("record", "<gs:removeRecordRequest>" +
                 "<gs:recordID>" + addedID + "</gs:recordID>" +
                 "</gs:removeRecordRequest>"
         );

@@ -81,7 +81,7 @@ public class Rental {
         return active;
     }
 
-    public void archive() {
+    public void setActive() {
         this.active = false;
     }
 

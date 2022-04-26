@@ -35,9 +35,9 @@ public class RentalRepositoryAdapter implements GetRentals, AddRental, ArchiveRe
     }
 
     @Override
-    public void archiveRental(String rentalID) throws NotFoundException, InputException {
+    public Rental archiveRental(String rentalID) throws NotFoundException, InputException {
         try {
-            repo.archiveRentalEntity(rentalID);
+            return RentalConverter.convertRentalEntityToRental(repo.archiveRentalEntity(rentalID));
         } catch (com.edu.tks.repo.exception.NotFoundException e) {
             throw new NotFoundException(e.getMessage());
         } catch (com.edu.tks.repo.exception.InputException e) {

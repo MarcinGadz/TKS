@@ -48,7 +48,7 @@ class RecordWebserviceTest {
         };
         ResponseEntity<List<RecordView>> response = rest.exchange(BASE_PATH + "/records", HttpMethod.GET, null, typeRef);
         assertTrue(response.getStatusCode().is2xxSuccessful());
-        assertEquals(2, response.getBody().size());
+        assertEquals(3, response.getBody().size());
         assertEquals(INIT_DATA[0], response.getBody().get(0));
         assertEquals(INIT_DATA[1], response.getBody().get(1));
     }
@@ -80,6 +80,7 @@ class RecordWebserviceTest {
         assertEquals(LocalDate.parse(releaseDate), response.getBody().getReleaseDate());
         assertNotNull(response.getBody().getRecordID());
         response = rest.exchange(BASE_PATH + "/records/" + response.getBody().getRecordID().toString(), HttpMethod.DELETE, null, RecordView.class);
+        System.out.println(response);
         assertTrue(response.getStatusCode().is2xxSuccessful());
 
         ParameterizedTypeReference<List<RecordView>> typeRef = new ParameterizedTypeReference<>() {
