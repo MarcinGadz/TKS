@@ -13,7 +13,9 @@
         </xs:sequence>
     </xs:complexType>
 
-    <xs:element name="getRecordsRequest"/>
+    <xs:element name="getRecordsRequest">
+        <xs:complexType/>
+    </xs:element>
 
     <xs:element name="getRecordsResponse">
         <xs:complexType>

@@ -32,6 +32,7 @@ public class RecordSOAPConverter {
         recordSOAP.setTitle(record.getTitle());
         recordSOAP.setArtist(record.getArtist());
         recordSOAP.setReleaseDate(DateConversion.convertToXMLGregorianCalendar(record.getReleaseDate()));
+        recordSOAP.setRented(record.isRented());
         return recordSOAP;
     }
 }

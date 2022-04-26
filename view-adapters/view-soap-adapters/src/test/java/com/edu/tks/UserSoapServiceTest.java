@@ -26,15 +26,14 @@ class UserSoapServiceTest {
 
     private UserClient userClient;
 
-    private String BASE_PATH;
 
     @PostConstruct
     private void init() {
-        BASE_PATH = "http://localhost:" + port;
+        String BASE_PATH = "http://localhost:" + port;
 
         Jaxb2Marshaller marshaller = TestUtils.getUserMarshaller();
         userClient = new UserClient(port);
-        userClient.setDefaultUri("http://localhost:" + port + "/ws");
+        userClient.setDefaultUri(BASE_PATH + "/ws");
         userClient.setMarshaller(marshaller);
         userClient.setUnmarshaller(marshaller);
 
@@ -97,8 +96,6 @@ class UserSoapServiceTest {
 
     @Test
     public void testAddAndRemoveUser() {
-        RestAssured.baseURI = BASE_PATH;
-
         UserSOAP newUser = new UserSOAP();
         newUser.setUserID("93191668-0d08-42a5-8dc3-dae8a3a13f1b");
         newUser.setLogin("SOAPTestUser0");
@@ -119,8 +116,6 @@ class UserSoapServiceTest {
 
     @Test
     public void testDeactivateAndActivateUser() {
-        RestAssured.baseURI = BASE_PATH;
-
         String userID = "cebbee82-2398-4dc2-a94d-a4c863286ff0";
 
         UserSOAP deactivatedUser = userClient.deactivateUser(userID).getUser();

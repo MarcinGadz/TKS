@@ -34,9 +34,13 @@ public class TestUtils {
 
     public static Jaxb2Marshaller getUserMarshaller() {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-        // this package must match the package in the <generatePackage> specified in
-        // pom.xml
         marshaller.setContextPath("com.edu.tks.model.user");
+        return marshaller;
+    }
+
+    public static Jaxb2Marshaller getRecordMarshaller() {
+        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+        marshaller.setContextPath("com.edu.tks.model.record");
         return marshaller;
     }
 }

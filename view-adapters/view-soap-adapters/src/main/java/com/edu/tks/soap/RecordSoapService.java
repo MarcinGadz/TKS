@@ -30,7 +30,7 @@ public class RecordSoapService {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getRecordsRequest")
     @ResponsePayload
-    public GetRecordsResponse getRecords(GetUsersRequest request) {
+    public GetRecordsResponse getRecords() {
         GetRecordsResponse response = new GetRecordsResponse();
         for (RecordSOAP record : soapGetRecords.getAllRecords()) {
             response.getRecord().add(record);
