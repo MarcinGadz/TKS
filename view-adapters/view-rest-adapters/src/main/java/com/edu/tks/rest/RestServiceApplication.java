@@ -1,4 +1,4 @@
-package com.edu.tks.soap;
+package com.edu.tks.rest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

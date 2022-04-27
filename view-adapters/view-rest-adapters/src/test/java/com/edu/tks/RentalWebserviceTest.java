@@ -1,13 +1,10 @@
 package com.edu.tks;
 
-import com.edu.tks.exception.InputExceptionView;
-import com.edu.tks.exception.SOAPInputException;
-import com.edu.tks.exception.SOAPPermissionException;
-import com.edu.tks.model.RecordView;
-import com.edu.tks.model.RentalView;
-import com.edu.tks.model.UserTypeView;
-import com.edu.tks.soap.RestServiceApplication;
-import com.edu.tks.model.UserView;
+import com.edu.tks.rest.exception.InputExceptionView;
+import com.edu.tks.rest.model.RecordView;
+import com.edu.tks.rest.model.RentalView;
+import com.edu.tks.rest.RestServiceApplication;
+import com.edu.tks.rest.model.UserView;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

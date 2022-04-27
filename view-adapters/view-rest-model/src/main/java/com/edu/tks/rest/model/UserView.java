@@ -1,7 +1,7 @@
-package com.edu.tks.model;
+package com.edu.tks.rest.model;
 
-import com.edu.tks.exception.InputExceptionView;
-import com.edu.tks.exception.RentalExceptionView;
+import com.edu.tks.rest.exception.InputExceptionView;
+import com.edu.tks.rest.exception.RentalExceptionView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;

@@ -1,9 +1,8 @@
 package com.edu.tks.ports.aggregates.converters.view;
 
 import com.edu.tks.exception.InputException;
-import com.edu.tks.exception.InputExceptionView;
-import com.edu.tks.exception.SOAPInputException;
-import com.edu.tks.model.RentalView;
+import com.edu.tks.rest.exception.InputExceptionView;
+import com.edu.tks.rest.model.RentalView;
 import com.edu.tks.rental.Rental;
 
 public class RentalViewConverter {

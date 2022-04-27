@@ -1,7 +1,7 @@
-package com.edu.tks.model;
+package com.edu.tks.rest.model;
 
-import com.edu.tks.exception.InputExceptionView;
-import com.edu.tks.exception.RentalExceptionView;
+import com.edu.tks.rest.exception.InputExceptionView;
+import com.edu.tks.rest.exception.RentalExceptionView;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;

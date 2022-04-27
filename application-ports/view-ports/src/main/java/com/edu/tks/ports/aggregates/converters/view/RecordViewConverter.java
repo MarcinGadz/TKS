@@ -1,6 +1,6 @@
 package com.edu.tks.ports.aggregates.converters.view;
 
-import com.edu.tks.model.RecordView;
+import com.edu.tks.rest.model.RecordView;
 import com.edu.tks.record.Record;
 
 public class RecordViewConverter {

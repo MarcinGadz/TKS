@@ -4,7 +4,7 @@ import com.edu.tks.exception.NotFoundException;
 import com.edu.tks.exception.SOAPNotFoundException;
 import com.edu.tks.exception.RentalException;
 import com.edu.tks.exception.SOAPRentalException;
-import com.edu.tks.model.RecordView;
+import com.edu.tks.rest.model.RecordView;
 import com.edu.tks.ports.aggregates.converters.view.RecordViewConverter;
 import com.edu.tks.ports.view.service.record.AddRecordUseCase;
 import com.edu.tks.ports.view.service.record.GetRecordsUseCase;

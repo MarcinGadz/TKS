@@ -1,7 +1,7 @@
 package com.edu.tks.ports.aggregates.adapters.view;
 
 import com.edu.tks.exception.*;
-import com.edu.tks.model.UserView;
+import com.edu.tks.rest.model.UserView;
 import com.edu.tks.ports.aggregates.converters.view.UserViewConverter;
 import com.edu.tks.ports.view.service.user.AddUserUseCase;
 import com.edu.tks.ports.view.service.user.ExtendRentalsUseCase;

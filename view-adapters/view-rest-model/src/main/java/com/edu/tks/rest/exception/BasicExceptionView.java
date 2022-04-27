@@ -1,4 +1,4 @@
-package com.edu.tks.exception;
+package com.edu.tks.rest.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

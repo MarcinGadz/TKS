@@ -1,4 +1,4 @@
-package com.edu.tks.model;
+package com.edu.tks.rest.model;
 
 public enum UserTypeView {
     CLIENT,

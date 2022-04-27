@@ -1,7 +1,7 @@
 package com.edu.tks.ports.aggregates.adapters.view;
 
 import com.edu.tks.exception.*;
-import com.edu.tks.model.RentalView;
+import com.edu.tks.rest.model.RentalView;
 import com.edu.tks.ports.aggregates.converters.view.RentalViewConverter;
 import com.edu.tks.ports.view.service.rental.AddRentalUseCase;
 import com.edu.tks.ports.view.service.rental.ArchiveRentalsUseCase;

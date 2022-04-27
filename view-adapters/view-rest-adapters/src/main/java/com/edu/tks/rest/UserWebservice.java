@@ -1,12 +1,13 @@
-package com.edu.tks.soap;
+package com.edu.tks.rest;
 
-import com.edu.tks.exception.*;
-import com.edu.tks.model.UserTypeView;
-import com.edu.tks.model.UserView;
+import com.edu.tks.rest.exception.NotFoundExceptionView;
 import com.edu.tks.ports.view.service.user.AddUserUseCase;
 import com.edu.tks.ports.view.service.user.ExtendRentalsUseCase;
 import com.edu.tks.ports.view.service.user.GetUsersUseCase;
 import com.edu.tks.ports.view.service.user.RemoveUserUseCase;
+import com.edu.tks.rest.exception.*;
+import com.edu.tks.rest.model.UserTypeView;
+import com.edu.tks.rest.model.UserView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,17 +41,17 @@ public class UserWebservice {
 
 
     @GetMapping(path = "/{userID}")
-    public UserView getUserById(@PathVariable("userID") String userID) throws SOAPNotFoundException {
+    public UserView getUserById(@PathVariable("userID") String userID) throws NotFoundExceptionView {
         return getUsersUseCase.getUserByID(userID);
     }
 
     @PostMapping
-    public UserView addUser(@RequestBody UserView body) throws SOAPInputException {
+    public UserView addUser(@RequestBody UserView body) throws InputExceptionView {
         try {
             String login = body.getLogin();
 
             if (!login.matches("^[a-zA-Z0-9_-]{8,16}$")) {
-                throw new SOAPInputException("Login must be between 8 and 16 characters");
+                throw new InputExceptionView("Login must be between 8 and 16 characters");
             }
 
             UserTypeView type = body.getType();
@@ -62,13 +63,13 @@ public class UserWebservice {
         } catch (NullPointerException
                 | IllegalArgumentException
                 | IllegalStateException e) {
-            throw new SOAPInputException("Login Invalid");
+            throw new InputExceptionView("Login Invalid");
         }
     }
 
 
     @DeleteMapping("/{userID}")
-    public UserView deleteUser(@PathVariable("userID") String userID) throws BasicSOAPException, SOAPNotFoundException {
+    public UserView deleteUser(@PathVariable("userID") String userID) throws BasicExceptionView {
         UserView user = getUsersUseCase.getUserByID(userID);
         removeUserUseCase.removeUser(userID);
         return user;
@@ -76,11 +77,10 @@ public class UserWebservice {
 
 
     @PutMapping(path = "/{userID}/changeLogin")
-    public UserView changeUserLogin(@PathVariable String userID, @RequestBody UserView body) throws SOAPInputException,
-            SOAPNotFoundException {
+    public UserView changeUserLogin(@PathVariable String userID, @RequestBody UserView body) throws InputExceptionView {
         String login = body.getLogin();
         if (!login.matches("^[a-zA-Z0-9_-]{8,16}$")) {
-            throw new SOAPInputException("Login must be between 8 and 16 characters");
+            throw new InputExceptionView("Login must be between 8 and 16 characters");
         }
         UserView user = addUserUseCase.updateUserLogin(userID, login);
         return user;
@@ -88,19 +88,19 @@ public class UserWebservice {
 
 
     @PutMapping(path = "/{userID}/activate")
-    public UserView activateUser(@PathVariable String userID) throws SOAPNotFoundException, SOAPInputException {
+    public UserView activateUser(@PathVariable String userID) {
         return addUserUseCase.updateActive(userID, true);
     }
 
 
     @PutMapping(path = "/{userID}/deactivate")
-    public UserView deactivateUser(@PathVariable String userID) throws SOAPNotFoundException, SOAPInputException {
+    public UserView deactivateUser(@PathVariable String userID) {
         UserView user = addUserUseCase.updateActive(userID, false);
         return user;
     }
 
     @PostMapping("/{userId}/extend")
-    public void extendRentReturnDays(@PathVariable String userId, @RequestParam Integer days) throws SOAPPermissionException, SOAPRentalException, SOAPNotFoundException {
+    public void extendRentReturnDays(@PathVariable String userId, @RequestParam Integer days) throws NotFoundExceptionView, RentalExceptionView, PermissionExceptionView {
         extendRentalsUseCase.extendRentReturnDays(userId, days);
     }
 

@@ -1,7 +1,7 @@
 package com.edu.tks.ports.aggregates.converters.view;
 
-import com.edu.tks.model.UserTypeView;
-import com.edu.tks.model.UserView;
+import com.edu.tks.rest.model.UserTypeView;
+import com.edu.tks.rest.model.UserView;
 import com.edu.tks.user.User;
 import com.edu.tks.user.UserType;
 

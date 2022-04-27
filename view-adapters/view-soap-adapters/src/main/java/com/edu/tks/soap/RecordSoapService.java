@@ -48,17 +48,17 @@ public class RecordSoapService {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "addRecordRequest")
     @ResponsePayload
-    public AddRecordResponse addRecord(@RequestPayload AddRecordRequest request) throws InputExceptionView {
+    public AddRecordResponse addRecord(@RequestPayload AddRecordRequest request) throws SOAPInputException {
         RecordSOAP record = request.getRecord();
 
         String title = record.getTitle();
         if (!title.matches("^[a-zA-Z0-9_ -]{3,50}$")) {
-            throw new InputExceptionView("Title must be between 3 and 50 characters");
+            throw new SOAPInputException("Title must be between 3 and 50 characters");
         }
 
         String artist = record.getArtist();
         if (!artist.matches("^[a-zA-Z0-9_ -]{3,50}$")) {
-            throw new InputExceptionView("Artist name must be between 3 and 50 characters");
+            throw new SOAPInputException("Artist name must be between 3 and 50 characters");
         }
 
         AddRecordResponse response = new AddRecordResponse();
