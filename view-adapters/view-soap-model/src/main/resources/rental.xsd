@@ -15,7 +15,9 @@
         </xs:sequence>
     </xs:complexType>
 
-    <xs:element name="getAllRentalsRequest"/>
+    <xs:element name="getAllRentalsRequest">
+        <xs:complexType/>
+    </xs:element>
 
     <xs:element name="getAllRentalsResponse">
         <xs:complexType>
@@ -25,7 +27,9 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="getAllArchiveRentalsRequest"/>
+    <xs:element name="getAllArchiveRentalsRequest">
+        <xs:complexType/>
+    </xs:element>
 
     <xs:element name="getAllArchiveRentalsResponse">
         <xs:complexType>

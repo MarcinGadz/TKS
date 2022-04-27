@@ -43,4 +43,10 @@ public class TestUtils {
         marshaller.setContextPath("com.edu.tks.model.record");
         return marshaller;
     }
+
+    public static Jaxb2Marshaller getRentalMarshaller() {
+        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+        marshaller.setContextPath("com.edu.tks.model.rental");
+        return marshaller;
+    }
 }

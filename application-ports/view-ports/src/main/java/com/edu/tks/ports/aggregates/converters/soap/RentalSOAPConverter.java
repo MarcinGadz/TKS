@@ -13,8 +13,8 @@ public class RentalSOAPConverter {
         if (rental == null) return null;
         RentalSOAP rentalSoap = new RentalSOAP();
         rentalSoap.setRentalID(rental.getRentalID().toString());
-        rentalSoap.setRecordID(rental.getClientID());
-        rentalSoap.setClientID(rental.getRecordID());
+        rentalSoap.setRecordID(rental.getRecordID());
+        rentalSoap.setClientID(rental.getClientID());
         rentalSoap.setRentDate(DateConversion.convertToXMLGregorianCalendar(rental.getRentDate()));
         rentalSoap.setExpectedReturnDate(DateConversion.convertToXMLGregorianCalendar(rental.getExpectedReturnDate()));
         rentalSoap.setActualReturnDate(DateConversion.convertToXMLGregorianCalendar(rental.getActualReturnDate()));

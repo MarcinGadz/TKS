@@ -60,6 +60,8 @@ public class RentalSoapService {
     public ReturnRecordResponse returnRecord(@RequestPayload ReturnRecordRequest request) throws SOAPNotFoundException, SOAPInputException {
         RentalSOAP rental = soapGetRentals.getRentalByID(request.getRentalID());
 
+        System.out.println("Request clientID: " + request.getUserID());
+        System.out.println("Actual clientID: " + rental.getClientID());
         if (!rental.getClientID().equals(request.getUserID())) {
             System.out.println("THIS USER DOES NOT OWN THIS RECORD");
             throw new SOAPInputException("This user does not own this record!");
