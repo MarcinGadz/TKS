@@ -48,7 +48,6 @@ class RecordWebserviceTest {
         };
         ResponseEntity<List<RecordView>> response = rest.exchange(BASE_PATH + "/records", HttpMethod.GET, null, typeRef);
         assertTrue(response.getStatusCode().is2xxSuccessful());
-        assertEquals(3, response.getBody().size());
         assertEquals(INIT_DATA[0], response.getBody().get(0));
         assertEquals(INIT_DATA[1], response.getBody().get(1));
     }
@@ -73,18 +72,24 @@ class RecordWebserviceTest {
         String artist = "artist";
         String releaseDate = "2020-01-01";
         RecordView newRecord = new RecordView(title, artist, releaseDate);
+
         ResponseEntity<RecordView> response = rest.postForEntity(BASE_PATH + "/records", newRecord, RecordView.class);
         assertTrue(response.getStatusCode().is2xxSuccessful());
         assertEquals(title, response.getBody().getTitle());
         assertEquals(artist, response.getBody().getArtist());
         assertEquals(LocalDate.parse(releaseDate), response.getBody().getReleaseDate());
         assertNotNull(response.getBody().getRecordID());
-        response = rest.exchange(BASE_PATH + "/records/" + response.getBody().getRecordID().toString(), HttpMethod.DELETE, null, RecordView.class);
-        System.out.println(response);
-        assertTrue(response.getStatusCode().is2xxSuccessful());
 
         ParameterizedTypeReference<List<RecordView>> typeRef = new ParameterizedTypeReference<>() {
         };
+        ResponseEntity<List<RecordView>> withAdded = rest.exchange(BASE_PATH + "/records", HttpMethod.GET, null, typeRef);
+        assertTrue(withAdded.getStatusCode().is2xxSuccessful());
+        assertEquals(3, withAdded.getBody().size());
+
+        RecordView rec = withAdded.getBody().stream().filter(r -> r.getTitle().equals(title)).findFirst().orElseThrow();
+        response = rest.exchange(BASE_PATH + "/records/" + rec.getRecordID().toString(), HttpMethod.DELETE, null, RecordView.class);
+        assertTrue(response.getStatusCode().is2xxSuccessful());
+
         ResponseEntity<List<RecordView>> all = rest.exchange(BASE_PATH + "/records", HttpMethod.GET, null, typeRef);
         assertTrue(all.getStatusCode().is2xxSuccessful());
         assertEquals(2, all.getBody().size());

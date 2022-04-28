@@ -56,7 +56,6 @@ public class RecordWebservice {
         String releaseDate = body.getReleaseDate().toString();
 
         RecordView record = new RecordView(title, artist, releaseDate);
-
         addRecordUseCase.appendRecord(record);
         return record;
     }

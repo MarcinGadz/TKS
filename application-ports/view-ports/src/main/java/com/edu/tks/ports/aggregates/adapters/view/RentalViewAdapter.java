@@ -1,6 +1,8 @@
 package com.edu.tks.ports.aggregates.adapters.view;
 
 import com.edu.tks.exception.*;
+import com.edu.tks.rest.exception.InputExceptionView;
+import com.edu.tks.rest.exception.NotFoundExceptionView;
 import com.edu.tks.rest.model.RentalView;
 import com.edu.tks.ports.aggregates.converters.view.RentalViewConverter;
 import com.edu.tks.ports.view.service.rental.AddRentalUseCase;
@@ -20,24 +22,24 @@ public class RentalViewAdapter implements AddRentalUseCase, ArchiveRentalsUseCas
     private RentalService rentalService;
 
     @Override
-    public RentalView createRental(String clientID, String recordID) throws SOAPInputException, SOAPNotFoundException {
+    public RentalView createRental(String clientID, String recordID) throws InputExceptionView, NotFoundExceptionView {
         try {
             return RentalViewConverter.convertRentalToRentalView(rentalService.createRental(clientID, recordID));
         } catch (InputException e) {
-            throw new SOAPInputException(e.getMessage());
+            throw new InputExceptionView(e.getMessage());
         } catch (NotFoundException e) {
-            throw new SOAPNotFoundException(e.getMessage());
+            throw new NotFoundExceptionView(e.getMessage());
         }
     }
 
     @Override
-    public RentalView archiveRental(String rentalID) throws SOAPInputException, SOAPNotFoundException {
+    public RentalView archiveRental(String rentalID) throws InputExceptionView, NotFoundExceptionView {
         try {
             return RentalViewConverter.convertRentalToRentalView(rentalService.archiveRental(rentalID));
         } catch (NotFoundException e) {
-            throw new SOAPNotFoundException(e.getMessage());
+            throw new NotFoundExceptionView(e.getMessage());
         } catch (InputException e) {
-            throw new SOAPInputException(e.getMessage());
+            throw new InputExceptionView(e.getMessage());
         }
     }
 
@@ -58,11 +60,11 @@ public class RentalViewAdapter implements AddRentalUseCase, ArchiveRentalsUseCas
     }
 
     @Override
-    public RentalView getRentalByID(String rentalID) throws SOAPNotFoundException {
+    public RentalView getRentalByID(String rentalID) throws NotFoundExceptionView {
         try {
             return RentalViewConverter.convertRentalToRentalView(rentalService.getRentalByID(rentalID));
         } catch (NotFoundException e) {
-            throw new SOAPNotFoundException(e.getMessage());
+            throw new NotFoundExceptionView(e.getMessage());
         }
     }
 }

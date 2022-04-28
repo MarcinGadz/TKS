@@ -1,6 +1,7 @@
 package com.edu.tks.ports.aggregates.adapters.view;
 
 import com.edu.tks.exception.*;
+import com.edu.tks.rest.exception.*;
 import com.edu.tks.rest.model.UserView;
 import com.edu.tks.ports.aggregates.converters.view.UserViewConverter;
 import com.edu.tks.ports.view.service.user.AddUserUseCase;
@@ -21,20 +22,20 @@ public class UserViewAdapter implements AddUserUseCase, GetUsersUseCase, RemoveU
     private UserService userService;
 
     @Override
-    public void appendUser(UserView user) throws SOAPInputException {
+    public void appendUser(UserView user) throws InputExceptionView {
         try {
             userService.appendUser(UserViewConverter.convertUserViewToUser(user));
         } catch (InputException e) {
-            throw new SOAPInputException(e.getMessage());
+            throw new InputExceptionView(e.getMessage());
         }
     }
 
     @Override
-    public UserView updateUserLogin(String userid, String newLogin) throws SOAPInputException {
+    public UserView updateUserLogin(String userid, String newLogin) throws InputExceptionView {
         try {
             return UserViewConverter.convertUserToUserView(userService.updateUserLogin(userid, newLogin));
         } catch (InputException e) {
-            throw new SOAPInputException(e.getMessage());
+            throw new InputExceptionView(e.getMessage());
         }
     }
 
@@ -44,15 +45,15 @@ public class UserViewAdapter implements AddUserUseCase, GetUsersUseCase, RemoveU
     }
 
     @Override
-    public void extendRentReturnDays(String userId, int days) throws SOAPPermissionException, SOAPRentalException, SOAPNotFoundException {
+    public void extendRentReturnDays(String userId, int days) throws PermissionExceptionView, RentalExceptionView, NotFoundExceptionView {
         try {
             userService.extendRentReturnDays(userId, days);
         } catch (RentalException e) {
-            throw new SOAPRentalException(e.getMessage());
+            throw new RentalExceptionView(e.getMessage());
         } catch (PermissionException e) {
-            throw new SOAPPermissionException(e.getMessage());
+            throw new PermissionExceptionView(e.getMessage());
         } catch (NotFoundException e) {
-            throw new SOAPNotFoundException(e.getMessage());
+            throw new NotFoundExceptionView(e.getMessage());
         }
     }
 
@@ -65,11 +66,11 @@ public class UserViewAdapter implements AddUserUseCase, GetUsersUseCase, RemoveU
     }
 
     @Override
-    public UserView getUserByID(String userid) throws SOAPNotFoundException {
+    public UserView getUserByID(String userid) throws NotFoundExceptionView {
         try {
             return UserViewConverter.convertUserToUserView(userService.getUserByID(userid));
         } catch (NotFoundException e) {
-            throw new SOAPNotFoundException(e.getMessage());
+            throw new NotFoundExceptionView(e.getMessage());
         }
     }
 
@@ -87,11 +88,11 @@ public class UserViewAdapter implements AddUserUseCase, GetUsersUseCase, RemoveU
     }
 
     @Override
-    public void removeUser(String userid) throws BasicSOAPException {
+    public void removeUser(String userid) throws BasicExceptionView {
         try {
             userService.removeUser(userid);
         } catch (BasicException e) {
-            throw new BasicSOAPException(e.getMessage());
+            throw new BasicExceptionView(e.getMessage());
         }
     }
 }
