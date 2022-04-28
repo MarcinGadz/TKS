@@ -8,8 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
                 "com.edu.tks.*"
         }
 )
-public class SoapServiceApplication {
+public class SOAPApplication {
     public static void main(String[] args) {
-        SpringApplication.run(SoapServiceApplication.class, args);
+        SpringApplication.run(SOAPApplication.class, args);
     }
 }

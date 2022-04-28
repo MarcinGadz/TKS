@@ -3,8 +3,7 @@ package com.edu.tks;
 import com.edu.tks.clients.UserClient;
 import com.edu.tks.model.user.UserSOAP;
 import com.edu.tks.model.user.UserTypeSOAP;
-import com.edu.tks.soap.SoapServiceApplication;
-import io.restassured.RestAssured;
+import com.edu.tks.soap.SOAPApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
@@ -16,7 +15,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = SoapServiceApplication.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = SOAPApplication.class)
 class UserSoapServiceTest {
 
     private List<UserSOAP> testData;

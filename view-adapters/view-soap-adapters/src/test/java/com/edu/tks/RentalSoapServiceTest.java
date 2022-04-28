@@ -2,7 +2,7 @@ package com.edu.tks;
 
 import com.edu.tks.clients.RentalClient;
 import com.edu.tks.model.rental.RentalSOAP;
-import com.edu.tks.soap.SoapServiceApplication;
+import com.edu.tks.soap.SOAPApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
@@ -20,7 +20,7 @@ import java.util.List;
 import static com.edu.tks.TestUtils.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = SoapServiceApplication.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = SOAPApplication.class)
 class RentalSoapServiceTest {
 
     private static List<RentalSOAP> testDataActive;
