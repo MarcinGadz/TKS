@@ -1,0 +1,38 @@
+[
+  {
+    "userID": "cebbee82-2398-4dc2-a94d-a4c863286ff0",
+    "login": "Eleanora",
+    "type": "CLIENT",
+    "active": true
+  },
+  {
+    "userID": "bbe979ba-ed9c-4028-8c18-97740c25ae99",
+    "login": "Jason",
+    "type": "CLIENT",
+    "active": false
+  },
+  {
+    "userID": "c6f3fbf7-135b-498e-8154-3a5b9d291145",
+    "login": "Chidi",
+    "type": "CLIENT",
+    "active": true
+  },
+  {
+    "userID": "f6abb370-5dbb-4473-bf8d-505bdcf6ccce",
+    "login": "Tahani",
+    "type": "CLIENT",
+    "active": true
+  },
+  {
+    "userID": "73d2c12b-179e-4700-879d-8e3de56fe55f",
+    "login": "Michael",
+    "type": "ADMINISTRATOR",
+    "active": true
+  },
+  {
+    "userID": "bfac0aaa-e7d2-4e33-9fa9-8111b14bcd58",
+    "login": "DiscoJanet",
+    "type": "CLIENT",
+    "active": true
+  }
+]

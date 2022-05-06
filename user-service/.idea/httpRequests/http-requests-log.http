@@ -1,0 +1,30 @@
+GET http://localhost:8080/record-shop/users
+
+<> 2022-05-06T210252.200.json
+
+###
+
+GET http://localhost:8080/record-shop/user
+
+<> 2022-05-06T210247.404.json
+
+###
+
+GET http://localhost:8080/api/user
+
+<> 2022-05-06T210215.404.html
+
+###
+
+GET http://localhost:8080/api/users
+
+<> 2022-05-06T210208.404.html
+
+###
+
+GET http://localhost:8080/users
+
+<> 2022-05-06T210201.404.html
+
+###
+

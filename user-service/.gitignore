@@ -1,0 +1,4 @@
+*/target/
+target/
+/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/
+/view-adapters/view-soap-model/src/main/java/META-INF/JAXB/
