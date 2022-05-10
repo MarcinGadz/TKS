@@ -1,0 +1,76 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://model.tks.edu.com/rental"
+           targetNamespace="http://model.tks.edu.com/rental"
+           elementFormDefault="qualified">
+
+    <xs:complexType name="RentalSOAP">
+        <xs:sequence>
+            <xs:element name="rentalID" type="xs:string"/>
+            <xs:element name="clientID" type="xs:string"/>
+            <xs:element name="recordID" type="xs:string"/>
+            <xs:element name="rentDate" type="xs:date"/>
+            <xs:element name="expectedReturnDate" type="xs:date"/>
+            <xs:element name="actualReturnDate" type="xs:date"/>
+            <xs:element name="active" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="getAllRentalsRequest">
+        <xs:complexType/>
+    </xs:element>
+
+    <xs:element name="getAllRentalsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="rental" type="tns:RentalSOAP" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAllArchiveRentalsRequest">
+        <xs:complexType/>
+    </xs:element>
+
+    <xs:element name="getAllArchiveRentalsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="rental" type="tns:RentalSOAP" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="rentRecordRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userID" type="xs:string"/>
+                <xs:element name="recordID" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="rentRecordResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="rental" type="tns:RentalSOAP"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="returnRecordRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userID" type="xs:string"/>
+                <xs:element name="rentalID" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="returnRecordResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="rental" type="tns:RentalSOAP"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

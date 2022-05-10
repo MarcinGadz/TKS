@@ -54,7 +54,6 @@
                     <sources>
                         <source>${project.basedir}/src/main/resources/rental.xsd</source>
                         <source>${project.basedir}/src/main/resources/record.xsd</source>
-                        <source>${project.basedir}/src/main/resources/user.xsd</source>
                     </sources>
                     <outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
                     <clearOutputDir>false</clearOutputDir>
