@@ -39,7 +39,7 @@ class RecordWebserviceTest {
 
     @PostConstruct
     private void setBasePath() {
-        BASE_PATH = "http://localhost:" + port + "/record-shop";
+        BASE_PATH = "http://localhost:" + port + "/";
     }
 
     @Test

@@ -1,6 +1,5 @@
 #!/bin/bash
-
-mvn package
+mvn clean package -DskipTests=true
 cd application-runner || exit
 mkdir target/dependency
 cd target/dependency

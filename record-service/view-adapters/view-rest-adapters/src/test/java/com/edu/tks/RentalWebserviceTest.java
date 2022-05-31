@@ -68,7 +68,7 @@ class RentalWebserviceTest {
 
     @PostConstruct
     private void setBasePath() {
-        BASE_PATH = "http://localhost:" + port + "/record-shop/users/";
+        BASE_PATH = "http://localhost:" + port + "/clients/";
     }
 
     @Test

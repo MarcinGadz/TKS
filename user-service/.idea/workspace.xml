@@ -4,14 +4,100 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="43e131b5-4d85-4b43-8d49-7d1dd6edb886" name="Changes" comment="" />
+    <list default="true" id="43e131b5-4d85-4b43-8d49-7d1dd6edb886" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../eureka-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../record-service/application-runner/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/application-runner/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../record-service/application-runner/src/main/java/com/edu/tks/applicationrunner/ApplicationRunnerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/application-runner/src/main/java/com/edu/tks/applicationrunner/ApplicationRunnerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../record-service/application-runner/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/application-runner/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../record-service/build-image.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/build-image.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-rest-adapters/src/main/java/com/edu/tks/rest/RentalWebservice.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/view-adapters/view-rest-adapters/src/main/java/com/edu/tks/rest/RentalWebservice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-rest-adapters/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-rest-adapters/src/test/java/com/edu/tks/RecordWebserviceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/view-adapters/view-rest-adapters/src/test/java/com/edu/tks/RecordWebserviceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-rest-adapters/src/test/java/com/edu/tks/RentalWebserviceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/view-adapters/view-rest-adapters/src/test/java/com/edu/tks/RentalWebserviceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/AddRecordRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/AddRecordRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/AddRecordResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/AddRecordResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/GetRecordByIdRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/GetRecordByIdRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/GetRecordByIdResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/GetRecordByIdResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/GetRecordsRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/GetRecordsRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/GetRecordsResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/GetRecordsResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/ModifyRecordRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/ModifyRecordRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/ModifyRecordResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/ModifyRecordResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/ObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/ObjectFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/RecordSOAP.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/RecordSOAP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/RemoveRecordRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/RemoveRecordRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/RemoveRecordResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/RemoveRecordResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_11.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_11.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_13_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_13_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_13_2_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_13_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_13_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_parameter_names_2_13_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_17_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_to_slf4j_2_17_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_9_0_62.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_el_9_0_62.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_websocket_9_0_62.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_2_6_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_2_6_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_2_6_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_json_2_6_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_2_6_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_2_6_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_2_6_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_2_6_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_services_2_6_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_2_6_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_2_6_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_5_3_19.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_5_3_19.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_5_3_19.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_5_3_19.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_5_3_19.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jcl_5_3_19.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_oxm_5_3_19.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_5_3_19.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_5_3_19.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_5_3_19.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_ws_spring_ws_core_3_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_ws_spring_xml_3_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application-core/domain-model/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/application-core/domain-model/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application-runner/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/application-runner/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application-runner/src/main/java/com/edu/tks/applicationrunner/ApplicationRunnerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/application-runner/src/main/java/com/edu/tks/applicationrunner/ApplicationRunnerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application-runner/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/application-runner/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-image.sh" beforeDir="false" afterPath="$PROJECT_DIR$/build-image.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view-adapters/view-rest-adapters/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/view-adapters/view-rest-adapters/src/test/java/com/edu/tks/UserWebserviceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/view-adapters/view-rest-adapters/src/test/java/com/edu/tks/UserWebserviceTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="4" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -29,15 +115,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/dynia/dev/java/TKS/user-service",
-    "spring.configuration.checksum": "e042f4b6618f4ab9536eac6ec6768813"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ssbd/ssbd202202" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/application-runner" />
@@ -95,6 +183,13 @@
       <workItem from="1651863572204" duration="224000" />
       <workItem from="1651873533867" duration="1164000" />
       <workItem from="1652199000877" duration="68000" />
+      <workItem from="1652972703035" duration="2197000" />
+      <workItem from="1652993183358" duration="262000" />
+      <workItem from="1654019964796" duration="577000" />
+      <workItem from="1654023562192" duration="448000" />
+      <workItem from="1654032874530" duration="4578000" />
+      <workItem from="1654038183646" duration="6000" />
+      <workItem from="1654038590935" duration="1159000" />
     </task>
     <servers />
   </component>

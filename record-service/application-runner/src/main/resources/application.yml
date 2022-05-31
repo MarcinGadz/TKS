@@ -1,0 +1,25 @@
+eureka:
+  client:
+    enabled: true
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: "http://172.44.0.99:8761/eureka"
+  instance:
+    prefer-ip-address: true
+spring:
+  cloud:
+    inetutils:
+      timeout-seconds: 5
+  application:
+    name: recordservice
+#management:
+#  endpoint:
+#    beans:
+#      enabled: true
+#    info:
+#      enabled: true
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"

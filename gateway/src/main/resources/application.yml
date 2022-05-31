@@ -1,0 +1,20 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.44.0.99:8761/eureka
+  instance:
+    prefer-ip-address: true
+spring:
+  application:
+    name: cloud-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: userservice
+          uri: lb://userservice
+          predicates:
+            - Path=/users/**
+        - id: recordservice
+          uri: lb://recordservice
+          predicates:
+            - Path=/clients/**,/records/**

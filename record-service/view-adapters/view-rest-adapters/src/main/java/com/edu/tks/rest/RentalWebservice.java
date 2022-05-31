@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("users")
+@RequestMapping("clients")
 public class RentalWebservice {
 
     private final AddRentalUseCase addRentalUseCase;
