@@ -13,13 +13,13 @@ spring:
       timeout-seconds: 5
   application:
     name: recordservice
-#management:
-#  endpoint:
-#    beans:
-#      enabled: true
-#    info:
-#      enabled: true
-#  endpoints:
-#    web:
-#      exposure:
-#        include: "*"
+management:
+  endpoint:
+    beans:
+      enabled: true
+    info:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"

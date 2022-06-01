@@ -120,6 +120,32 @@
     <orderEntry type="module" module-name="application-services" />
     <orderEntry type="module" module-name="repository-ports" />
     <orderEntry type="module" module-name="repositories-adapters" />
+    <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-stream-binder-kafka:3.2.4" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-stream-binder-kafka-core:3.2.4" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.integration:spring-integration-kafka:5.5.9" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-stream:3.2.4" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-validation:2.6.4" level="project" />
+    <orderEntry type="library" name="Maven: org.hibernate.validator:hibernate-validator:6.2.2.Final" level="project" />
+    <orderEntry type="library" name="Maven: jakarta.validation:jakarta.validation-api:2.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.jboss.logging:jboss-logging:3.4.3.Final" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml:classmate:1.5.1" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-messaging:5.3.16" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.integration:spring-integration-core:5.5.9" level="project" />
+    <orderEntry type="library" name="Maven: io.projectreactor:reactor-core:3.4.15" level="project" />
+    <orderEntry type="library" name="Maven: org.reactivestreams:reactive-streams:1.0.3" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.integration:spring-integration-jmx:5.5.9" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.retry:spring-retry:1.3.1" level="project" />
+    <orderEntry type="library" name="Maven: javax.annotation:javax.annotation-api:1.3.2" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-function-context:3.2.5" level="project" />
+    <orderEntry type="library" name="Maven: net.jodah:typetools:0.6.2" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-function-core:3.2.5" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.kafka:kafka-clients:3.0.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.github.luben:zstd-jni:1.5.0-2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.lz4:lz4-java:1.7.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.xerial.snappy:snappy-java:1.1.8.1" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.kafka:spring-kafka:2.8.3" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.3.16" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.google.code.findbugs:jsr305:3.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.4" level="project" />
     <orderEntry type="module" module-name="view-ports" />
     <orderEntry type="module" module-name="domain-model" />

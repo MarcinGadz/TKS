@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Bean;
                 "com.edu.tks.*"
         }
 )
-@EnableEurekaClient
+//@EnableEurekaClient
 public class ApplicationRunnerApplication {
     public static void main(String[] args) {
         SpringApplication.run(ApplicationRunnerApplication.class, args);
