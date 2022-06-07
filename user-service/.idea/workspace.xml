@@ -5,17 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="43e131b5-4d85-4b43-8d49-7d1dd6edb886" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../record-service/application-core/application-services/src/main/java/com/edu/tks/service/event/KafkaStream.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/event/MessageDeSerializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/event/MessageEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/event/MessageSerializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/event/NumberPublisher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/event/TestComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../record-service/application-core/application-services/src/main/java/com/edu/tks/service/client/ClientMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../record-service/application-core/application-services/src/main/java/com/edu/tks/service/client/ClientService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../record-service/application-core/application-services/src/main/java/com/edu/tks/service/client/IncomingEventType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../record-service/application-core/application-services/src/main/java/com/edu/tks/service/client/MessageDeSerializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../record-service/application-core/application-services/src/main/java/com/edu/tks/service/client/MessageSerializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../record-service/application-core/domain-model/src/main/java/com/edu/tks/client/Client.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../record-service/application-ports/repository-ports/src/main/java/com/edu/tks/ports/aggregates/adapters/repository/ClientRepositoryAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../record-service/application-ports/repository-ports/src/main/java/com/edu/tks/ports/aggregates/converters/repository/ClientConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../record-service/application-ports/repository-ports/src/main/java/com/edu/tks/ports/infrastructure/repository/client/EditClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../record-service/application-ports/repository-ports/src/main/java/com/edu/tks/ports/infrastructure/repository/client/ReadClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../record-service/repositories-adapters/src/main/java/com/edu/tks/repo/entity/ClientEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../record-service/repositories-adapters/src/main/java/com/edu/tks/repo/repositories/ClientRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/user/EventType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/user/UserMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../record-service/application-core/application-services/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/application-core/application-services/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../record-service/application-runner/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/application-runner/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../record-service/application-runner/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/application-runner/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../record-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/AddRecordRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/AddRecordRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/AddRecordResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/AddRecordResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/GetRecordByIdRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/GetRecordByIdRequest.java" afterDir="false" />
@@ -30,14 +35,13 @@
       <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/RemoveRecordResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/RemoveRecordResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/package-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application-core/application-services/application-services.iml" beforeDir="false" afterPath="$PROJECT_DIR$/application-core/application-services/application-services.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application-core/application-services/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/application-core/application-services/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application-ports/view-ports/view-ports.iml" beforeDir="false" afterPath="$PROJECT_DIR$/application-ports/view-ports/view-ports.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application-runner/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/application-runner/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/event/MessageDeSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/event/MessageDeSerializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/event/MessageEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/event/MessageSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/event/MessageSerializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/event/NumberPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/event/NumberPublisher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/event/TestComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/user/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application-runner/src/main/java/com/edu/tks/applicationrunner/ApplicationRunnerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/application-runner/src/main/java/com/edu/tks/applicationrunner/ApplicationRunnerApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application-runner/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/application-runner/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view-adapters/view-rest-adapters/view-rest-adapters.iml" beforeDir="false" afterPath="$PROJECT_DIR$/view-adapters/view-rest-adapters/view-rest-adapters.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view-adapters/view-soap-adapters/view-soap-adapters.iml" beforeDir="false" afterPath="$PROJECT_DIR$/view-adapters/view-soap-adapters/view-soap-adapters.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +53,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -65,6 +70,29 @@
   </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="4" />
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="dev" />
+                    <option name="lastUsedInstant" value="1654125061" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1654125060" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$/.." />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -160,7 +188,9 @@
       <workItem from="1654032874530" duration="4578000" />
       <workItem from="1654038183646" duration="6000" />
       <workItem from="1654038590935" duration="1159000" />
-      <workItem from="1654113350027" duration="11112000" />
+      <workItem from="1654113350027" duration="11327000" />
+      <workItem from="1654463199407" duration="1968000" />
+      <workItem from="1654610728819" duration="7039000" />
     </task>
     <servers />
   </component>

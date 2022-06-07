@@ -40,39 +40,39 @@ services:
                         - 8080
                 ports:
                         - "8080:8080"
-        # recordservice:
-        #         image: tks/recordservice:latest
-        #         container_name: recordservice
-        #         hostname: recordservice
-        #         networks:
-        #                 test-net:
-        #                         ipv4_address: 172.44.0.4
-        #         expose:
-        #                 - 8080
-        #         ports:
-        #                 - "8081:8080"
-        # gateway:
-        #         image: tks/gateway:latest
-        #         container_name: gateway
-        #         hostname: gateway
-        #         networks:
-        #                 test-net:
-        #                         ipv4_address: 172.44.0.10
-        #         expose:
-        #                 -       8080
-        #         ports:
-        #                 -       "5555:8080"
-        # eureka:
-        #         image: tks/eureka:latest
-        #         container_name: eureka
-        #         hostname: eureka
-        #         networks:
-        #                 test-net:
-        #                         ipv4_address: 172.44.0.99
-        #         expose:
-        #                 - 8761
-        #         ports:
-        #                 - "8761:8761"
+        recordservice:
+                image: tks/recordservice:latest
+                container_name: recordservice
+                hostname: recordservice
+                networks:
+                        test-net:
+                                ipv4_address: 172.44.0.4
+                expose:
+                        - 8080
+                ports:
+                        - "8081:8080"
+        gateway:
+                image: tks/gateway:latest
+                container_name: gateway
+                hostname: gateway
+                networks:
+                        test-net:
+                                ipv4_address: 172.44.0.10
+                expose:
+                        -       8080
+                ports:
+                        -       "5555:8080"
+        eureka:
+                image: tks/eureka:latest
+                container_name: eureka
+                hostname: eureka
+                networks:
+                        test-net:
+                                ipv4_address: 172.44.0.99
+                expose:
+                        - 8761
+                ports:
+                        - "8761:8761"
 networks:
   test-net:
     ipam:
