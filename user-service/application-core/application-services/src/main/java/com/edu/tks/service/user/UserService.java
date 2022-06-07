@@ -6,9 +6,12 @@ import com.edu.tks.ports.infrastructure.repository.user.GetUsers;
 import com.edu.tks.ports.infrastructure.repository.user.RemoveUser;
 import com.edu.tks.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static com.edu.tks.service.user.EventType.*;
 
 @Service
 public class UserService {
@@ -16,6 +19,10 @@ public class UserService {
     private final AddUser addUser;
     private final GetUsers getUsers;
     private final RemoveUser removeUser;
+    private final static String CHANNEL_OUT = "producer-out-0";
+
+    @Autowired
+    private StreamBridge streamBridge;
 
     @Autowired
     public UserService(AddUser addUser, GetUsers getUsers, RemoveUser removeUser) {
@@ -55,17 +62,23 @@ public class UserService {
 
     
     public synchronized void appendUser(User user) throws InputException {
+        user.deactivate();
         addUser.appendUser(user);
+        streamBridge.send(CHANNEL_OUT, new UserMessage(user.getUserID().toString(), CREATE));
     }
 
     
     public User updateActive(String userId, boolean active) {
-        return addUser.updateActive(userId, active);
+        var user = addUser.updateActive(userId, active);
+        streamBridge.send(CHANNEL_OUT, new UserMessage(userId, active ? ACTIVATE : DEACTIVATE));
+        return user;
     }
 
     
     public synchronized User removeUser(String userid) throws BasicException {
-        return removeUser.removeUser(userid);
+        var user = removeUser.removeUser(userid);
+        streamBridge.send(CHANNEL_OUT, new UserMessage(userid, REMOVE));
+        return user;
     }
 }
 
