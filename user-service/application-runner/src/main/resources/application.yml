@@ -12,18 +12,17 @@ spring:
     inetutils:
       timeout-seconds: 5
     function:
-      definition: producer
-#      definition: consumer;producer
+      definition: consumer;producer
     stream:
       bindings:
         producer-out-0:
-          destination: firsttopic
+          destination: add-topic
           producer:
             useNativeEncoding: true
-#        consumer-in-0:
-#          destination: firsttopic
-#          consumer:
-#            useNativeDecoding: true
+        consumer-in-0:
+          destination: confirm-topic
+          consumer:
+            useNativeDecoding: true
       kafka:
         binder:
           brokers: 172.44.0.88:9092
@@ -32,10 +31,10 @@ spring:
             producer:
               configuration:
                 value.serializer: com.edu.tks.service.event.MessageSerializer
-#          consumer-in-0:
-#            consumer:
-#              configuration:
-#                value.deserializer: com.edu.tks.service.event.MessageDeSerializer
+          consumer-in-0:
+            consumer:
+              configuration:
+                value.deserializer: com.edu.tks.service.event.MessageDeSerializer
 
   application:
     name: userservice

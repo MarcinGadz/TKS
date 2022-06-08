@@ -10,19 +10,29 @@ public class UserEntity implements Cloneable {
     private String login;
     private UserTypeEntity type;
     private boolean active;
+    private boolean pending;
+
+    public boolean isPending() {
+        return pending;
+    }
+
+    public void setPending(boolean pending) {
+        this.pending = pending;
+    }
 
     public UserEntity() {
     }
 
     public UserEntity(String login, UserTypeEntity type) {
-        this(UUID.randomUUID(), login, false, type);
+        this(UUID.randomUUID(), login, false, type, false);
     }
 
-    public UserEntity(UUID userID, String login, boolean isActive, UserTypeEntity type) {
+    public UserEntity(UUID userID, String login, boolean isActive, UserTypeEntity type, boolean pending) {
         this.userID = userID;
         this.login = login;
         this.active = isActive;
         this.type = type;
+        this.pending = pending;
     }
 
     public UUID getUserID() {

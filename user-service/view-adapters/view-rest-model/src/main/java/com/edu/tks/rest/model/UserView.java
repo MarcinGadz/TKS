@@ -15,6 +15,15 @@ public class UserView implements Cloneable {
     private String login;
     private UserTypeView type;
     private boolean active = false;
+    private boolean pending;
+
+    public boolean isPending() {
+        return pending;
+    }
+
+    public void setPending(boolean pending) {
+        this.pending = pending;
+    }
 
     public UserView() {
     }

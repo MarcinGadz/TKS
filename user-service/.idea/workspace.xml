@@ -4,22 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="43e131b5-4d85-4b43-8d49-7d1dd6edb886" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../record-service/application-core/application-services/src/main/java/com/edu/tks/service/client/ClientMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../record-service/application-core/application-services/src/main/java/com/edu/tks/service/client/ClientService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../record-service/application-core/application-services/src/main/java/com/edu/tks/service/client/IncomingEventType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../record-service/application-core/application-services/src/main/java/com/edu/tks/service/client/MessageDeSerializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../record-service/application-core/application-services/src/main/java/com/edu/tks/service/client/MessageSerializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../record-service/application-core/domain-model/src/main/java/com/edu/tks/client/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../record-service/application-ports/repository-ports/src/main/java/com/edu/tks/ports/aggregates/adapters/repository/ClientRepositoryAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../record-service/application-ports/repository-ports/src/main/java/com/edu/tks/ports/aggregates/converters/repository/ClientConverter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../record-service/application-ports/repository-ports/src/main/java/com/edu/tks/ports/infrastructure/repository/client/EditClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../record-service/application-ports/repository-ports/src/main/java/com/edu/tks/ports/infrastructure/repository/client/ReadClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../record-service/repositories-adapters/src/main/java/com/edu/tks/repo/entity/ClientEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../record-service/repositories-adapters/src/main/java/com/edu/tks/repo/repositories/ClientRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/user/EventType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/user/UserMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../record-service/application-core/application-services/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/application-core/application-services/pom.xml" afterDir="false" />
+    <list default="true" id="43e131b5-4d85-4b43-8d49-7d1dd6edb886" name="Changes" comment="Working communication between services with Apache Kafka">
+      <change beforePath="$PROJECT_DIR$/../record-service/application-core/application-services/src/main/java/com/edu/tks/service/client/ClientMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/application-core/application-services/src/main/java/com/edu/tks/service/client/ClientMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../record-service/application-core/application-services/src/main/java/com/edu/tks/service/client/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/application-core/application-services/src/main/java/com/edu/tks/service/client/ClientService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../record-service/application-core/application-services/src/main/java/com/edu/tks/service/client/IncomingEventType.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/application-core/application-services/src/main/java/com/edu/tks/service/client/EventType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../record-service/application-runner/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/application-runner/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/AddRecordRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/AddRecordRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/AddRecordResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/AddRecordResponse.java" afterDir="false" />
@@ -35,13 +23,18 @@
       <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/RemoveRecordResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/RemoveRecordResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/../record-service/view-adapters/view-soap-model/src/main/java/com/edu/tks/model/record/package-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/event/MessageDeSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/event/MessageDeSerializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/event/MessageEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/event/MessageSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/event/MessageSerializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/event/NumberPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/event/NumberPublisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/event/TestComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/user/EventType.java" beforeDir="false" afterPath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/user/EventType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/application-core/application-services/src/main/java/com/edu/tks/service/user/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application-runner/src/main/java/com/edu/tks/applicationrunner/ApplicationRunnerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/application-runner/src/main/java/com/edu/tks/applicationrunner/ApplicationRunnerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application-core/domain-model/src/main/java/com/edu/tks/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/application-core/domain-model/src/main/java/com/edu/tks/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application-ports/repository-ports/src/main/java/com/edu/tks/ports/aggregates/converters/repository/UserConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/application-ports/repository-ports/src/main/java/com/edu/tks/ports/aggregates/converters/repository/UserConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application-ports/view-ports/src/main/java/com/edu/tks/ports/aggregates/converters/soap/UserSOAPConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/application-ports/view-ports/src/main/java/com/edu/tks/ports/aggregates/converters/soap/UserSOAPConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application-ports/view-ports/src/main/java/com/edu/tks/ports/aggregates/converters/view/UserViewConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/application-ports/view-ports/src/main/java/com/edu/tks/ports/aggregates/converters/view/UserViewConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application-runner/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/application-runner/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories-adapters/src/main/java/com/edu/tks/repo/entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories-adapters/src/main/java/com/edu/tks/repo/entity/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories-adapters/src/main/java/com/edu/tks/repo/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories-adapters/src/main/java/com/edu/tks/repo/repositories/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view-adapters/view-rest-adapters/src/main/java/com/edu/tks/rest/UserWebservice.java" beforeDir="false" afterPath="$PROJECT_DIR$/view-adapters/view-rest-adapters/src/main/java/com/edu/tks/rest/UserWebservice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view-adapters/view-rest-model/src/main/java/com/edu/tks/rest/model/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/view-adapters/view-rest-model/src/main/java/com/edu/tks/rest/model/UserView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view-adapters/view-soap-model/src/main/resources/user.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/view-adapters/view-soap-model/src/main/resources/user.xsd" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,8 +45,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -125,6 +118,9 @@
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.edu.tks.service.user" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/application-runner" />
       <recent name="$PROJECT_DIR$" />
@@ -190,8 +186,17 @@
       <workItem from="1654038590935" duration="1159000" />
       <workItem from="1654113350027" duration="11327000" />
       <workItem from="1654463199407" duration="1968000" />
-      <workItem from="1654610728819" duration="7039000" />
+      <workItem from="1654610728819" duration="7565000" />
+      <workItem from="1654725074160" duration="3587000" />
     </task>
+    <task id="LOCAL-00001" summary="Working communication between services with Apache Kafka">
+      <created>1654619775433</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1654619775434</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,5 +212,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Working communication between services with Apache Kafka" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working communication between services with Apache Kafka" />
   </component>
 </project>

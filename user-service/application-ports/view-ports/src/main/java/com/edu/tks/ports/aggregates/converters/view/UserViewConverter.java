@@ -20,7 +20,8 @@ public class UserViewConverter {
                 userView.getUserID(),
                 userView.getLogin(),
                 userView.isActive(),
-                convertUserTypeViewToUserType(userView.getType())
+                convertUserTypeViewToUserType(userView.getType()),
+                userView.isPending()
         );
     }
 

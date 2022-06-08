@@ -41,7 +41,8 @@ public class UserSOAPConverter {
                 UUID.fromString(userSOAP.getUserID()),
                 userSOAP.getLogin(),
                 userSOAP.isActive(),
-                convertUserTypeSOAPToUserType(userSOAP.getType())
+                convertUserTypeSOAPToUserType(userSOAP.getType()),
+                userSOAP.isPending()
         );
     }
 

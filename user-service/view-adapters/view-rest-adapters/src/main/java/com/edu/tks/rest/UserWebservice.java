@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("users")
@@ -19,7 +20,7 @@ public class UserWebservice {
     private final AddUserUseCase addUserUseCase;
     private final GetUsersUseCase getUsersUseCase;
     private final RemoveUserUseCase removeUserUseCase;
-
+    private final static Logger logger = Logger.getLogger(UserWebservice.class.getName());
     @Autowired
     public UserWebservice(AddUserUseCase addUserUseCase, GetUsersUseCase getUsersUseCase, RemoveUserUseCase removeUserUseCase) {
         this.addUserUseCase = addUserUseCase;
@@ -44,10 +45,12 @@ public class UserWebservice {
 
     @PostMapping
     public UserView addUser(@RequestBody UserView body) throws InputExceptionView {
+        logger.info("Adding user");
         try {
             String login = body.getLogin();
 
             if (!login.matches("^[a-zA-Z0-9_-]{8,16}$")) {
+                logger.info("Wrong login");
                 throw new InputExceptionView("Login must be between 8 and 16 characters");
             }
 
@@ -60,7 +63,11 @@ public class UserWebservice {
         } catch (NullPointerException
                 | IllegalArgumentException
                 | IllegalStateException e) {
+            logger.info("Exception occured");
             throw new InputExceptionView("Login Invalid");
+        } catch (Exception ex) {
+            logger.warning("Unexpected Exception: "+ ex.getMessage() + ", " + ex.getCause());
+            throw ex;
         }
     }
 

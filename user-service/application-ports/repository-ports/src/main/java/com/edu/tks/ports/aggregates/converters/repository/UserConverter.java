@@ -21,7 +21,8 @@ public class UserConverter {
                 userEntity.getUserID(),
                 userEntity.getLogin(),
                 userEntity.isActive(),
-                convertUserTypeEntityToUserType(userEntity.getType())
+                convertUserTypeEntityToUserType(userEntity.getType()),
+                userEntity.isPending()
         );
     }
 
@@ -39,7 +40,8 @@ public class UserConverter {
                 user.getUserID(),
                 user.getLogin(),
                 user.isActive(),
-                convertUserTypeToUserTypeEntity(user.getType())
+                convertUserTypeToUserTypeEntity(user.getType()),
+                user.isPending()
         );
     }
 }

@@ -9,6 +9,7 @@
             <xs:element name="login" type="xs:string"/>
             <xs:element name="type" type="tns:UserTypeSOAP"/>
             <xs:element name="active" type="xs:boolean"/>
+            <xs:element name="pending" type="xs:boolean"/>
         </xs:sequence>
     </xs:complexType>
 

@@ -5,25 +5,37 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.util.UUID;
+import java.util.logging.Logger;
 
 public class User implements Cloneable {
     private UUID userID;
     private String login;
     private UserType type;
     private boolean active = false;
+    private boolean pending;
+
 
     public User() {
     }
 
-    public User(String login, UserType type) {
-        this(UUID.randomUUID(), login, false, type);
+    public boolean isPending() {
+        return pending;
     }
 
-    public User(UUID userID, String login, boolean isActive, UserType type) {
+    public void setPending(boolean pending) {
+        this.pending = pending;
+    }
+
+    public User(String login, UserType type) {
+        this(UUID.randomUUID(), login, false, type, true);
+    }
+
+    public User(UUID userID, String login, boolean isActive, UserType type, boolean pending) {
         this.userID = userID;
         this.login = login;
         this.type = type;
         this.active = isActive;
+        this.pending = pending;
     }
 
     @Override
